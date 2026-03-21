@@ -4,7 +4,7 @@
     const resultE2 = document.getElementById("result_2");
 
     button.addEventListener("click", function () {
-      const result = input.value.trim().replaceAll(' ','-').repeat(4);
+      const result = input.value.replaceAll(' ','-').repeat(4);
       resultEl.textContent = result;
     });
     
