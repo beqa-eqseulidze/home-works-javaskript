@@ -3,7 +3,7 @@
     const resultEl = document.getElementById("result");
 
     button.addEventListener("click", function () {
-      const result = input.value.trim().split(/\s+/).join("-");
+      const result = input.value.trim().replaceAll(' ', '-' );
       resultEl.textContent = result;
     });
-  
+ 
