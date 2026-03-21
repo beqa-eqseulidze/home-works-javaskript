@@ -1,16 +1,10 @@
-const span=document.getElementById("yourInfo")
 const userInformation=document.getElementById("inputInfo")
-InputInfo.addEventListener("change" , info);
-function info(){
-    let infoText
-}
-
-const encryptedmail=document.getElementById("yourInfo")
-const userEmail=document.getElementById("inputInfo");
+const span=document.getElementById("yourInfo")
+inputInfo.addEventListener("change" , info);
 
 
 function info(){
-
-    let value=userEmail.value
-    
+    let inputInfo=userInformation.value
+    let yourInfo=inputInfo.replaceAll(" ","-")
+    span.innerText=yourInfo
 }
