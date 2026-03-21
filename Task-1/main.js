@@ -5,6 +5,6 @@ inputInfo.addEventListener("change" , info);
 
 function info(){
     let inputInfo=userInformation.value
-    let yourInfo=inputInfo.replaceAll(" ","-")
+    let yourInfo=inputInfo.trim().replaceAll(" ","-")
     span.innerText=yourInfo
 }
