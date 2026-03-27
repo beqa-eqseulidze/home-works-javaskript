@@ -1,0 +1,13 @@
+/* style.css */
+
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: aqua;
+    color: red;
+    font-family: 'Courier New', Courier, monospace;
+}
