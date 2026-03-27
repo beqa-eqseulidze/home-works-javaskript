@@ -1,6 +1,6 @@
 //მასივის მეთოდები (array methods)
 
-const myNumber=[1,2];
+const myNumber = [1, 2];
 // console.log(myNumber.length);
 
 //ამატებს ელემენტს მასივის ბოლოში
@@ -22,19 +22,44 @@ const myNumber=[1,2];
 // console.log('myNumber: ',myNumber);
 
 //find ეძებს ელემენტ მასივში
-const persons=[
-    {id:1,firsName:'giorgi'},
-    {id:2,firsName:'saba'},
-    {id:3,firsName:'tornike'},
-    {id:4,firsName:'bela'},
+const persons = [
+  { id: 1, firsName: "giorgi" },
+  { id: 2, firsName: "saba" },
+  { id: 3, firsName: "tornike" },
+  { id: 4, firsName: "bela" },
+  { id: 5, firsName: "tornike" },
+  { id: 6, firsName: "beqa" },
 ];
+//find
+// const personId=persons.find((item,index,arr)=>item.id==6);
 
-const person=persons.find((item,index,arr)=>{
-     console.log('item: ', item);
-     console.log('index: ', index);
-     console.log('arr: ', arr);
-     console.log('********************************************')
-     return item.id==6
-})
+//foreach ეს მეთოდი ახალა მასივს არ აბრუნებს
+const a = persons.forEach((item, index, arr) => {
+  item.lastName = "default";
+});
 
-console.log('person:' , person);
+//map
+const copiedPersons = persons.map((item, index, arr) => {
+  return item;
+});
+
+//findindex ეძებს სასურველ ელემენტს თავიდან და შეჩერდება სადც იპოვის
+const indexS = persons.findIndex((item, index, arr) => {
+  return item.firsName == "tornike";
+});
+console.log(indexS);
+
+//findindex ეძებს სასურველ ელემენტს მასივის ბოლოდან და შეჩერდება სადც იპოვის
+const indexE = persons.findLastIndex((item, index, arr) => {
+  return item.firsName == "tornike";
+});
+
+//filter აბრუნებს სასურველი ელემენტების მასივს
+const filteredPersons = persons.filter((item, index, arr) => {
+  return item.id % 2 !== 0;
+});
+
+console.log(filteredPersons);
+
+// console.log('copiedPersons: ',copiedPersons);
+// console.log('persons; ',persons)
