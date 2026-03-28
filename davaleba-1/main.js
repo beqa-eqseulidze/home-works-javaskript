@@ -20,6 +20,6 @@ function square(arr){
 const result = square([1,2,2]);
 
 
-console.log("pasuxi", result); 
+console.log("answer", result); 
 
 
