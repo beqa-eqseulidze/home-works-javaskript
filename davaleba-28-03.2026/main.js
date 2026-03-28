@@ -6,5 +6,10 @@ function array_Clone(array) {
     return array.slice(0);
 }
 
-console.log("Clone 1:", array_Clone(data1));
-console.log("Clone 2:", array_Clone(data2));
+const Clone_1=array_Clone(data1)
+const Clone_2=array_Clone(data2)
+
+Clone_1.push(2)
+
+console.log("Original data:", data1);
+console.log("Clone 1(modified):", Clone_1);

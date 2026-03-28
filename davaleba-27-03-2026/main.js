@@ -1,6 +1,12 @@
-// function is_array(parma){
-//     return Array.isArray(parma)?'კი ეს არის მასივი' : 'არა ეს არ არის მასივი'
-// }
+// Task 2: Clone Array
+const data1 = [1, 2, 4, 0];
+const data2 = [1, 2, [4, 0]];
 
-//ვთქვათ ბაქენდიდან მოგვდის ან უსერი მაგრამ თუ ბექი ინახავს 2 ან მეტ იუზერს მაშინ მოგვდის იუსერების მასივი, თქვენი მიზანია იუსერის ან იუსერების სახელები ჩაწეროთ HTML ში რათა მომხმარებელმა ნახოს იუზერის ან იუზერის სახელები, ვთქვათ ბექიდან მოვა ან ეს ['ბექა', 'ბელა'] ან ''თორნიკე   
+function array_Clone(array) {
+    return array.slice(0);
+}
+
+console.log("Clone 1:", array_Clone(data1));
+console.log("Clone 2:", array_Clone(data2));
+
 
