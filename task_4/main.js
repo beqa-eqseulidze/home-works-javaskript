@@ -9,7 +9,7 @@ function squareSum(numbers) {
     return sum + num * num;
   }, 0);
 }
-console.log(squareSum([1, 2, 2])); // 9
+console.log(squareSum([1, 2, 2]));
 console.log(squareSum([1, 2, 3, [5, 6]]));
 
 
