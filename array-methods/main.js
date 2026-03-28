@@ -113,5 +113,54 @@
 
 
 
+// function test(fn) {
+//     return fn();
+// }
+// let a=0;
+// function increase() {
+//     a++
+// }
+// const res=test(increase);
+
+// console.log(res)
+
+//find ეძებს ელემენტ მასივში
+const persons=[
+    {id:1,firsName:'giorgi'},
+    {id:2,firsName:'saba'},
+    {id:3,firsName:'tornike'},
+    {id:4,firsName:'bela'},
+    {id:5,firsName:'tornike'}
+];
+
+//find
+// const personId=persons.find((item, index, arr) =>item.id==6);
+
+//foreach ეს მეთოდი ახალ მასივს არ აბრუნებს
+const a=persons.forEach((item,index,arr) => {
+    item.lastName='default'
+})
+//map
+const transformedUsers=persons.map((item,index,arr) =>{
+    return item
+});
+// const indexS=persons.((item,index,arr) =>{
+//     return item
+// });
+// console.log(indexS);
+
+const indexE = persons.findLastIndex((item,index,arr) =>{
+    return item
+});
+console.log(indexE);
+const index=persons.findIndex((item,index,arr) =>{
+    return item.firsName==='tornike'
+});
+console.log(index)
+//  copiedPersons.push({id:5,firstName:'oto'});
+//  copiedPersons[1]='beqa'
+
+//  console.log('copiedPersons:', copiedPersons);
+//  console.log('persons;', persons);
 
 
