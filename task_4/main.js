@@ -1,13 +1,14 @@
-function squareSum(numbers) {
-  // flatten (nested array-ს გაშლა)
-  const flat = numbers.flat(Infinity);
+//// Complete the square sum function so that it squares each number
+//  passed into it and then sums the results together.
+// For example, for [1, 2, 2] it should return 9 because 
 
-  // კვადრატების ჯამი
+function squareSum(numbers) {
+  const flat = numbers.flat(Infinity);
   return flat.reduce((sum, num) => {
     return sum + num * num;
   }, 0);
 }
-
-// test
 console.log(squareSum([1, 2, 2])); // 9
-console.log(squareSum([1, 2, 3, [5, 6]])); // 1+4+9+25+36 = 75
+console.log(squareSum([1, 2, 3, [5, 6]]));
+
+
