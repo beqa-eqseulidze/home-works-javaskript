@@ -2,6 +2,7 @@
 //  passed into it and then sums the results together.
 // For example, for [1, 2, 2] it should return 9 because 
 
+const numbers=[1, 2, 2]
 function squareSum(numbers) {
   const flat = numbers.flat(Infinity);
   return flat.reduce((sum, num) => {
