@@ -1,7 +1,6 @@
-const arr = [1, 2, 3];
-let res = 0;
-for (let i=0; i <arr.length; i++){
-    res+=arr[i] * arr[i];
-}
+// array-ის მეთოდი reduce;
 
-console.log(res)
+const arr = [1, 2, 3];
+const res = arr.reduce((prev, cur) => prev += cur ** 2, 0);
+
+console.log(res);
