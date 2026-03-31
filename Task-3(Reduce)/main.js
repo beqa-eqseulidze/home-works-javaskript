@@ -5,9 +5,8 @@ const items = [
   { name: "Coffee", price: 4 },
 ];
 
-const res = items.reduce((item, price) =>{
-    return item + items.price
-},0);
-// return price;
+const res = items.reduce((prev, item) => {
+  return (prev += item.price);
+}, 0);
 
 console.log(res);
