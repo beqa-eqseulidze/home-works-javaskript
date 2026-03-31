@@ -6,4 +6,4 @@ const items = [
 ]
 const total = items.reduce((acc, item) => { return acc + item.price; }, 0)
 
-console.log(total)
+console.log('Apple + Laptop + Notebook + Coffee = ' + total)
