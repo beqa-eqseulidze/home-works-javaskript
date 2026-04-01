@@ -6,20 +6,26 @@ const people = [
   { name: 'David', age: 30 },
   { name: 'John', age: 60 },
   { name: 'Kaxa', age: 17 },
-  { name: 'Sam', age: 102 }
+  { name: 'Sam', age: 102 },
+  { name: 'Kaxa', age: 1800 }
 ];
 
-const group = people.reduce((res, person)=>{
-  const key = person.age;
+//=================================================================//
 
-  if (!res[key]) {
-    res[key] = [];
+const group = people.reduce((res, person)=>{
+  const value = person.age;
+
+  if(!res[value]){
+    res[value]=[];
   }
 
-  res[key].push(person);
+  res[value].push(person);
 
-  return res;
+  return res
 
 },{});
+
+//==================================================================//
+
 
 console.log(group);
