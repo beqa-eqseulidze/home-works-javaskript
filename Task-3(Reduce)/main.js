@@ -1,12 +1,6 @@
-const items = [
-  { name: "Apple", price: 1.5 },
-  { name: "Laptop", price: 1200 },
-  { name: "Notebook", price: 5 },
-  { name: "Coffee", price: 4 },
-];
+const nested = [[1 ,2], [3 ,4],[5 ,6]];
+const res=nested.reduce((prev, arr) =>{
+    return prev.concat(arr)
+},[])
 
-const res = items.reduce((prev, item) => {
-  return (prev += item.price);
-}, 0);
-
-console.log(res);
+console.log(res)
