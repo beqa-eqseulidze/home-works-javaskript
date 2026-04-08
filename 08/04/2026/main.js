@@ -23,6 +23,6 @@ const findedProduct = products.find(product =>
 
 
 
-console.log("filtered", filteredProducts);
-console.log("names", productnames);
-console.log("finded", findedProduct);
+console.log(filteredProducts);
+console.log(productnames);
+console.log(findedProduct);
