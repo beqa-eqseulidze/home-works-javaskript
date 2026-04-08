@@ -48,7 +48,6 @@ const nested = [[1, 2], [3, 4], [5, 6]];
 // ===================================================================================================================
 // Exercise 4: Grouping by Property
 // Group an array of people by their age.
-
 const people = [
   { name: 'Alice', age: 25 },
   { name: 'Bob', age: 30 },
@@ -57,6 +56,7 @@ const people = [
   { name: 'David', age: 30 },
   { name: 'John', age: 60 }
 ];
+
 
 // Goal: Use reduce to return:
 // {
