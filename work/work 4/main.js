@@ -8,12 +8,9 @@ const products = [
 ]
 
 //პირველი დავალება
-const filtered = products.reduce((acc, product) => {
-    if (product.stock > 0 && product.price > 50) {
-        acc.push(product);
-    }
-    return acc;
-}, []);
+const filtered = products.filter(product =>
+    product.stock > 0 && product.price > 50
+);
 
 console.log(filtered);
 
