@@ -30,7 +30,7 @@ console.log(foundKeyboard);
 //მეოთხე დავალება
 const sum = products.reduce((sum, product) => {
     if (product.category === "Electronics") {
-        return sum + product.price;
+        return sum + (product.price * product.stock);
     }
     return sum;
 }, 0);
