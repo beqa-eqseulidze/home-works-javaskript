@@ -29,10 +29,6 @@ function showProducts(curent){
 }
 
 
-showProducts(products);
-
-
-
 document.getElementById("filterButton").addEventListener("click", function() {
   
   let filtered = [];
