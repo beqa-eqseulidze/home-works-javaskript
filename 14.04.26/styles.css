@@ -24,9 +24,6 @@ button {
   margin: 15px 0;
 }
 
-button:hover {
-  background-color: #ff2600;
-}
 
 table {
   width: 100%;
