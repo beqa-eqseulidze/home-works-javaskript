@@ -37,5 +37,8 @@ const totalElectronicsPrice = products
   console.log(totalElectronicsPrice)
 
 
-
+// ========= 5 ===========
+// შემოწმება (some/every): შეამოწმე, არის თუ არა მასივში რომელიმე პროდუქტი, რომელიც 3000 ლარზე მეტი ღირს.
+const res=[1,5,3].every((el) => (el % 2 != 0));
+const res2=[1,4,7].some((el) => (el % 2 != 0 ));
 
