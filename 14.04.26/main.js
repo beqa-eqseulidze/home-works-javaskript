@@ -7,7 +7,7 @@ const products = [
   { id: 6, name: "Keyboard", price: 100, category: "Electronics", stock: 8 }
 ];
 
-function showProducts(curent){
+function ProductRes(curent){
   let rows = "";
 
   for (let i = 0; i < curent.length; i++){
@@ -38,5 +38,5 @@ document.getElementById("filterButton").addEventListener("click", function() {
     }
   }
 
-  showProducts(filtri);
+  ProductRes(filtri);
 });
