@@ -25,18 +25,20 @@ th {
 }
 
 .filter {
-  margin: 20px auto;
-  padding: 10px;
-  width: 50%;
+  width: 60%;
+  margin: 40px auto;
+  padding: 20px;
   display: flex;
-  gap: 10px;
-  justify-content: space-between;
-  align-items: center;
+  gap: 20px;
+  align-items: flex-end;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 button {
   height: 35px;
-  width: 25%;
+  width: 120px;
   border: none;
   border-radius: 8px;
   background-color: #333;
@@ -50,11 +52,17 @@ button:hover {
 
 input {
   height: 35px;
-  width: 25%;
+  width: 100%;
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 0 10px;
   outline: none;
+}
+
+.inputs {
+  display: flex;
+  gap: 15px;
+  flex: 1;
 }
 
 tbody tr:nth-child(even) {
@@ -63,4 +71,17 @@ tbody tr:nth-child(even) {
 
 tbody tr:hover {
   background-color: #f1f1f1;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+label {
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #555;
+  font-weight: 500;
 }/*# sourceMappingURL=style.css.map */
