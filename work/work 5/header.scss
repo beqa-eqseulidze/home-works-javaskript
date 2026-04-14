@@ -1,0 +1,10 @@
+@import "palette";
+
+header {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px 100px;
+    padding: 10px;
+    background-color: rgb(29, 34, 46);
+    border-radius: 15px;
+}

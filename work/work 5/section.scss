@@ -1,0 +1,19 @@
+@import "palette";
+
+section {
+    color: $textcolor;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 100px;
+}
+
+h2 {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
