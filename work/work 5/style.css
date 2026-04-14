@@ -82,9 +82,9 @@ button {
   position: relative;
   padding: 10px 20px;
   border-radius: 20px;
-  background: #2c2f3a;
-  color: white;
-  border: none;
+  background: rgb(29, 34, 46);
+  color: rgb(255, 255, 255);
+  border: 1px solid rgb(82, 88, 103);
   cursor: pointer;
   overflow: hidden;
 }
@@ -124,7 +124,6 @@ button:hover::after {
   cursor: pointer;
 }
 
-/* slider */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -137,7 +136,6 @@ button:hover::after {
   transition: 0.3s;
 }
 
-/* circle */
 .slider::before {
   content: "";
   position: absolute;
@@ -150,7 +148,6 @@ button:hover::after {
   transition: 0.3s;
 }
 
-/* checked */
 input:checked + .slider {
   background-color: rgb(243, 90, 89);
 }

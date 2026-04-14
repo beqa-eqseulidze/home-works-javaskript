@@ -20,7 +20,6 @@
     cursor: pointer;
 }
 
-/* slider */
 .slider {
     position: absolute;
     cursor: pointer;
@@ -33,7 +32,6 @@
     transition: 0.3s;
 }
 
-/* circle */
 .slider::before {
     content: "";
     position: absolute;
@@ -46,7 +44,6 @@
     transition: 0.3s;
 }
 
-/* checked */
 input:checked+.slider {
     background-color: $activecolor;
 }
