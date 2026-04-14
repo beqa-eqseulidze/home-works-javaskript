@@ -17,7 +17,7 @@ function ProductRes(curent){
       <tr>
         <td>${p.id}</td>
         <td>${p.name}</td>
-        <td>$${p.price}</td>
+        <td>${p.price}</td>
         <td>${p.category}</td>
         <td>${p.stock}</td>
       </tr>
