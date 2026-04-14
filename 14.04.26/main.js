@@ -31,13 +31,13 @@ function showProducts(curent){
 
 document.getElementById("filterButton").addEventListener("click", function() {
   
-  let filtered = [];
+  let filtri = [];
 
   for (let i = 0; i < products.length; i++) {
     if (products[i].stock > 0 && products[i].price > 50) {
-      filtered.push(products[i]);
+      filtri.push(products[i]);
     }
   }
 
-  showProducts(filtered);
+  showProducts(filtri);
 });
