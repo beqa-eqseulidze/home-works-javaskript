@@ -40,9 +40,9 @@ renderTable(products);
 
 // ღილაკზე დაჭერის მოვლენა
 filterBtn.addEventListener('click', () => {
-    // ვფილტრავთ მასივს პირობით: stock > 0 და price > 50
+    
     const filteredProducts = products.filter(item => item.stock > 0 && item.price > 50);
 
-    // გაფილტრული მონაცემებით ცხრილის ხელახალი დარენდერება
+   
     renderTable(filteredProducts);
 });
