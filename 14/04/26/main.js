@@ -35,7 +35,7 @@ function renderTable(data) {
     });
 }
 
-// ფაილის ჩატვირთვისას თავიდან გამოვიტანოთ სრული სია
+
 renderTable(products);
 
 // ღილაკზე დაჭერის მოვლენა
