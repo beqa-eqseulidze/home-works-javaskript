@@ -1,0 +1,141 @@
+body {
+  background-color: rgb(0, 0, 121);
+  margin: 40px 140px;
+}
+
+header {
+  width: 100%;
+  margin-top: 50px;
+}
+
+.divhead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid;
+  padding: 20px 20px;
+  background-color: rgb(59, 59, 59);
+  border-radius: 15px;
+}
+
+.sun {
+  border: 1px solid;
+  height: 50px;
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  border-color: rgb(77, 77, 77);
+}
+
+.sun img {
+  width: 50%;
+}
+
+.sec-1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 60px;
+}
+
+.sec-1 h2 {
+  font-size: 38px;
+  color: white;
+}
+
+.all {
+  border: 1px solid;
+  border-radius: 15px;
+  padding: 10px 15px;
+  background-color: rgb(221, 32, 32);
+}
+
+.sec1-div {
+  display: flex;
+  gap: 40px;
+}
+
+.all {
+  border: 1px solid;
+  border-radius: 15px;
+  padding: 10px 15px;
+  background-color: rgb(221, 32, 32);
+}
+
+.active {
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 10px 15px;
+  background-color: rgb(43, 43, 43);
+  color: white;
+}
+
+.interactive {
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 10px 15px;
+  background-color: rgb(43, 43, 43);
+  color: white;
+}
+
+.cards {
+  display: flex;
+  margin-top: 50px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  color: white;
+  gap: 50px;
+}
+
+.div1-1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 20px;
+  background-color: rgb(77, 77, 77);
+}
+.div1-1 p {
+  color: rgb(126, 126, 126);
+}
+
+.remove1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: rgb(77, 77, 77);
+}
+.remove1 button {
+  border: 1px solid rgb(100, 100, 100);
+  border-radius: 15px;
+  font-size: 15px;
+  padding: 10px;
+  background-color: rgb(77, 77, 77);
+  color: white;
+}
+
+label {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 25px;
+  background-color: orangered;
+}
+
+input {
+  width: 2;
+  height: 2;
+}
+
+span {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: gray;
+}/*# sourceMappingURL=style.css.map */

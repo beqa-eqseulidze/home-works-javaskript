@@ -1,0 +1,61 @@
+.cards {
+  display: flex;
+  margin-top: 50px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  color: white;
+  gap: 50px;
+}
+
+.div1-1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 20px;
+  background-color: rgb(77, 77, 77);
+
+  p {
+    color: rgb(126, 126, 126);
+  }
+}
+
+.remove1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: rgb(77, 77, 77);
+
+  button {
+    border: 1px solid rgb(100, 100, 100);
+    border-radius: 15px;
+    font-size: 15px;
+    padding: 10px;
+    background-color: rgb(77, 77, 77);
+    color: white;
+  }
+}
+
+label{
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 25px;
+  background-color: orangered;
+}
+
+input{
+  width: 2;
+  height: 2;
+}
+
+span{
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: gray;
+}
