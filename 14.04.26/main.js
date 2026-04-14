@@ -24,6 +24,7 @@ function ProductRes(curent){
     `;
   }
 
+
   document.getElementById("tableBody").innerHTML = rows;
 }
 
@@ -40,3 +41,5 @@ document.getElementById("filterButton").addEventListener("click", function() {
 
   ProductRes(filtri);
 });
+
+ProductRes(products);
