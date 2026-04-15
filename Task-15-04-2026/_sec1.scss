@@ -1,0 +1,53 @@
+.sec-1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 60px;
+
+}
+
+.sec-1 h2 {
+  font-size: 38px;
+  color: white;
+}
+
+.all {
+  border: 1px solid;
+  border-radius: 15px;
+  padding: 10px 15px;
+  background-color: rgb(221, 32, 32);
+}
+
+.sec1-div {
+  display: flex;
+  gap: 40px;
+}
+
+.all {
+  border: 1px solid;
+  border-radius: 15px;
+  padding: 10px 15px;
+  background-color: rgb(221, 32, 32);
+  font-size: 20px;
+
+}
+
+
+.active {
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 10px 15px;
+  background-color: rgb(43, 43, 43);
+  color: white;
+  font-size: 20px;
+}
+
+.interactive {
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 10px 15px;
+  background-color: rgb(43, 43, 43);
+  color: white;
+  font-size: 20px;
+
+}
