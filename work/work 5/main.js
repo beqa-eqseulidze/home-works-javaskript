@@ -112,12 +112,12 @@ function createCard(extension, index) {
         extensions[index].enabled = checkbox.checked;
         renderCards(getCurrentFilter());
     });
-    // Remove ღილაკის მუშაობა
+
     const removeBtn = card.querySelector('.remove-btn');
     removeBtn.addEventListener('click', () => {
         if (confirm(`ნამდვილად გსურთ წაშლა "${extension.name}"?`)) {
-            extensions.splice(index, 1);        // ამოშლა მასივიდან
-            renderCards(getCurrentFilter());    // გადახატვა
+            extensions.splice(index, 1);
+            renderCards(getCurrentFilter());
         }
     });
 
@@ -140,7 +140,6 @@ function renderCards(filter = 'all') {
     }
 
     filteredExtensions.forEach((extension, originalIndex) => {
-        // ვპოულობთ ორიგინალ ინდექსს extensions მასივში
         const realIndex = extensions.findIndex(ext => ext.name === extension.name);
 
         const card = createCard(extension, realIndex);
