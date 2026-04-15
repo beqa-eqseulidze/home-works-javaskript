@@ -13,12 +13,14 @@ const products = [
 const tableBody = document.getElementById('productTableBody');
 const filterBtn = document.getElementById('filterBtn');
 
-
+/**
+ * ფუნქცია, რომელიც ასუფთავებს ცხრილს და არენდერებს გადაცემულ მასივს
+ */
 function renderTable(data) {
-   
+    // 1. ვასუფთავებთ ცხრილს (innerHTML-ის და ცარიელებით ხდება "თავიდან დარენდერება")
     tableBody.innerHTML = "";
 
-    
+    // 2. ციკლით გადავუყვებით მასივს და ვამატებთ ახალ სტრიქონებს
     data.forEach(product => {
         const row = `
                 <tr>
@@ -36,11 +38,11 @@ function renderTable(data) {
 
 renderTable(products);
 
-
+// ღილაკზე დაჭერის მოვლენა
 filterBtn.addEventListener('click', () => {
-    
+    // ვფილტრავთ მასივს პირობით: stock > 0 და price > 50
     const filteredProducts = products.filter(item => item.stock > 0 && item.price > 50);
 
-    
+    // გაფილტრული მონაცემებით ცხრილის ხელახალი დარენდერება
     renderTable(filteredProducts);
 });
