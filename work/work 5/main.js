@@ -87,69 +87,7 @@ let extensions = [
 ];
 const cardsContainer = document.querySelector('.cards');
 const filterButtons = document.querySelectorAll('.buttons button');
-// function createCard(extension) {
-//     const cardHTML = `
-//         <div class="info">
-//             <img src="${extension.icon}" alt="${extension.name}">
-//             <div class="about">
-//                 <h3>${extension.name}</h3>
-//                 <p>${extension.description}</p>
-//             </div>
-//         </div>
-//         <div class="status">
-//             <button class="remove-btn">Remove</button>
-//             <label class="switch">
-//                 <input type="checkbox" ${extension.enabled ? 'checked' : ''}>
-//                 <span class="slider"></span>
-//             </label>
-//         </div>
-//     `;
 
-//     const card = document.createElement('div');
-//     card.className = 'card';
-//     card.innerHTML = cardHTML;
-//     return card;
-// }
-// function renderCards(filter = 'all') {
-//     // გავასუფთავოთ კონტეინერი
-//     cardsContainer.innerHTML = '';
-
-//     // გავფილტროთ extensions მასივი
-//     let filteredExtensions = extensions;
-
-//     if (filter === 'active') {
-//         filteredExtensions = extensions.filter(ext => ext.enabled === true);
-//     }
-//     else if (filter === 'inactive') {
-//         filteredExtensions = extensions.filter(ext => ext.enabled === false);
-//     }
-//     // 'all' შემთხვევაში არაფერს ვფილტრავთ
-
-//     // ვქმნით და ვამატებთ კარტებს
-//     filteredExtensions.forEach(extension => {
-//         const card = createCard(extension);
-//         cardsContainer.appendChild(card);
-//     });
-// }
-// filterButtons.forEach(button => {
-//     button.addEventListener('click', () => {
-
-//         // ყველა ღილაკს ვაშორებთ "active" კლასს
-//         filterButtons.forEach(btn => btn.classList.remove('active'));
-
-//         // დაჭერილ ღილაკს ვამატებთ "active" კლასს
-//         button.classList.add('active');
-
-//         // ვიღებთ რომელი ღილაკია დაჭერილი (All, Active, Inactive)
-//         const filterType = button.textContent.toLowerCase();
-
-//         // ვრენდერებთ კარტებს შესაბამისი ფილტრით
-//         renderCards(filterType);
-//     });
-// });
-
-// // ==================== INITIAL RENDER ====================
-// renderCards('all');   // გვერდის ჩატვირთვისას ყველა კარტი გამოჩნდეს
 function createCard(extension, index) {
     const card = document.createElement('div');
     card.className = 'card';
