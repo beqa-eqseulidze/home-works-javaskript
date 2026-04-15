@@ -1,0 +1,27 @@
+.tag{
+    display: flex;
+    justify-content: space-between;
+   padding: 3vw;
+    align-items: center;
+}
+h1{
+    color: white;
+}
+
+.tag button{
+   border: 0px;
+    color: white;
+   border-radius: 2vw;
+   background-color: rgb(51, 50, 50);
+    width: 4.5vw;
+    height: 1.5vw;
+}
+.tag .but-1{
+    color: $myColor;
+    width: 2.5vw;
+    background-color: $myborderColor;
+}
+.tag .but-2{
+    width: 4vw;
+    border: 1px solid $myborderColor;
+}

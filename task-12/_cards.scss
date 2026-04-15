@@ -1,0 +1,41 @@
+.cards{
+    display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+align-items: center;
+margin: 2vw;
+}
+
+.card{
+    display: flex;
+    border: 1px solid $myborderColor;
+    border-radius: 2vw;
+   flex-direction: column;
+justify-content: space-between;
+}
+
+
+.card img{
+    padding: 2vw;
+    width: 10%;
+}
+
+.card button{
+ width: 4vw;
+}
+
+.text{
+    display: flex;
+    align-items: center;
+}
+
+.foo-1{
+    display: flex;
+    justify-content:space-between;
+}
+
+.cards h3{
+    color: $myColor;
+margin: 0 auto;
+}
+
