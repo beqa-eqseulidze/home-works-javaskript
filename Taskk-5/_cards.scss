@@ -34,28 +34,40 @@
     padding: 10px;
     background-color: rgb(77, 77, 77);
     color: white;
+    cursor: pointer;
   }
 }
 
-label{
+label {
   position: relative;
   display: inline-block;
   width: 50px;
-  height: 25px;
-  background-color: orangered;
+  height: 26px;
 }
 
-input{
+input {
+  opacity: 0;
   width: 2;
   height: 2;
 }
 
-span{
+span {
   position: absolute;
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: gray;
+  inset: 0;
+  background-color: orangered;
+  border-radius: 50px;
+  transition: 0.3s;
+}
+
+span:before{
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  top: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.3s;
 }
