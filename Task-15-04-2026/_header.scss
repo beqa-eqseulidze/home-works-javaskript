@@ -1,0 +1,29 @@
+header {
+  width: 100%;
+  margin-top: 50px;
+}
+
+.divhead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid;
+  padding: 20px 20px;
+  background-color: rgb(59, 59, 59);
+  border-radius: 15px;
+}
+
+.sun {
+  border: 1px solid;
+  height: 50px;
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  border-color: rgb(77, 77, 77);
+}
+
+.sun img {
+  width: 50%;
+}
