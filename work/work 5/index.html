@@ -9,11 +9,18 @@
 <link rel="stylesheet" href="./style.css">
 
 <body>
-    <header>
-        <img src="./images/logo.svg" alt="">
-        <button class="background">
-            <img src="./images/icon-sun.svg" alt="">
-        </button>
+    <header id="header">
+        <div class="header-content">
+            <div class="logo-search-container">
+                <img src="./images/logo.svg" alt="Extensions" id="logo" class="logo">
+                <div class="search-wrapper">
+                    <input type="text" id="searchInput" placeholder="Search extensions..." class="searchInput">
+                </div>
+            </div>
+            <button class="background" id="theme-btn">
+                <img id="theme-icon" src="./images/icon-sun.svg" alt="Switch to Light Mode">
+            </button>
+        </div>
     </header>
     <section>
         <h2>Extensions List</h2>

@@ -1,4 +1,3 @@
-
 let extensions = [
     {
         name: "DevLens",
@@ -85,9 +84,15 @@ let extensions = [
         url: "https://example.com/consoleplus"
     }
 ];
+
 const cardsContainer = document.querySelector('.cards');
 const filterButtons = document.querySelectorAll('.buttons button');
+const searchInput = document.getElementById('searchInput');
+const logoSearchContainer = document.querySelector('.logo-search-container');
 
+let currentSearchTerm = '';
+
+// Card-ის შექმნა
 function createCard(extension, index) {
     const card = document.createElement('div');
     card.className = 'card';
@@ -107,52 +112,115 @@ function createCard(extension, index) {
             </label>
         </div>
     `;
+    // Toggle enabled
     const checkbox = card.querySelector('input[type="checkbox"]');
     checkbox.addEventListener('change', () => {
         extensions[index].enabled = checkbox.checked;
-        renderCards(getCurrentFilter());
+        renderCards(getCurrentFilter(), currentSearchTerm);
     });
-
+    // Remove button
     const removeBtn = card.querySelector('.remove-btn');
     removeBtn.addEventListener('click', () => {
         if (confirm(`ნამდვილად გსურთ წაშლა "${extension.name}"?`)) {
             extensions.splice(index, 1);
-            renderCards(getCurrentFilter());
+            renderCards(getCurrentFilter(), currentSearchTerm);
         }
     });
 
     return card;
 }
+
+// gettinh Current Filter
 function getCurrentFilter() {
     const activeButton = document.querySelector('.buttons button.active');
     if (!activeButton) return 'all';
     return activeButton.textContent.toLowerCase();
 }
-function renderCards(filter = 'all') {
+//render function both filter + searc bar
+function renderCards(filter = 'all', searchTerm = '') {
     cardsContainer.innerHTML = '';
-
     let filteredExtensions = extensions;
 
+    // Status filter (Active / Inactive)
     if (filter === 'active') {
-        filteredExtensions = extensions.filter(ext => ext.enabled === true);
+        filteredExtensions = filteredExtensions.filter(ext => ext.enabled === true);
     } else if (filter === 'inactive') {
-        filteredExtensions = extensions.filter(ext => ext.enabled === false);
+        filteredExtensions = filteredExtensions.filter(ext => ext.enabled === false);
     }
 
-    filteredExtensions.forEach((extension, originalIndex) => {
-        const realIndex = extensions.findIndex(ext => ext.name === extension.name);
+    // Search filter (name + description)
+    if (searchTerm.trim() !== '') {
+        const term = searchTerm.toLowerCase().trim();
+        filteredExtensions = filteredExtensions.filter(ext => 
+            ext.name.toLowerCase().includes(term) || 
+            ext.description.toLowerCase().includes(term)
+        );
+    }
 
+    filteredExtensions.forEach((extension) => {
+        const realIndex = extensions.findIndex(ext => ext.name === extension.name);
         const card = createCard(extension, realIndex);
         cardsContainer.appendChild(card);
     });
 }
+
+// Search input events
+searchInput.addEventListener('focus', () => {
+    logoSearchContainer.classList.add('search-active');
+});
+
+searchInput.addEventListener('blur', () => {
+    if (searchInput.value.trim() === '') {
+        logoSearchContainer.classList.remove('search-active');
+    }
+});
+
+searchInput.addEventListener('input', () => {
+    currentSearchTerm = searchInput.value;
+    renderCards(getCurrentFilter(), currentSearchTerm);
+});
+
+// Filter buttons
 filterButtons.forEach(button => {
     button.addEventListener('click', () => {
         filterButtons.forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
 
-        const filterType = button.textContent.toLowerCase();
-        renderCards(filterType);
+        renderCards(button.textContent.toLowerCase(), currentSearchTerm);
     });
 });
-renderCards('all');
+
+// გაშვება
+renderCards('all', '');
+
+// THEME TOGGLE
+const themeBtn = document.getElementById('theme-btn');
+const themeIcon = document.getElementById('theme-icon');
+function toggleTheme() {
+    document.body.classList.toggle('light-mode');
+
+    if (document.body.classList.contains('light-mode')) {
+        themeIcon.src = './images/icon-moon.svg';
+        themeIcon.alt = 'Switch to Dark Mode';
+    } else {
+        themeIcon.src = './images/icon-sun.svg';
+        themeIcon.alt = 'Switch to Light Mode';
+    }
+
+    // შენახვა (გვერდის გადატვირთვისას თემა არ დაიკარგოს)
+    localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+}
+
+themeBtn.addEventListener('click', toggleTheme);
+
+// თემის აღდგენა გვერდის ჩატვირთვისას
+function loadSavedTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-mode');
+        themeIcon.src = './images/icon-moon.svg';
+        themeIcon.alt = 'Switch to Dark Mode';
+    }
+}
+// გამოძახება
+loadSavedTheme();

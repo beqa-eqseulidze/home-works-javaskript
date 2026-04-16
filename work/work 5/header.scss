@@ -1,10 +1,59 @@
 @import "palette";
 
-header {
+#header {
+    padding: 20px 100px;
+    transition: all 0.4s ease;
+}
+
+.header-content {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    margin: 40px 100px;
-    padding: 10px;
-    background-color: rgb(29, 34, 46);
-    border-radius: 15px;
+    gap: 15px;
+}
+
+.logo-search-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+    transition: all 0.4s ease;
+}
+
+.logo {
+    transition: opacity 0.4s ease, width 0.4s ease;
+    flex-shrink: 0;
+}
+
+.search-wrapper {
+    flex: 1;
+    transition: all 0.4s ease;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: 1px solid rgb(58, 62, 75);
+    background: rgb(29, 34, 46);
+    color: white;
+    font-size: 16px;
+    transition: all 0.4s ease;
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: rgb(243, 90, 89);
+    background: rgb(29, 34, 46);
+}
+
+.logo-search-container.search-active .logo {
+    opacity: 0;
+    width: 0;
+    margin-right: 0;
+    overflow: hidden;
+}
+
+.logo-search-container.search-active .search-wrapper {
+    flex: 1;
 }
