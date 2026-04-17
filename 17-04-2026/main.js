@@ -44,3 +44,37 @@ for( div of divsArray){
 
 // const array1=new Array(); 
 // const array2=[];
+
+
+// setTimeout და setInterval clearInterval ფუნქციები :
+
+// 1) setTimeout ფუნქცია;
+
+function seyHello(){
+    console.log('hello')   
+}
+function seyGoodby(){
+    console.log('Goodby')   
+}
+
+//  setTimeout(seyHello,5000)
+
+// 2) setInterval ფუნქცია;
+
+let helloInterval=setInterval(seyHello,1000);
+// setInterval(seyGoodby,1000);
+
+
+function killInterval(){
+    console.log('interval killed')
+    clearInterval(helloInterval)
+}
+
+setTimeout(killInterval,5001)
+
+
+// დავალება :
+// გააკეთეთ ვებგვერდი სადაც ეკრანზე გამოიტანთ საათს და ეს საათი უნდა იყოს მოქმედი და სწორი
+// საათის ფორმატი 17:06:08 (საათი : წუთი : წამი)
+// გამოიყენეთ Date ის ობიექტის ჩაშენებული მეთოდები და setInterval ფუნქცია ;
+//
