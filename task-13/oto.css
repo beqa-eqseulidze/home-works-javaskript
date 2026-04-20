@@ -1,0 +1,17 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: black;
+  color: lime;
+  font-size: 50px;
+}
+
+#clock {
+  font-family: "DigitalClock";
+  font-size: 100px;
+  color: white;
+  text-shadow: 0 0 2px white, 0 0 5px white;
+  letter-spacing: 5px;
+}/*# sourceMappingURL=oto.css.map */
