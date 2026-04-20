@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'DigitalClock';
+    src: url(./digital_7/digital-7\ \(mono\).ttf);
+}
+
+@import "reset";
+@import "palette";
+
+body {
+    background: $secondarycolor;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#clock {
+    font-family: 'DigitalClock';
+    font-size: 100px;
+    color: $primarycolor;
+    text-shadow:
+        0 0 2px $primarycolor,
+        0 0 5px $primarycolor ;
+    letter-spacing: 5px;
+}
