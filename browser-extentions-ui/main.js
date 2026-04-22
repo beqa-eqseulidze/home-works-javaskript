@@ -99,7 +99,7 @@ function createCardHTML(ext, index) {
 }
 
 // ფილტრის მიხედვით ქარდების რენდერი
-function renderCards(filter) {
+function renderCards(filter, search = currentSearch) {
   const grid = document.getElementById("extensionsGrid");
 
   let filtered;
@@ -114,12 +114,28 @@ function renderCards(filter) {
   } else {
     filtered = extensions.map((ext, i) => ({ ext, i }));
   }
+
+  // სერჩის ფილტრი — სახელის დასაწყისიდან ეძებს (case-insensitive)
+  if (search.trim() !== "") {
+    const query = search.trim().toLowerCase();
+    filtered = filtered.filter(({ ext }) =>
+      ext.name.toLowerCase().includes(query)
+    );
+  }
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `<p class="no-results">No extensions found.</p>`;
+    return;
+  }
+
   grid.innerHTML = filtered
     .map(({ ext, i }) => createCardHTML(ext, i))
     .join("");
 }
-// მიმდინარე ფილტრის მნიშვნელობა
+
+// მიმდინარე ფილტრის და სერჩის მნიშვნელობა
 let currentFilter = "all";
+let currentSearch = "";
 
 document.addEventListener("DOMContentLoaded", () => {
   const filterButtons = document.querySelectorAll(".filter-btn");
@@ -127,6 +143,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // საწყისი რენდერი
   renderCards(currentFilter);
+
+  // სერჩის ველი — live filtering
+  const searchInput = document.getElementById("searchInput");
+  searchInput.addEventListener("input", () => {
+    currentSearch = searchInput.value;
+    renderCards(currentFilter, currentSearch);
+  });
 
   // ფილტრის ღილაკები
   filterButtons.forEach((btn) => {
@@ -155,7 +178,8 @@ document.addEventListener("DOMContentLoaded", () => {
       // ხელახლა რენდერი მიმდინარე ფილტრით
       renderCards(currentFilter);
     }
-    // Remove — ქარდის წაშლა
+
+    // Remove — ქარდის წაშლა / მოშორება
     if (removeBtn && removeBtn.textContent === "Remove") {
       const card = removeBtn.closest(".card");
       const index = parseInt(card.getAttribute("data-index"));
