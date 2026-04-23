@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+  background: #0227de;
+}
+
+.container {
+  width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+  background: rgb(211, 225, 213);
+  border-radius: 10px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background: green;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#message {
+  margin-top: 10px;
+}
+
+.error {
+  color: rgb(255, 7, 7);
+}
+
+.success {
+  color: rgb(6, 134, 6);
+}
