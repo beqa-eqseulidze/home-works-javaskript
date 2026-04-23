@@ -1,36 +1,50 @@
 const usernameInput = document.getElementById("username");
 const ageInput = document.getElementById("age");
-const message = document.getElementById("message");
-const button = document.getElementById("submitBtn");
+const submitBtn = document.getElementById("submitBtn");
+const messageBox = document.getElementById("message");
 
-button.addEventListener("click", function () {
+
+function checkUsername(username) {
+  if (username.length < 5) {
+    throw new Error("Username should be minimum 5 simbols");
+  }
+}
+
+function checkAge(age) {
+  if (age === "" || isNaN(age)){
+    throw new Error("Age should be namber only");
+  }
+
+  if (Number(age) < 18) {
+    throw new Error("Age should be at least 18");
+  }
+}
+
+function checkerForm(username, age){
+  checkUsername(username);
+  checkAge(age);
+}
+
+
+
+submitBtn.addEventListener("click", () => {
   try {
-    let username = usernameInput.value;
-    let age = ageInput.value;
+    messageBox.textContent = "";
+    messageBox.className = "";
 
-    message.textContent = "";
-    message.className = "";
+    const username = usernameInput.value;
+    const age = ageInput.value;
 
-    if (username.length < 5) {
-      throw new Error("Username should be atleast 5 symbols");
-    }
+    checkerForm(username, age);
 
-    if (isNaN(age) || age === "") {
-      throw new Error("Age should be number");
-    }
-
-    if (Number(age) < 18) {
-      throw new Error("age should be atleast 18");
-    }
-
-    message.textContent = "Registration Done";
-    message.className = "success";
+    messageBox.textContent = "Successful Registration";
+    messageBox.className = "success";
 
   } catch (error){
-    message.textContent = error.message;
-    message.className = "error";
+    messageBox.textContent = error.message;
+    messageBox.className = "error";
 
-  }finally{
+  } finally{
     usernameInput.value = "";
     ageInput.value = "";
   }
