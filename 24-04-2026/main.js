@@ -90,3 +90,44 @@ const users = [
     // Cassie has no library property!
   }
 ];
+
+// ======================= home work ===========
+//   "გამოწერების მართვის სისტემა"
+
+// წარმოიდგინე, რომ გაქვს მომხმარებლების სია (Users). 
+// შენი მიზანია გადაუარო ამ სიას და თითოეული
+//  მომხმარებლისთვის განსაზღვრო მათი სტატუსი დღევანდელი თარიღიდან გამომდინარე 
+// საბოლოო შედეგი გამოიტანე ეკრანზე table ის  სახით, 
+// სადაც ხილვადი იქნება ყველა ყველაფერი:    
+
+const users = [
+  {
+    id: 1,
+    name: "Elena",
+    subscription: {
+      status: "active",
+      expiresAt: "2026-06-15T10:00:00Z" // Future date
+    }
+  },
+  {
+    id: 2,
+    name: "Marcus",
+    subscription: null, // No subscription at all
+  },
+  {
+    id: 3,
+    name: "Suki",
+    subscription: {
+      status: "expired",
+      expiresAt: "2024-01-10T14:30:00Z" // Past date
+    }
+  },
+  {
+    id: 4,
+    name: "Oliver",
+    subscription: {
+      status: "active"
+      // expiresAt is MISSING!
+    }
+  }
+];
