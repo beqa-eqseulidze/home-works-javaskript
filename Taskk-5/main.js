@@ -1,8 +1,7 @@
 const extensions = [
   {
     name: "DevLens",
-    description:
-      "Quickly inspect page layouts and visualize element boundaries.",
+    description: "Quickly inspect page layouts and visualize element boundaries.",
     enabled: true,
     icon: "./img/logo-devlens.svg",
   },
@@ -78,9 +77,3 @@ const extensions = [
     icon: "./img/logo-console-plus.svg",
   },
 ];
-
-// konteineri
-
-// filtris ghilakebi
-
-// qardis sheqmna
