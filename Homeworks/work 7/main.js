@@ -41,7 +41,7 @@ function Generate() {
     for (let i = 0; i < 5; i++) {
         let hexCode = getRandomHex();
         let cube = `<div class="box" style="background-color:${hexCode}">${hexCode}</div>`
-        container.innerHTML += cube+"";
+        container.innerHTML += cube + "";
     }
 }
 
@@ -70,7 +70,7 @@ const message = document.getElementById("message");
 form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const username = document.getElementById("username").value;
+    const username = document.getElementById("username").value.trim();
     const age = document.getElementById("age").value;
 
     try {
@@ -80,7 +80,7 @@ form.addEventListener("submit", function (e) {
         }
 
         // ასაკის ვალიდაცია
-        if (isNaN(age) || age < 18) {
+        if (isNaN(age) || +age < 18) {
             throw new Error("Age must be a number and at least 18");
         }
 

@@ -46,9 +46,10 @@ button:hover {
 .error {
   color: red;
 }
-input{
-    padding: 10px 20px;
-    font-size: 16px;
+
+input {
+  padding: 10px 20px;
+  font-size: 16px;
 }
 
 body {
