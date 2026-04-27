@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Users Table</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h2>Subscription System</h2>
+
+    <div class="controls">
+        <input type="text" id="searchInput" placeholder="Search by name..." />
+        <select id="statusFilter">
+            <option value="all">All</option>
+            <option value="active">Active</option>
+            <option value="expired">Expired</option>
+            <option value="none">No Subscription</option>
+            <option value="invalid">Invalid</option>
+        </select>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th rowspan="2">ID</th>
+                <th rowspan="2">Name</th>
+                <th colspan="2">Subscription</th>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <th>Expires</th>
+            </tr>
+        </thead>
+
+        <tbody id="tableBody"></tbody>
+    </table>
+
+    <script src="./main.js"></script>
+</body>
+
+</html>
