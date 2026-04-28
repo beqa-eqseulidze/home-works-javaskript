@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 20px;
+  background: rgb(247, 243, 243);
+}
+
+button {
+  margin: 5px;
+  padding: 10px 40px;
+  cursor: pointer;
+  border: none;
+  background-color: rgb(16, 238, 16);
+  color: rgb(2, 2, 2);
+  font-size: 25px;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  margin-top: 50px;
+}
+
+#app {
+  color: black;
+  background-color: rgb(245, 245, 241);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+#app div {
+  border: 3px solid #755c5c;
+  padding: 20px;
+  width: 150px;
+}
+#app div h3 {
+  color: rgb(192, 30, 152);
+  font-size: 20px;
+}
+#app div p {
+  color: rgb(8, 11, 192);
+  font-size: 20px;
+  font-weight: 1500;
+}/*# sourceMappingURL=styles.css.map */

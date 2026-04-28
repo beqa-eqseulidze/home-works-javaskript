@@ -1,0 +1,16 @@
+$ButtonBackgroundColor : rgb(16, 238, 16);
+$buttonTextColor : rgb(2, 2, 2);
+$buttonFontSize: 25px;
+
+button{
+    margin: 5px;
+    padding: 10px 40px;
+    cursor: pointer;
+    border: none;
+    background-color: $ButtonBackgroundColor;
+    color: $buttonTextColor;
+    font-size: $buttonFontSize;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    margin-top: 50px;
+}

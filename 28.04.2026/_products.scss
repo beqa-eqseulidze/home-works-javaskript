@@ -1,0 +1,32 @@
+$MyTextColor: black;
+$backgroundColor: rgb(245, 245, 241);
+$myGap: 10px;
+$DivBorder: 3px solid #755c5c;
+$MyWidth: 150px;
+$h3Color: rgb(192, 30, 152);
+$pColor: rgb(8, 11, 192);
+
+
+#app{
+    color: $MyTextColor;
+    background-color: $backgroundColor;
+    display: flex;
+    flex-wrap: wrap;
+    gap: $myGap;
+     div {
+       border: $DivBorder;
+       padding: 20px;
+       width: $MyWidth;
+         h3 {
+            color: $h3Color;
+            font-size: 20px;
+         }
+          p {
+            color: $pColor;
+            font-size: 20px;
+            font-weight: 1500;
+         }
+
+ }
+}
+
