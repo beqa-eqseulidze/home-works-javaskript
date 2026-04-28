@@ -35,6 +35,7 @@ const tbody = document.querySelector("#usersTable tbody");
 const today = new Date();
 
 
+
 users.forEach(user => {
 
   let currentStatus = "";
@@ -42,21 +43,17 @@ users.forEach(user => {
 
 
 
-  // საერთოდ არ აქვს subscription
+
   if (!user.subscription){
     currentStatus = "no subscription";
     className = "no-subscription";
 
-  //გამოწერილია მაგრამ ვადა არაქ
   } else if (!user.subscription.expiresAt) {
     currentStatus = "no data";
     className = "no-data";
-
   }
-  
   else{
     const expiryDate = new Date(user.subscription.expiresAt);
-    //ვადის შემოწმმება//
     if (expiryDate < today) {
       currentStatus = "expired";
       className = "expired";
@@ -75,6 +72,6 @@ users.forEach(user => {
   <td class="${className}">${currentStatus}</td>
 `;
 
-  // row-ს დამატება teibl-ში.
+
   tbody.appendChild(row);
 });
