@@ -35,7 +35,6 @@ const tbody = document.querySelector("#usersTable tbody");
 const today = new Date();
 
 
-//თითო მომხმარებლის დამუშავება
 users.forEach(user => {
 
   let currentStatus = "";
@@ -76,6 +75,6 @@ users.forEach(user => {
   <td class="${className}">${currentStatus}</td>
 `;
 
-
+  // row-ს დამატება teibl-ში.
   tbody.appendChild(row);
 });
