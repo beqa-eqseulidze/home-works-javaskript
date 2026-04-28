@@ -42,15 +42,15 @@ users.forEach(user => {
   let className = "";
 
 
-
-
+ //თუ subscription საერთოდ არ აქვს
   if (!user.subscription){
     currentStatus = "no subscription";
     className = "no-subscription";
 
+    //აქვს subscription, მაგრამ ვადა არ აქვს
   } else if (!user.subscription.expiresAt) {
-    currentStatus = "no data";
-    className = "no-data";
+    currentStatus = "expired";
+    className = "expired-1";
   }
   else{
     const expiryDate = new Date(user.subscription.expiresAt);
