@@ -42,12 +42,12 @@ users.forEach(user => {
   let className = "";
 
 
- //თუ subscription საერთოდ არ აქვს
+ 
   if (!user.subscription){
     currentStatus = "no subscription";
     className = "no-subscription";
 
-    //აქვს subscription, მაგრამ ვადა არ აქვს
+  
   } else if (!user.subscription.expiresAt) {
     currentStatus = "expired";
     className = "expired-1";
