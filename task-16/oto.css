@@ -1,0 +1,41 @@
+/*# sourceMappingURL=oto.css.map */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 20px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+.active {
+  color: green;
+}
+
+.expired {
+  color: red;
+}
+
+.no-subscription {
+  color: gray;
+}
+
+.no-data {
+  color: rgb(236, 165, 34);
+}
