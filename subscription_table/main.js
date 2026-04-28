@@ -44,19 +44,20 @@ users.forEach(user => {
 
 
   // საერთოდ არ აქვს subscription
-  if (!user.subscription) {
+  if (!user.subscription){
     currentStatus = "no subscription";
     className = "no-subscription";
 
-  //გამოწერილია მაგრამ ვადა არ აქ
+  //გამოწერილია მაგრამ ვადა არაქ
   } else if (!user.subscription.expiresAt) {
     currentStatus = "no data";
     className = "no-data";
 
-  }else {
-    //date obieqtad gadaqceva
+  }
+  
+  else{
     const expiryDate = new Date(user.subscription.expiresAt);
-
+    //ვადის შემოწმმება//
     if (expiryDate < today) {
       currentStatus = "expired";
       className = "expired";
@@ -70,11 +71,11 @@ users.forEach(user => {
   row.innerHTML = `
   <td>${user.id}</td>
   <td>${user.name}</td>
-  <td>${user.subscription ? user.subscription.status : "no data"}</td>
-  <td>${user.subscription ? user.subscription.expiresAt : "no data"}</td>
+  <td>${user.subscription ? user.subscription.status : "n/a"}</td>
+  <td>${user.subscription ? user.subscription.expiresAt : "n/a"}</td>
   <td class="${className}">${currentStatus}</td>
 `;
 
-  // row-ს დამატება teibl-ში.
+
   tbody.appendChild(row);
 });
