@@ -1,0 +1,32 @@
+//task_21_04_26/style.scss
+
+$primary-color: #3498db;
+$secondary-color: #110e0e;
+
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $primary-color;
+}
+
+h1 {
+    color: $secondary-color;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 50px;
+}
+
+#timeDisplay {
+    font-size: 40px;
+    color: $secondary-color;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 10px;
+}
