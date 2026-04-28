@@ -1,0 +1,80 @@
+const users = [
+  {
+    id: 1,
+    name: "Elena",
+    subscription: {
+      status: "active",
+      expiresAt: "2026-06-15T10:00:00Z"
+    }
+  },
+  {
+    id: 2,
+    name: "Marcus",
+    subscription: null,
+  },
+  {
+    id: 3,
+    name: "Suki",
+    subscription: {
+      status: "expired",
+      expiresAt: "2024-01-10T14:30:00Z"
+    }
+  },
+  {
+    id: 4,
+    name: "Oliver",
+    subscription: {
+      status: "active"
+    }
+  }
+];
+
+
+
+const tbody = document.querySelector("#usersTable tbody");
+const today = new Date();
+
+
+//თითო მომხმარებლის დამუშავება
+users.forEach(user => {
+
+  let currentStatus = "";
+  let className = "";
+
+
+
+  // საერთოდ არ აქვს subscription
+  if (!user.subscription) {
+    currentStatus = "no subscription";
+    className = "no-subscription";
+
+  //გამოწერილია მაგრამ ვადა არ აქ
+  } else if (!user.subscription.expiresAt) {
+    currentStatus = "no data";
+    className = "no-data";
+
+  }else {
+    //date obieqtad gadaqceva
+    const expiryDate = new Date(user.subscription.expiresAt);
+
+    if (expiryDate < today) {
+      currentStatus = "expired";
+      className = "expired";
+    } else {
+      currentStatus = "active";
+      className = "active";
+    }
+  }
+
+  const row = document.createElement("tr");
+  row.innerHTML = `
+  <td>${user.id}</td>
+  <td>${user.name}</td>
+  <td>${user.subscription ? user.subscription.status : "no data"}</td>
+  <td>${user.subscription ? user.subscription.expiresAt : "no data"}</td>
+  <td class="${className}">${currentStatus}</td>
+`;
+
+  // row-ს დამატება teibl-ში.
+  tbody.appendChild(row);
+});
