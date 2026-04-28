@@ -4,8 +4,8 @@ const users = [
     name: "Elena",
     subscription: {
       status: "active",
-      expiresAt: "2026-06-15T10:00:00Z"
-    }
+      expiresAt: "2026-06-15T10:00:00Z",
+    },
   },
   {
     id: 2,
@@ -17,44 +17,35 @@ const users = [
     name: "Suki",
     subscription: {
       status: "expired",
-      expiresAt: "2024-01-10T14:30:00Z"
-    }
+      expiresAt: "2024-01-10T14:30:00Z",
+    },
   },
   {
     id: 4,
     name: "Oliver",
     subscription: {
-      status: "active"
-    }
-  }
+      status: "active",
+    },
+  },
 ];
-
-
 
 const tbody = document.querySelector("#usersTable tbody");
 const today = new Date();
 
-
-users.forEach(user => {
-
+users.forEach((user) => {
   let currentStatus = "";
   let className = "";
 
-
-
   // საერთოდ არ აქვს subscription
-  if (!user.subscription){
+  if (!user.subscription) {
     currentStatus = "no subscription";
     className = "no-subscription";
 
-  //გამოწერილია მაგრამ ვადა გასულია
+    //გამოწერილია მაგრამ ვადა გასულია
   } else if (!user.subscription.expiresAt) {
     currentStatus = "no data";
     className = "no-data";
-
-  }
-  
-  else{
+  } else {
     const expiryDate = new Date(user.subscription.expiresAt);
     //ვადებისს შემოწმმება//
     if (expiryDate < today) {

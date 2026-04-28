@@ -1,0 +1,17 @@
+@import 'color';
+
+.card{
+    background:$myColor;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+ button{
+   flex: 1;
+   padding: 6px;
+   border: none;
+   border-radius: 6px;
+   cursor: pointer;
+}
