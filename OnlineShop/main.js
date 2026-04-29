@@ -16,8 +16,8 @@ function render(arr) {
       (i) => `
     <div class="card">
        <h3>${i.name}</h3>
-       <p>${i.price}ლ</p>
-       <p>${i.rating}</p>
+       <p>${i.price}💸</p>
+       <p>${i.rating}⭐</p>
     </div>
   `,
     )
@@ -25,3 +25,16 @@ function render(arr) {
 }
 
 render(inventory);
+
+document.getElementById("PriceSort").addEventListener("click",()=>
+render([...inventory].sort((a,b)=>a.price-b.price))
+);
+
+document.getElementById("RatingSort").addEventListener("click",()=>
+render([...inventory].sort((a,b)=>b.rating-a.rating))
+);
+
+document.getElementById("NameSort").addEventListener("click",()=>
+render([...inventory].sort((a,b)=>a.name.localeCompare(b.name)))
+);
+
