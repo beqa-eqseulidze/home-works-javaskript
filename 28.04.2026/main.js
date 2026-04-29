@@ -8,7 +8,6 @@ const inventory = [
     { name: 'პრინტერი', price: 550, rating: 3.5 }
 ];
 
-
 //== PRICE sorti ==//
 function sortWithPrice() {
     inventory.sort((a, b) => a.price - b.price);
@@ -28,7 +27,7 @@ function sortWithName() {
 }
 
 
-const app = document.getElementById("app");
+const productsrow = document.getElementById("app");
 
 function render(products) {
     app.innerHTML = "";
