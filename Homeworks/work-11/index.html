@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather App - Tailwind Version</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <style type="text/tailwindcss">
+    @layer base {
+      @font-face {
+        font-family: 'Bricolage-Bold';
+        src: url('/assets/fonts/Bricolage_Grotesque/static/BricolageGrotesque-Bold.ttf');
+      }
+      @font-face {
+        font-family: 'DMSans';
+        src: url('./assets/fonts/DM_Sans/DMSans-VariableFont_opsz\,wght.ttf');
+      }
+      @font-face {
+        font-family: 'DMSans-Italic';
+        src: url('./assets/fonts/DM_Sans/DMSans-Italic-VariableFont_opsz\,wght.ttf');
+      }
+      
+      body {
+        @apply bg-[#02012b] text-white font-['DMSans'] min-h-screen;
+      }
+    }
+  </style>
+</head>
+
+<body class="px-6 py-8 md:px-20 md:py-12">
+  <header class="flex justify-between items-center max-w-7xl mx-auto">
+    <img src="./assets/images/logo.svg" alt="Logo" class="w-24 cursor-pointer" />
+    <button class="bg-[#2c2c2c] hover:bg-[#3d3d3d] transition-colors px-4 py-2 rounded-xl flex items-center gap-2 text-sm md:text-base">
+      <img src="./assets/images/icon-units.svg" alt="units" class="w-4 h-4" />
+      <span>Units ↓</span>
+    </button>
+  </header>
+
+  <section class="mt-12 mb-10">
+    <h1 class="font-['Bricolage-Bold'] text-center text-4xl md:text-6xl font-bold leading-tight">
+      How's the sky looking today?
+    </h1>
+  </section>
+
+  <div class="flex flex-col md:flex-row items-center justify-center gap-4 max-w-2xl mx-auto">
+    <div class="relative w-full">
+      <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+        <img src="./assets/images/icon-search.svg" alt="search" class="w-5 h-5" />
+      </div>
+      <input
+        type="text"
+        placeholder="Search for a place..."
+        class="bg-[#2c2c2c] w-full pl-10 pr-4 py-3 rounded-xl outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+      />
+    </div>
+    <button class="bg-[#4658d8] hover:bg-[#5a6bed] transition-colors px-8 py-3 rounded-xl w-full md:w-auto font-semibold">
+      Search
+    </button>
+  </div>
+
+  <main class="flex flex-col lg:flex-row gap-8 mt-12 max-w-7xl mx-auto">
+    <div class="lg:w-[65%] space-y-8">
+      <div class="bg-[url('./assets/images/bg-today-large.svg')] bg-cover bg-center rounded-2xl p-8 flex flex-col sm:flex-row justify-between items-center min-h-[250px] shadow-2xl">
+        <div class="text-center sm:text-left">
+          <h2 class="text-3xl md:text-4xl font-bold mb-2">Rustavi, Georgia</h2>
+          <p class="text-gray-200 text-lg opacity-80">Tuesday, Aug 5, 2025</p>
+        </div>
+        
+        <div class="flex items-center gap-6 mt-6 sm:mt-0">
+          <img src="./assets/images/icon-sunny.webp" alt="sunny" class="w-24 md:w-32 animate-pulse" />
+          <span class="font-['DMSans-Italic'] text-7xl md:text-9xl font-medium tracking-tighter">20°</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="bg-[#25253f] p-5 rounded-2xl flex flex-col justify-center">
+          <p class="text-gray-400 mb-2">Feels like</p>
+          <h4 class="text-2xl md:text-3xl font-bold">18°</h4>
+        </div>
+        <div class="bg-[#25253f] p-5 rounded-2xl flex flex-col justify-center">
+          <p class="text-gray-400 mb-2">Humidity</p>
+          <h4 class="text-2xl md:text-3xl font-bold">46%</h4>
+        </div>
+        <div class="bg-[#25253f] p-5 rounded-2xl flex flex-col justify-center">
+          <p class="text-gray-400 mb-2">Wind</p>
+          <h4 class="text-2xl md:text-3xl font-bold">14 km/h</h4>
+        </div>
+        <div class="bg-[#25253f] p-5 rounded-2xl flex flex-col justify-center">
+          <p class="text-gray-400 mb-2">Precipitation</p>
+          <h4 class="text-2xl md:text-3xl font-bold">0 mm</h4>
+        </div>
+      </div>
+
+      <section>
+        <h3 class="text-xl font-bold mb-4">Daily forecast</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
+          <div class="bg-[#25253f] p-4 rounded-xl text-center hover:bg-[#2e2e4f] transition-colors cursor-pointer border border-transparent hover:border-indigo-500">
+             <h4 class="text-gray-300">Tue</h4>
+             <img src="./assets/images/icon-rain.webp" alt="rain" class="w-10 h-10 mx-auto my-3" />
+             <div class="flex justify-between text-sm font-semibold mt-2">
+                <span class="text-white">20°</span>
+                <span class="text-gray-400">14°</span>
+             </div>
+            </div>
+
+            <div class="bg-[#25253f] p-4 rounded-xl text-center hover:bg-[#2e2e4f] transition-colors cursor-pointer border border-transparent hover:border-indigo-500">
+             <h4 class="text-gray-300">Wed</h4>
+             <img src="./assets/images/icon-drizzle.webp" alt="rain" class="w-10 h-10 mx-auto my-3" />
+             <div class="flex justify-between text-sm font-semibold mt-2">
+                <span class="text-white">21°</span>
+                <span class="text-gray-400">15°</span>
+             </div>
+            </div>
+
+            <div class="bg-[#25253f] p-4 rounded-xl text-center hover:bg-[#2e2e4f] transition-colors cursor-pointer border border-transparent hover:border-indigo-500">
+             <h4 class="text-gray-300">Thu</h4>
+             <img src="./assets/images/icon-sunny.webp" alt="rain" class="w-10 h-10 mx-auto my-3" />
+             <div class="flex justify-between text-sm font-semibold mt-2">
+                <span class="text-white">24°</span>
+                <span class="text-gray-400">14°</span>
+             </div>
+            </div>
+
+            <div class="bg-[#25253f] p-4 rounded-xl text-center hover:bg-[#2e2e4f] transition-colors cursor-pointer border border-transparent hover:border-indigo-500">
+             <h4 class="text-gray-300">Fri</h4>
+             <img src="./assets/images/icon-partly-cloudy.webp" alt="rain" class="w-10 h-10 mx-auto my-3" />
+             <div class="flex justify-between text-sm font-semibold mt-2">
+                <span class="text-white">25°</span>
+                <span class="text-gray-400">13°</span>
+             </div>
+            </div>
+
+            <div class="bg-[#25253f] p-4 rounded-xl text-center hover:bg-[#2e2e4f] transition-colors cursor-pointer border border-transparent hover:border-indigo-500">
+             <h4 class="text-gray-300">Sat</h4>
+             <img src="./assets/images/icon-storm.webp" alt="rain" class="w-10 h-10 mx-auto my-3" />
+             <div class="flex justify-between text-sm font-semibold mt-2">
+                <span class="text-white">21°</span>
+                <span class="text-gray-400">15°</span>
+             </div>
+            </div>
+
+            <div class="bg-[#25253f] p-4 rounded-xl text-center hover:bg-[#2e2e4f] transition-colors cursor-pointer border border-transparent hover:border-indigo-500">
+             <h4 class="text-gray-300">Sun</h4>
+             <img src="./assets/images/icon-snow.webp" alt="rain" class="w-10 h-10 mx-auto my-3" />
+             <div class="flex justify-between text-sm font-semibold mt-2">
+                <span class="text-white">25°</span>
+                <span class="text-gray-400">16°</span>
+             </div>
+            </div>
+
+            <div class="bg-[#25253f] p-4 rounded-xl text-center hover:bg-[#2e2e4f] transition-colors cursor-pointer border border-transparent hover:border-indigo-500">
+             <h4 class="text-gray-300">Mon</h4>
+             <img src="./assets/images/icon-fog.webp" alt="rain" class="w-10 h-10 mx-auto my-3" />
+             <div class="flex justify-between text-sm font-semibold mt-2">
+                <span class="text-white">24°</span>
+                <span class="text-gray-400">15°</span>
+             </div>
+            </div>
+        </div>
+      </section>
+    </div>
+
+    <aside class="lg:w-[35%]">
+       <div class="bg-[#25253f] rounded-2xl p-6 h-full">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-xl font-bold">Hourly forecast</h3>
+          <button class="bg-[#58588b] hover:bg-[#6a6ab0] px-4 py-1.5 rounded-lg text-sm transition-colors">
+            Tuesday ↓
+          </button>
+        </div>
+
+        <div class="space-y-4">
+          <div class="flex justify-between items-center bg-[#3f3f66] hover:bg-[#4a4a7a] p-4 rounded-2xl transition-all cursor-pointer">
+            <div class="flex items-center gap-4">
+              <img src="./assets/images/icon-overcast.webp" class="w-8 h-8" />
+              <span class="font-medium">3 PM</span>
+            </div>
+            <span class="text-xl font-bold">20°</span>
+          </div>
+
+          <div class="flex justify-between items-center bg-[#3f3f66] hover:bg-[#4a4a7a] p-4 rounded-2xl transition-all cursor-pointer">
+            <div class="flex items-center gap-4">
+              <img src="./assets/images/icon-partly-cloudy.webp" class="w-8 h-8" />
+              <span class="font-medium">4 PM</span>
+            </div>
+            <span class="text-xl font-bold">20°</span>
+          </div>
+
+          <div class="flex justify-between items-center bg-[#3f3f66] hover:bg-[#4a4a7a] p-4 rounded-2xl transition-all cursor-pointer">
+            <div class="flex items-center gap-4">
+              <img src="./assets/images/icon-sunny.webp" class="w-8 h-8" />
+              <span class="font-medium">5 PM</span>
+            </div>
+            <span class="text-xl font-bold">20°</span>
+          </div>
+
+          <div class="flex justify-between items-center bg-[#3f3f66] hover:bg-[#4a4a7a] p-4 rounded-2xl transition-all cursor-pointer">
+            <div class="flex items-center gap-4">
+              <img src="./assets/images/icon-overcast.webp" class="w-8 h-8" />
+              <span class="font-medium">6 PM</span>
+            </div>
+            <span class="text-xl font-bold">19°</span>
+          </div>
+
+          <div class="flex justify-between items-center bg-[#3f3f66] hover:bg-[#4a4a7a] p-4 rounded-2xl transition-all cursor-pointer">
+            <div class="flex items-center gap-4">
+              <img src="./assets/images/icon-snow.webp" class="w-8 h-8" />
+              <span class="font-medium">7 PM</span>
+            </div>
+            <span class="text-xl font-bold">18°</span>
+          </div>
+
+          <div class="flex justify-between items-center bg-[#3f3f66] hover:bg-[#4a4a7a] p-4 rounded-2xl transition-all cursor-pointer">
+            <div class="flex items-center gap-4">
+              <img src="./assets/images/icon-fog.webp" class="w-8 h-8" />
+              <span class="font-medium">8 PM</span>
+            </div>
+            <span class="text-xl font-bold">18°</span>
+          </div>
+
+          <div class="flex justify-between items-center bg-[#3f3f66] hover:bg-[#4a4a7a] p-4 rounded-2xl transition-all cursor-pointer">
+            <div class="flex items-center gap-4">
+              <img src="./assets/images/icon-snow.webp" class="w-8 h-8" />
+              <span class="font-medium">9 PM</span>
+            </div>
+            <span class="text-xl font-bold">17°</span>
+          </div>
+
+          <div class="flex justify-between items-center bg-[#3f3f66] hover:bg-[#4a4a7a] p-4 rounded-2xl transition-all cursor-pointer">
+            <div class="flex items-center gap-4">
+              <img src="./assets/images/icon-overcast.webp" class="w-8 h-8" />
+              <span class="font-medium">10 PM</span>
+            </div>
+            <span class="text-xl font-bold">17°</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+  </main>
+
+</body>
+</html>
