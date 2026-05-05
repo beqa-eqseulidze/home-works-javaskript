@@ -8,20 +8,17 @@ const persons = [
 const currentYear = new Date().getFullYear();
 
 // age-ის დამატება
-const personsWithAge = persons.map(person => {
-    return {
-        ...person,
-        age: currentYear - person.birthYear
-    };
+persons.forEach(person => {
+    person.age = currentYear - person.birthYear;
 });
 
 // copy-ის შექმნა და იქედან birthYear-ის ამოშლა
-const personsCopy = personsWithAge.map(person => {
+const personsCopy = persons.map(person => {
     const newPerson = { ...person };
     delete newPerson.birthYear;
     return newPerson;
 });
 
 // შედეგის დაბეჭვდა
-console.log("Original + Age: ", personsWithAge);
+console.log("Original + Age: ", persons);
 console.log("Copy - Birthyear: ", personsCopy);
