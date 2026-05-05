@@ -6,17 +6,19 @@ const persons = [
 
 const curr = new Date().getFullYear();
 
-//age-ის დამატება ორიგინალ მასივში
+
 persons.forEach(person => {
   person.age = curr - person.birthYear;
 });
 
-// 2. copy შექმნა და birthYear-ის წაშლა
+
 const personsCopy = persons.map(person =>{
   const { birthYear, ...filtered } = person;
   return filtered;
 });
 
-// შედეგების დაბეჭდვა
+
+
+
 console.log("Original persons:", persons);
 console.log("Copied persons (without birthYear):", personsCopy);
