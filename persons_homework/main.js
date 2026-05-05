@@ -4,6 +4,7 @@ const persons = [
   { name: 'person-3', birthYear: 2015 }
 ];
 
+
 const curr = new Date().getFullYear();
 
 
@@ -12,13 +13,12 @@ persons.forEach(person => {
 });
 
 
-const personsCopy = persons.map(person =>{
-  const { birthYear, ...filtered } = person;
+const personsCopy = persons.map(person => {
+  const { birthYear, ...filtered } = person; 
   return filtered;
 });
 
 
 
-
-console.log("Original persons:", persons);
-console.log("Copied persons (without birthYear):", personsCopy);
+console.log("original persons:", persons);
+console.log("copy persons:", personsCopy);
