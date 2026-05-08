@@ -1,0 +1,16 @@
+const person1 = {
+  name: 'Bela',
+  age: 33,
+  phones: [898668961, 577229077],
+  fn: () => {}
+};
+
+// 1. phones მასივის კოპირება (reference-ის გარეშე)
+const myPhones = [...person1.phones];
+
+// 2. ახალი ტელეფონის დამატება
+myPhones.push(574124002);
+
+// 3. შედეგის დაბეჭდვა
+console.log('person1 phones:', person1.phones);
+console.log('myPhones:', myPhones);
