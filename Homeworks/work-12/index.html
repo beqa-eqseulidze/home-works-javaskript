@@ -8,52 +8,36 @@
 </head>
 
 <body>
-    <!DOCTYPE html>
-    <html lang="ka">
+    <div class="game">
+        <h1>BLACKJACK თამაში</h1>
 
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Blackjack</title>
-
-        <link rel="stylesheet" href="style.css">
-    </head>
-
-    <body>
-
-        <div class="game">
-            <h1>BLACKJACK თამაში</h1>
-
-            <div class="player-area">
-                <h2>მოწინააღმდეგე</h2>
-                <div id="computerCards" class="cards"></div>
-                <p>მოწინააღმდეგის ქულა :
-                    <span id="computerScore">?</span>
-                </p>
-            </div>
-
-            <div class="player-area">
-                <h2>მოთამაშე</h2>
-                <div id="playerCards" class="cards"></div>
-                <p>მოთამაშის ქულა :
-                    <span id="playerScore">0</span>
-                </p>
-            </div>
-
-            <div class="buttons">
-                <button id="startBtn">თამაშის დაწყება</button>
-                <button id="hitBtn" disabled>კარტის დამატება</button>
-                <button id="standBtn" disabled>კარტების გახსნა</button>
-            </div>
-
-            <h2 id="result"></h2>
-
+        <div class="player-area">
+            <h2>მოწინააღმდეგე</h2>
+            <div id="computerCards" class="cards"></div>
+            <p>მოწინააღმდეგის ქულა :
+                <span id="computerScore">?</span>
+            </p>
         </div>
 
-        <script src="main.js"></script>
-    </body>
+        <div class="player-area">
+            <h2>მოთამაშე</h2>
+            <div id="playerCards" class="cards"></div>
+            <p>მოთამაშის ქულა :
+                <span id="playerScore">0</span>
+            </p>
+        </div>
 
-    </html>
+        <div class="buttons">
+            <button id="startBtn">თამაშის დაწყება</button>
+            <button id="hitBtn" disabled>კარტის დამატება</button>
+            <button id="standBtn" disabled>კარტების გახსნა</button>
+        </div>
+
+        <h2 id="result"></h2>
+
+    </div>
+
+    <script src="main.js"></script>
 </body>
 
 </html>
