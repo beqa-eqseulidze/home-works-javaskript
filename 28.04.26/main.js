@@ -19,7 +19,11 @@ const users = [
             status: "expired",
             expiresAt: "2024-01-10T14:30:00Z"
         }
+<<<<<<< HEAD
     },   
+=======
+    },
+>>>>>>> 775d86e8477bf90a226c6185b509b66d3f56dfd8
     {
         id: 4,
         name: "Oliver",

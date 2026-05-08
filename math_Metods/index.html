@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Palette Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #0f0f13;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', sans-serif;
+            gap: 40px;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 1.4rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0.7;
+        }
+
+        #generateBtn {
+            padding: 14px 36px;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.15s;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        #generateBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(102, 126, 234, 0.55);
+        }
+
+        #generateBtn:active {
+            transform: translateY(0);
+        }
+
+        #palette {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .swatch {
+            width: 120px;
+            height: 150px;
+            border-radius: 16px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 14px;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+            transition: transform 0.2s, box-shadow 0.2s;
+            animation: popIn 0.3s ease both;
+        }
+
+        .swatch:hover {
+            transform: translateY(-6px) scale(1.04);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+        }
+
+        .hex-label {
+            background: rgba(0, 0, 0, 0.35);
+            color: #fff;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            padding: 4px 10px;
+            border-radius: 20px;
+            backdrop-filter: blur(4px);
+            pointer-events: none;
+        }
+
+        .copied-toast {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.75);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.2s;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .swatch.show-toast .copied-toast {
+            opacity: 1;
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🎨 Palette Generator</h1>
+    <button id="generateBtn">Generate Palette</button>
+    <div id="palette"></div>
+
+    <script>
+        const hexCharacters = "0123456789ABCDEF";
+
+        function generateHexColor() {
+            let hex = "#";
+            for (let i = 0; i < 6; i++) {
+                const randomIndex = Math.floor(Math.random() * hexCharacters.length);
+                hex += hexCharacters[randomIndex];
+            }
+            return hex;
+        }
+        function copyToClipboard(text, swatchEl) {
+            navigator.clipboard.writeText(text).then(() => {
+                swatchEl.classList.add("show-toast");
+                setTimeout(() => swatchEl.classList.remove("show-toast"), 1200);
+            });
+        }
+        function generatePalette() {
+            const palette = document.getElementById("palette");
+            palette.innerHTML = "";
+
+            for (let i = 0; i < 5; i++) {
+                const color = generateHexColor();
+
+                const swatch = document.createElement("div");
+                swatch.className = "swatch";
+                swatch.style.backgroundColor = color;
+                swatch.style.animationDelay = `${i * 0.06}s`;
+
+                const label = document.createElement("span");
+                label.className = "hex-label";
+                label.textContent = color;
+
+                const toast = document.createElement("span");
+                toast.className = "copied-toast";
+                toast.textContent = "Copied!";
+
+                swatch.appendChild(toast);
+                swatch.appendChild(label);
+
+                swatch.addEventListener("click", () => copyToClipboard(color, swatch));
+
+                palette.appendChild(swatch);
+            }
+        }
+        document.getElementById("generateBtn").addEventListener("click", generatePalette);
+        // Generate on load
+        generatePalette();
+    </script>
+</body>
+
+</html>
