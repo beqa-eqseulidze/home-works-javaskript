@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-[#070B34] text-white min-h-screen font-sans overflow-x-hidden">
+  <!-- მთავარი კონტაინერი -->
+  <div class="max-w-7xl mx-auto px-4 md:px-8 py-5">
+
+    <!-- ზედა ნაწილი -->
+    <div class="flex items-center justify-between mb-10">
+
+      <!-- ლოგო -->
+      <div class="flex items-center gap-3">
+        <h1 class="font-semibold text-xl">
+            <img src="./image/logo.svg" alt="">
+        </h1>
+      </div>
+
+      <!-- ერთეულების ღილაკი -->
+      <button class="bg-white/10 hover:bg-white/20 transition px-4 py-2 rounded-xl text-sm flex items-center gap-2">
+        ⚙ Units
+        <span class="text-xs">▼</span>
+      </button>
+
+    </div>
+    <div class="text-center mb-10">
+      <h2
+        class="text-[52px] leading-[58px] md:text-[78px] md:leading-[84px] font-bold tracking-tight max-w-4xl mx-auto">
+        How’s the sky looking today?
+      </h2>
+    </div>
+
+    <!-- ზენის სექცია -->
+    <div class="flex flex-col md:flex-row items-center justify-center gap-4 mb-10 max-w-3xl mx-auto">
+
+      <div class="relative w-full">
+        <span class="absolute left-5 top-1/2 -translate-y-1/2 text-white/50 text-xl">
+          🔍
+        </span>
+
+        <input type="text" placeholder="Search for a place..."
+          class="w-full h-[64px] rounded-2xl bg-white/10 outline-none border border-white/5 pl-14 pr-4 text-lg placeholder:text-white/40" />
+      </div>
+
+      <button
+        class="w-full md:w-[180px] h-[64px] rounded-2xl bg-indigo-500 hover:bg-indigo-600 transition text-lg font-semibold">
+        Search
+      </button>
+
+    </div>
+
+    <!-- მთავარი გრიდი -->
+    <div class="grid grid-cols-1 xl:grid-cols-[1.7fr_0.8fr] gap-6">
+
+      <!-- მარცხენა -->
+      <div>
+
+        <!-- ამინდის ქარდები -->
+        <div
+          class="relative overflow-hidden rounded-[32px] p-8 md:p-10 bg-gradient-to-br from-[#4956ff] via-[#4338ca] to-[#312e81] min-h-[320px] flex items-center justify-between">
+
+          <!-- დეკორი -->
+          <div class="absolute -bottom-16 -left-10 w-60 h-60 bg-white/10 rounded-full blur-2xl">
+          </div>
+
+          <div class="absolute -bottom-20 right-0 w-72 h-72 bg-purple-400/10 rounded-full blur-2xl">
+          </div>
+
+          <!-- ინფო -->
+          <div class="relative z-10">
+
+            <h3 class="text-4xl md:text-5xl font-bold mb-4">
+              Berlin, Germany
+            </h3>
+
+            <p class="text-white/70 text-xl">
+              Tuesday, Aug 5, 2025
+            </p>
+
+          </div>
+
+          <!-- ტემპერატურა -->
+          <div class="relative z-10 text-right">
+
+            <div class="text-6xl md:text-7xl mb-3">
+              ☀️
+            </div>
+
+            <div class="text-[90px] md:text-[120px] font-bold leading-none">
+              68°
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- სტატისტიკა -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-5">
+          <!-- აითემები -->
+          <div class="bg-white/10 rounded-2xl p-5">
+            <p class="text-white/60 text-sm mb-3">
+              Feels Like
+            </p>
+
+            <h4 class="text-5xl font-light">
+              64°
+            </h4>
+          </div>
+
+          <div class="bg-white/10 rounded-2xl p-5">
+            <p class="text-white/60 text-sm mb-3">
+              Humidity
+            </p>
+
+            <h4 class="text-5xl font-light">
+              46%
+            </h4>
+          </div>
+
+          <div class="bg-white/10 rounded-2xl p-5">
+            <p class="text-white/60 text-sm mb-3">
+              Wind
+            </p>
+
+            <h4 class="text-5xl font-light">
+              9 mph
+            </h4>
+          </div>
+
+          <div class="bg-white/10 rounded-2xl p-5">
+            <p class="text-white/60 text-sm mb-3">
+              Precipitation
+            </p>
+
+            <h4 class="text-5xl font-light">
+              0 in
+            </h4>
+          </div>
+
+        </div>
+
+        <!-- ყოველდღიური პროგნოზი -->
+        <div class="mt-8">
+
+          <h3 class="text-2xl font-semibold mb-5">
+            Daily forecast
+          </h3>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4">
+
+            <!-- დღე -->
+            <div class="bg-white/10 rounded-2xl p-5 text-center">
+              <p class="text-lg mb-5">Tue</p>
+              <div class="text-4xl mb-5">🌧️</div>
+              <div class="text-xl">68°</div>
+              <div class="text-white/50">57°</div>
+            </div>
+
+            <div class="bg-white/10 rounded-2xl p-5 text-center">
+              <p class="text-lg mb-5">Wed</p>
+              <div class="text-4xl mb-5">🌧️</div>
+              <div class="text-xl">70°</div>
+              <div class="text-white/50">59°</div>
+            </div>
+
+            <div class="bg-white/10 rounded-2xl p-5 text-center">
+              <p class="text-lg mb-5">Thu</p>
+              <div class="text-4xl mb-5">☀️</div>
+              <div class="text-xl">75°</div>
+              <div class="text-white/50">57°</div>
+            </div>
+
+            <div class="bg-white/10 rounded-2xl p-5 text-center">
+              <p class="text-lg mb-5">Fri</p>
+              <div class="text-4xl mb-5">⛅</div>
+              <div class="text-xl">77°</div>
+              <div class="text-white/50">55°</div>
+            </div>
+
+            <div class="bg-white/10 rounded-2xl p-5 text-center">
+              <p class="text-lg mb-5">Sat</p>
+              <div class="text-4xl mb-5">⛈️</div>
+              <div class="text-xl">70°</div>
+              <div class="text-white/50">59°</div>
+            </div>
+
+            <div class="bg-white/10 rounded-2xl p-5 text-center">
+              <p class="text-lg mb-5">Sun</p>
+              <div class="text-4xl mb-5">🌨️</div>
+              <div class="text-xl">77°</div>
+              <div class="text-white/50">61°</div>
+            </div>
+
+            <div class="bg-white/10 rounded-2xl p-5 text-center">
+              <p class="text-lg mb-5">Mon</p>
+              <div class="text-4xl mb-5">🌫️</div>
+              <div class="text-xl">75°</div>
+              <div class="text-white/50">59°</div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- მარჯვენა მხარე -->
+      <div class="bg-white/10 rounded-[32px] p-5 h-fit xl:h-[780px] flex flex-col">
+
+        <!-- ჰედერი -->
+        <div class="flex items-center justify-between mb-5">
+
+          <h3 class="text-3xl font-semibold">
+            Hourly forecast
+          </h3>
+
+          <button class="bg-white/10 px-4 py-2 rounded-xl text-sm flex items-center gap-2">
+            Tuesday
+            <span class="text-xs">▼</span>
+          </button>
+
+        </div>
+
+        <!-- ლისტი -->
+        <div class="space-y-4 flex-1">
+
+          <div class="bg-white/10 rounded-2xl px-5 py-5 flex items-center justify-between">
+
+            <div class="flex items-center gap-4 text-2xl">
+              ☁️
+              <span class="text-xl">3 PM</span>
+            </div>
+
+            <div class="text-xl">
+              68°
+            </div>
+
+          </div>
+
+          <div class="bg-white/10 rounded-2xl px-5 py-5 flex items-center justify-between">
+
+            <div class="flex items-center gap-4 text-2xl">
+              ⛅
+              <span class="text-xl">4 PM</span>
+            </div>
+
+            <div class="text-xl">
+              68°
+            </div>
+
+          </div>
+
+          <div class="bg-white/10 rounded-2xl px-5 py-5 flex items-center justify-between">
+
+            <div class="flex items-center gap-4 text-2xl">
+              ☀️
+              <span class="text-xl">5 PM</span>
+            </div>
+
+            <div class="text-xl">
+              68°
+            </div>
+
+          </div>
+
+          <div class="bg-white/10 rounded-2xl px-5 py-5 flex items-center justify-between">
+
+            <div class="flex items-center gap-4 text-2xl">
+              ☁️
+              <span class="text-xl">6 PM</span>
+            </div>
+
+            <div class="text-xl">
+              66°
+            </div>
+
+          </div>
+
+          <div class="bg-white/10 rounded-2xl px-5 py-5 flex items-center justify-between">
+
+            <div class="flex items-center gap-4 text-2xl">
+              🌧️
+              <span class="text-xl">7 PM</span>
+            </div>
+
+            <div class="text-xl">
+              66°
+            </div>
+
+          </div>
+
+          <div class="bg-white/10 rounded-2xl px-5 py-5 flex items-center justify-between">
+
+            <div class="flex items-center gap-4 text-2xl">
+              🌫️
+              <span class="text-xl">8 PM</span>
+            </div>
+
+            <div class="text-xl">
+              64°
+            </div>
+
+          </div>
+
+          <div class="bg-white/10 rounded-2xl px-5 py-5 flex items-center justify-between">
+
+            <div class="flex items-center gap-4 text-2xl">
+              ☁️
+              <span class="text-xl">9 PM</span>
+            </div>
+
+            <div class="text-xl">
+              63°
+            </div>
+
+          </div>
+
+          <div class="bg-white/10 rounded-2xl px-5 py-5 flex items-center justify-between">
+
+            <div class="flex items-center gap-4 text-2xl">
+              ☁️
+              <span class="text-xl">10 PM</span>
+            </div>
+
+            <div class="text-xl">
+              63°
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+</body>
