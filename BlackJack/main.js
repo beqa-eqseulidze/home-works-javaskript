@@ -158,7 +158,7 @@ function stand() {
 
   isGameOver = true;
 
-  // Dealer AI: Hits until at least 17
+  // Hits until at least 17
   while (getScore(dealerCards) < 17) {
     dealerCards.push(deck.pop());
   }
