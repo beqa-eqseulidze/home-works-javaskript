@@ -1,178 +1,197 @@
-let deck = [];
-let playerCards = [];
-let compCards = [];
+
+let deck = [];         
+let playerCards = [];  
+let compCards = [];  
 const cardBack = "cards/background .png";
 
+
+const pContainer = document.getElementById("player-cards");
+const cContainer = document.getElementById("comp-cards");
+const pScoreElement = document.getElementById("player-score");
+const cScoreElement = document.getElementById("comp-score");
+const msgElement = document.getElementById("game-message");
+
+const btnStart = document.getElementById("btn-start");
+const btnAdd = document.getElementById("btn-add");
+const btnOpen = document.getElementById("btn-open");
+
+
+// deck create
 function createDeck() {
-    deck = [];
-    const suits = ["Heart", "Diamond", "Club", "Spade"];
+    deck = []; 
+    const HDCS = ["Heart", "Diamond", "Club", "Spade"]; 
     
-    for (let s of suits) {
+//==========================================================================================================================================
+    
+    //cycle-1
+    for (let suit of HDCS) {
+        
+        // cycle-2
+        // create 13 card in suit (0-12 )
         for (let i = 0; i <= 12; i++) {
             let cardValue = 0;
             let isAce = false;
 
+            // checking card index and give value :
             if (i >= 0 && i <= 8) {
+                // 0.png -- 8.png = numbers 2-10 (index + 2 value)
                 cardValue = i + 2; 
             } else if (i >= 9 && i <= 11) {
+                // 9, 10, 11 index is Jack, Queen, King = 10 value ;;
                 cardValue = 10;
             } else if (i === 12) {
+                //12 index = Ace ( value = 11)
                 cardValue = 11;
-                isAce = true;
+                isAce = true; 
             }
 
             deck.push({
                 value: cardValue,
                 isAce: isAce,
-                img: `${s}/${i}.png` 
+                img: `${suit}/${i}.png` 
             });
-        }
-    }
+        } 
+        
+    } 
 }
 
-//==============================================================================================================================================
-  
-// random card GENERATION
 
+// random card
 function RandomCard() {
     const index = Math.floor(Math.random() * deck.length);
     return deck.splice(index, 1)[0];
 }
 
-//==============================================================================================================================================
-
-//score calculatorr
-
+// scores operation 
 function calculateScore(cards) {
-    let total = 0;
-    let aces = 0;
+    let total = 0; 
+    let aces = 0;  
 
+    // caluculating scores
     for (let card of cards) {
         total += card.value;
         if (card.isAce) {
-            aces++;
+            aces++; // Tu tuzia raodenobis datvla.
         }
     }
-
-    while (total > 21 && aces > 0) {
-        total -= 10;
-        aces -= 1;
-    }
     
-    return total;
+    return total; 
 }
 
-//============================================================================================================================================================
 
-//render page
 
-function render(showAll = false) {
-    const pContainer = document.getElementById("player-cards");
+
+// screen renderi and showing cards 
+function render(showAll = false){
+    //player card show
     pContainer.innerHTML = ""; 
     
     for (let card of playerCards) {
         pContainer.innerHTML += `<img src="${card.img}" class="h-full rounded-lg shadow-2xl">`;
     }
-    document.getElementById("player-score").innerText = calculateScore(playerCards);
+    //player score :
+    pScoreElement.innerText = calculateScore(playerCards);
 
-
-    const cContainer = document.getElementById("comp-cards");
+//=========================================================================================================================
+    // computer card showw
     cContainer.innerHTML = ""; 
 
     if (compCards.length > 0) {
         if (!showAll) {
             cContainer.innerHTML += `<img src="${compCards[0].img}" class="h-full rounded-lg shadow-2xl">`;
             cContainer.innerHTML += `<img src="${cardBack}" class="h-full rounded-lg shadow-2xl">`;
-            document.getElementById("comp-score").innerText = compCards[0].value;
+            // computer card score :
+            cScoreElement.innerText = compCards[0].value;
         } else {
+            // after game ending - showing computer card
             for (let card of compCards) {
                 cContainer.innerHTML += `<img src="${card.img}" class="h-full rounded-lg shadow-2xl">`;
             }
-            document.getElementById("comp-score").innerText = calculateScore(compCards);
+            // computer card score :
+            cScoreElement.innerText = calculateScore(compCards);
         }
     }
 }
 
-
-
 //============================================================================================================================
 
-//game starter 
-document.getElementById("btn-start").onclick = () => {
-    createDeck();
-    
-    playerCards = [RandomCard(), RandomCard()];
-    compCards = [RandomCard(), RandomCard()];
-    
-    document.getElementById("game-message").innerText = "";
-    document.getElementById("game-message").classList.add("hidden");
-    
-    document.getElementById("btn-start").classList.add("hidden");
-    document.getElementById("btn-add").classList.remove("hidden");
-    document.getElementById("btn-open").classList.remove("hidden");
-    
-    render(false);
-};
-
-
-//===========================================================================================================================
-
-//add card
-document.getElementById("btn-add").onclick = () => {
-    playerCards.push(RandomCard());
-    render(false);
-
-    let currentScore = calculateScore(playerCards);
-    if (currentScore > 21) {
-        finish("you lost");
-    }
-};
-
-//======================================================================================================================
-
-//open card
-
-document.getElementById("btn-open").onclick = () => {
-    while (calculateScore(compCards) < 17) {
-        compCards.push(RandomCard());
-    }
-    finish();
-};
-
-
-//====================================================================================================================
-
-// game end
-
+// game ending and resultss
 function finish(msg = "") {
-    render(true);
+    render(true); //showing hide card
     
-    let playerFinal = calculateScore(playerCards);
-    let compFinal = calculateScore(compCards);
+    let playerFinal = calculateScore(playerCards); // player final score
+    let compFinal = calculateScore(compCards);     // compt final score
     let result = msg;
 
-    if (!result) {
-        if (playerFinal > 21) {
+    // score messages:
+    if (!result){
+        if (playerFinal > 21){
             result = "you lost";
-        } else if (compFinal > 21) {
+        } else if(compFinal > 21){
             result = "you won";
-        } else if (playerFinal > compFinal) {
+        } else if(playerFinal > compFinal){
             result = "you won";
-        } else if (playerFinal < compFinal) {
+        } else if(playerFinal < compFinal){
             result = "you lost";
-        } else {
+        } else{
             result = "draw";
         }
     }
 
-//====================================================================================================================================================
-
-    const msgElement = document.getElementById("game-message");
+    // message show on scren
     msgElement.innerText = result;
     msgElement.classList.remove("hidden"); 
     
-    document.getElementById("btn-start").innerText = "RESTART";
-    document.getElementById("btn-start").classList.remove("hidden");
-    document.getElementById("btn-add").classList.add("hidden");
-    document.getElementById("btn-open").classList.add("hidden");
+    //start = restart
+    btnStart.innerText = "RESTART";
+    btnStart.classList.remove("hidden");
+    btnAdd.classList.add("hidden");
+    btnOpen.classList.add("hidden");
 }
+
+
+
+// Game start click
+btnStart.onclick = () => {
+    createDeck(); 
+    playerCards = [RandomCard(), RandomCard()];
+    compCards = [RandomCard(), RandomCard()];
+    
+    //hide last game msgs
+    msgElement.innerText = "";
+    msgElement.classList.add("hidden");
+    
+    btnStart.classList.add("hidden");
+    btnAdd.classList.remove("hidden");
+    btnOpen.classList.remove("hidden");
+    
+    // render = comp second card hiden
+    render(false);
+};
+
+
+//====================================================================================================================================
+ 
+// add card click
+btnAdd.onclick = () => {
+    playerCards.push(RandomCard()); // +1 random card
+    render(false);
+
+    let currentScore = calculateScore(playerCards); 
+    // checking player's curr score and if its more than 21 player lost:
+    if(currentScore > 21) {
+        finish("you lost");
+    }
+};
+
+//======================================================================================================================================
+
+// Open card click and comp's turn
+btnOpen.onclick = () => {
+    // comp taking cards till its less then 17 :
+    while (calculateScore(compCards) < 17) {
+        compCards.push(RandomCard());
+    }
+
+    finish();
+};
