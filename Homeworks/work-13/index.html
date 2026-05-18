@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Dark Notes App</title>
+</head>
+
+<link rel="stylesheet" href="./style2.css">
+<body>
+
+  <div class="app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Notes</h2>
+      <button class="filter-btn active" data-category="all">ყველა</button>
+
+      <button class="filter-btn" data-category="Work">სამუშაო</button>
+
+      <button class="filter-btn" data-category="Personal">პირადი</button>
+
+      <button class="filter-btn" data-category="Ideas">იდეები</button>
+
+      <button class="filter-btn" data-category="Study">სწავლა</button>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+      <div class="top">
+        <input
+          type="text"
+          id="title"
+          placeholder="სათაური..."
+        >
+
+        <textarea
+          id="text"
+          placeholder="ჩაწერე ტექსტი..."
+        ></textarea>
+
+        <select id="category">
+          <option value="Work">სამუშაო</option>
+          <option value="Personal">პირადი</option>
+          <option value="Ideas">იდეები</option>
+          <option value="Study">სწავლა</option>
+        </select>
+
+        <button id="addBtn">
+          დამატება
+        </button>
+      </div>
+
+      <div id="notesBox" class="notes-grid"></div>
+    </main>
+
+  </div>
+
+  <script src="./main.js"></script>
+</body>
+</html>
