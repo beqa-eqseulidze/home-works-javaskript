@@ -42,7 +42,7 @@ const saveAndRender = (msg) => {
     }
 };
 
-// ფუნქცია თარიღის ლამაზად ფორმატირებისთვის მაგ: 2024 წლის 18 მაისი
+// ფუნქცია თარიღის ლამაზად ფორმატირებისთვის (მაგ: 2024 წლის 18 მაისი)
 const formatDate = d => {
     const date = new Date(d);
     const m = ["იანვარი", "თებერვალი", "მარტი", "აპრილი", "მაისი", "ივნისი", "ივლისი", "აგვისტო", "სექტემბერი", "ოქტომბერი", "ნოემბერი", "დეკემბერი"];
@@ -89,7 +89,7 @@ $('noteForm').onsubmit = e => {
     notes.unshift({ id: Date.now(), title: $('noteTitle').value, text: $('noteText').value, category: $('noteCategory').value, date: Date.now() });
     e.target.reset(); // ვასუფთავებთ ფორმის ველებს
     saveAndRender('ჩანაწერი დაემატა!'); // ვინახავთ და ვაახლებთ ეკრანს
-};
+};  
 
 // ფუნქცია ჩანაწერის წასაშლელად, მიბმულია წაშლის ღილაკზე HTML-ში (onclick)
 window.delNote = id => {
@@ -148,7 +148,6 @@ render();
 
 // როცა კატეგორიების ფორმაში dropdown-დან ავირჩევთ კატეგორიას, 
 // ეს მოვლენა (change) უზრუნველყოფს, რომ იმავე კატეგორიით გაიფილტროს ჩვენი ქარდები
-
 $('noteCategory').addEventListener('change', (e) => {
     activeCategory = e.target.value;
 

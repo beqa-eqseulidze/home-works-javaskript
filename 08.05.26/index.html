@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack Pro</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1>Black Jack</h1>
+
+    <div class="game-area">
+        <div class="section">
+            <h2>Dealer</h2>
+            <div id="dealer-cards" class="cards"></div>
+        </div>
+
+        <div class="score-container">
+            <div id="dealer-score" class="score-display">Dealer: 0</div>
+            <div class="vs-circle">VS</div>
+            <div id="player-score" class="score-display">ჩემი ქულა: 0</div>
+        </div>
+
+        <div class="section">
+            <h2>Player</h2>
+            <div id="player-cards" class="cards"></div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="start">Start Game</button>
+        <button id="hit">Add Card</button>
+        <button id="stand">Finish Game</button>
+    </div>
+
+    <h2 id="result"></h2>
+    <script src="./main1.js"></script>
+</body>
+
+</html>
