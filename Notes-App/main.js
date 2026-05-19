@@ -148,6 +148,7 @@ render();
 
 // როცა კატეგორიების ფორმაში dropdown-დან ავირჩევთ კატეგორიას, 
 // ეს მოვლენა (change) უზრუნველყოფს, რომ იმავე კატეგორიით გაიფილტროს ჩვენი ქარდები
+
 $('noteCategory').addEventListener('change', (e) => {
     activeCategory = e.target.value;
 
