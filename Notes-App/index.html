@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ჩემი ჩანაწერები</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+GO:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Fira GO', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#265d60', // header and button color
+                            peach: '#ffb49b', // form background
+                            lightbg: '#f4f6f8'
+                        },
+                        note: {
+                            yellow: '#fcf3c3',
+                            pink: '#ffb3c1',
+                            blue: '#a9cff0',
+                            green: '#a0dfa0'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Fira GO', sans-serif; }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="bg-brand-lightbg h-screen flex flex-col overflow-hidden text-slate-800">
+
+    <!-- Header -->
+    <header class="bg-[#265d60] text-white flex items-center justify-between px-6 py-2.5 shrink-0 shadow-sm z-10">
+        <h1 class="text-[17px] font-medium tracking-wide">ჩემი ჩანაწერები</h1>
+        <div class="w-8 h-8 rounded-full bg-slate-200 text-[#265d60] flex items-center justify-center text-sm shadow-sm cursor-pointer hover:bg-white transition-colors">
+            <i class="fa-solid fa-user"></i>
+        </div>
+    </header>
+
+    <!-- Main Body -->
+    <div class="flex flex-1 overflow-hidden relative">
+        
+        <!-- Sidebar -->
+        <aside class="w-[220px] bg-white border-r border-slate-200 flex flex-col shrink-0 overflow-y-auto shadow-[2px_0_5px_rgba(0,0,0,0.02)] z-10">
+            <nav id="sidebarNav" class="flex flex-col py-3 space-y-0.5">
+                <button data-category="all" class="sidebar-btn flex items-center gap-3 px-6 py-2.5 w-full text-left bg-[#e6f0f9] text-slate-800 font-medium border-l-4 border-transparent">
+                    <i class="fa-solid fa-server w-5 text-slate-500 text-center text-sm"></i>
+                    <span class="text-[15px]">ყველა</span>
+                </button>
+                <button data-category="სამუშაო" class="sidebar-btn flex items-center gap-3 px-6 py-2.5 w-full text-left text-slate-700 hover:bg-slate-50 border-l-4 border-transparent transition-colors">
+                    <i class="fa-solid fa-folder w-5 text-[#d48998] text-center text-sm"></i>
+                    <span class="text-[15px]">სამუშაო</span>
+                </button>
+                <button data-category="პირადი" class="sidebar-btn flex items-center gap-3 px-6 py-2.5 w-full text-left text-slate-700 hover:bg-slate-50 border-l-4 border-transparent transition-colors">
+                    <i class="fa-solid fa-folder w-5 text-[#d05c48] text-center text-sm"></i>
+                    <span class="text-[15px]">პირადი</span>
+                </button>
+                <button data-category="იდეები" class="sidebar-btn flex items-center gap-3 px-6 py-2.5 w-full text-left text-slate-700 hover:bg-slate-50 border-l-4 border-transparent transition-colors">
+                    <i class="fa-solid fa-lightbulb w-5 text-[#d4bc40] text-center text-sm"></i>
+                    <span class="text-[15px]">იდეები</span>
+                </button>
+                <button data-category="სწავლა" class="sidebar-btn flex items-center gap-3 px-6 py-2.5 w-full text-left text-slate-700 hover:bg-slate-50 border-l-4 border-transparent transition-colors">
+                    <i class="fa-solid fa-graduation-cap w-5 text-[#9e7a68] text-center text-sm"></i>
+                    <span class="text-[15px]">სწავლა</span>
+                </button>
+            </nav>
+            
+            <div class="px-5 mt-4">
+                <button class="w-full py-2 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded text-slate-600 text-[14px] font-medium flex items-center justify-center gap-2 transition-colors">
+                    <i class="fa-solid fa-plus text-xs"></i>
+                    <span>ახალი საქაღალდე</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 flex flex-col bg-[#f0f2f5] overflow-y-auto">
+            
+            <!-- Add Note Form -->
+            <div class="bg-[#ffb49b] p-5 shrink-0 shadow-sm relative">
+                <h2 class="text-[16px] font-bold mb-3 text-slate-800">ახალი ჩანაწერი</h2>
+                <form id="noteForm" class="flex flex-col gap-2.5 max-w-5xl">
+                    <input type="text" id="noteTitle" required placeholder="ჩანაწერის სათაური..."
+                        class="w-full px-4 py-2 bg-white border border-transparent rounded text-[15px] focus:outline-none focus:ring-2 focus:ring-brand-dark/50">
+                    
+                    <textarea id="noteText" required rows="3" placeholder="დაწერეთ თქვენი ჩანაწერი აქ..."
+                        class="w-full px-4 py-2.5 bg-white border border-transparent rounded text-[15px] focus:outline-none focus:ring-2 focus:ring-brand-dark/50 resize-y"></textarea>
+                    
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mt-2 border-t border-white/30 pt-3">
+                        <div class="flex items-center gap-3 w-full sm:w-auto">
+                            <label class="text-[15px] text-slate-800 shrink-0">აირჩიეთ კატეგორია:</label>
+                            <select id="noteCategory" required
+                                class="w-full sm:w-[250px] px-3 py-1.5 bg-white border border-transparent rounded text-[15px] focus:outline-none focus:ring-2 focus:ring-brand-dark/50 cursor-pointer text-slate-700">
+                                <option value="სწავლა" selected>სწავლა</option>
+                                <option value="სამუშაო">სამუშაო</option>
+                                <option value="პირადი">პირადი</option>
+                                <option value="იდეები">იდეები</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="bg-[#265d60] text-white px-5 py-2 rounded shadow hover:bg-[#1a4446] transition-colors flex items-center justify-center gap-2 text-[15px] whitespace-nowrap w-full sm:w-auto active:scale-95">
+                            <i class="fa-solid fa-plus text-sm"></i> დამატება
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Notes Grid Container -->
+            <div class="p-6 flex-1">
+                <div id="notesGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 auto-rows-max items-start">
+                    <!-- Cards will be injected here by main.js -->
+                </div>
+                
+                <!-- Empty State -->
+                <div id="emptyState" class="hidden h-full flex items-center justify-center">
+                    <div class="text-center text-slate-400 p-8">
+                        <i class="fa-regular fa-folder-open text-5xl mb-4 opacity-50"></i>
+                        <p class="text-lg">ჩანაწერები არ არის</p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-[2px] flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-200">
+        <div class="bg-white rounded-lg w-full max-w-md shadow-2xl overflow-hidden transform scale-95 transition-transform duration-200">
+            <div class="bg-[#265d60] text-white px-5 py-3.5 flex justify-between items-center">
+                <h3 class="font-medium text-[16px]">ჩანაწერის რედაქტირება</h3>
+                <button id="closeEditModalBtn" class="text-white/80 hover:text-white transition-colors"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <form id="editForm" class="p-5 flex flex-col gap-4">
+                <input type="hidden" id="editNoteId">
+                
+                <div>
+                    <label class="block text-xs font-medium text-slate-500 mb-1">სათაური</label>
+                    <input type="text" id="editNoteTitle" required class="w-full px-3 py-2 border border-slate-300 rounded focus:outline-none focus:border-brand-dark focus:ring-1 focus:ring-brand-dark text-[15px]">
+                </div>
+                
+                <div>
+                    <label class="block text-xs font-medium text-slate-500 mb-1">კატეგორია</label>
+                    <select id="editNoteCategory" required class="w-full px-3 py-2 border border-slate-300 rounded focus:outline-none focus:border-brand-dark focus:ring-1 focus:ring-brand-dark text-[15px]">
+                        <option value="სამუშაო">სამუშაო</option>
+                        <option value="პირადი">პირადი</option>
+                        <option value="იდეები">იდეები</option>
+                        <option value="სწავლა">სწავლა</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label class="block text-xs font-medium text-slate-500 mb-1">ტექსტი</label>
+                    <textarea id="editNoteText" rows="4" required class="w-full px-3 py-2 border border-slate-300 rounded focus:outline-none focus:border-brand-dark focus:ring-1 focus:ring-brand-dark text-[15px] resize-y"></textarea>
+                </div>
+                
+                <div class="flex justify-end gap-3 mt-2">
+                    <button type="button" id="cancelEditBtn" class="px-4 py-2 border border-slate-300 rounded text-slate-600 hover:bg-slate-50 text-[15px] transition-colors">გაუქმება</button>
+                    <button type="submit" class="bg-[#265d60] text-white px-5 py-2 rounded shadow hover:bg-[#1a4446] text-[15px] transition-colors">შენახვა</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-3"></div>
+
+    <script src="./main.js"></script>
+</body>
+</html>
