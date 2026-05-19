@@ -48,7 +48,7 @@
 </head>
 <body class="bg-brand-lightbg h-screen flex flex-col overflow-hidden text-slate-800">
 
-    <!-- Header -->
+    <!-- ზედა პანელი (Header), სადაც წერია აპლიკაციის სახელი და მომხმარებლის ხატულა -->
     <header class="bg-[#265d60] text-white flex items-center justify-between px-6 py-2.5 shrink-0 shadow-sm z-10">
         <h1 class="text-[17px] font-medium tracking-wide">ჩემი ჩანაწერები</h1>
         <div class="w-8 h-8 rounded-full bg-slate-200 text-[#265d60] flex items-center justify-center text-sm shadow-sm cursor-pointer hover:bg-white transition-colors">
@@ -56,10 +56,10 @@
         </div>
     </header>
 
-    <!-- Main Body -->
+    <!-- მთავარი სხეული (Main Body) - შეიცავს მარცხენა მენიუს და მარჯვენა მხარეს -->
     <div class="flex flex-1 overflow-hidden relative">
         
-        <!-- Sidebar -->
+        <!-- მარცხენა მენიუ (Sidebar) - კატეგორიების ფილტრაციისთვის -->
         <aside class="w-[220px] bg-white border-r border-slate-200 flex flex-col shrink-0 overflow-y-auto shadow-[2px_0_5px_rgba(0,0,0,0.02)] z-10">
             <nav id="sidebarNav" class="flex flex-col py-3 space-y-0.5">
                 <button data-category="all" class="sidebar-btn flex items-center gap-3 px-6 py-2.5 w-full text-left bg-[#e6f0f9] text-slate-800 font-medium border-l-4 border-transparent">
@@ -92,10 +92,10 @@
             </div>
         </aside>
 
-        <!-- Main Content Area -->
+        <!-- მთავარი კონტენტი (მარჯვენა მხარე), სადაც არის ფორმა და ჩანაწერები -->
         <main class="flex-1 flex flex-col bg-[#f0f2f5] overflow-y-auto">
             
-            <!-- Add Note Form -->
+            <!-- ახალი ჩანაწერის დასამატებელი ფორმა -->
             <div class="bg-[#ffb49b] p-5 shrink-0 shadow-sm relative">
                 <h2 class="text-[16px] font-bold mb-3 text-slate-800">ახალი ჩანაწერი</h2>
                 <form id="noteForm" class="flex flex-col gap-2.5 max-w-5xl">
@@ -124,13 +124,13 @@
                 </form>
             </div>
 
-            <!-- Notes Grid Container -->
+            <!-- ჩანაწერების / ქარდების კონტეინერი -->
             <div class="p-6 flex-1">
                 <div id="notesGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 auto-rows-max items-start">
-                    <!-- Cards will be injected here by main.js -->
+                    <!-- JavaScript (main.js) სწორედ აქ ჩაყრის ჩვენს ქარდებს -->
                 </div>
                 
-                <!-- Empty State -->
+                <!-- ცარიელი მდგომარეობა - ჩანს მაშინ, როცა არცერთი ჩანაწერი არ გვაქვს -->
                 <div id="emptyState" class="hidden h-full flex items-center justify-center">
                     <div class="text-center text-slate-400 p-8">
                         <i class="fa-regular fa-folder-open text-5xl mb-4 opacity-50"></i>
@@ -142,7 +142,7 @@
         </main>
     </div>
 
-    <!-- Edit Modal -->
+    <!-- რედაქტირების მოდალი (დამალული ფანჯარა, რომელიც ამოხტება ჩანაწერის ჩასწორებისას) -->
     <div id="editModal" class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-[2px] flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-200">
         <div class="bg-white rounded-lg w-full max-w-md shadow-2xl overflow-hidden transform scale-95 transition-transform duration-200">
             <div class="bg-[#265d60] text-white px-5 py-3.5 flex justify-between items-center">
@@ -180,7 +180,7 @@
         </div>
     </div>
 
-    <!-- Toast Container -->
+    <!-- შეტყობინებების (Toast) კონტეინერი - წარმატების მესიჯების გამოსაჩენად ქვედა მარჯვენა კუთხეში -->
     <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-3"></div>
 
     <script src="./main.js"></script>
