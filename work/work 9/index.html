@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Conf</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* ხაზების პატერნისთვის */
+        .bg-pattern-lines {
+            background-image: url('./images/pattern-lines.svg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+
+<body class="font-mono min-h-screen bg-[#0b031a] text-white relative overflow-x-hidden px-4 py-8 md:py-14 select-none">
+
+    <div class="fixed inset-0 bg-[url('./images/background-desktop.png')] bg-cover bg-center z-0"></div>
+    <div class="fixed inset-0 bg-pattern-lines opacity-20 z-0"></div>
+
+    <img src="./images/pattern-squiggly-line-top.svg"
+        class="absolute top-0 right-0 w-[200px] md:w-[400px] lg:w-[450px] opacity-40 pointer-events-none z-10" alt="">
+
+    <img src="./images/pattern-squiggly-line-bottom-desktop.svg"
+        class="absolute bottom-0 left-0 w-[300px] md:w-[500px] lg:w-[550px] opacity-40 pointer-events-none z-10" alt="">
+
+    <div class="max-w-[460px] md:max-w-[560px] mx-auto relative z-20">
+
+        <div class="flex justify-center items-center gap-3 mb-10 md:mb-12">
+            <img src="./images/logo-mark.svg" alt="Coding Conf Logo" class="w-7 h-7 md:w-8 md:h-8">
+            <span class="text-xl md:text-2xl font-bold tracking-wider font-sans">Coding Conf</span>
+        </div>
+
+        <header class="text-center mb-10 md:mb-12">
+            <h1 class="text-2xl sm:text-3xl md:text-[40px] leading-tight font-extrabold tracking-tight font-sans">
+                Your Journey to Coding Conf 2025 Starts Here!
+            </h1>
+            <p class="text-[15px] md:text-lg text-slate-400 mt-4 max-w-[400px] mx-auto">
+                Secure your spot at next year's biggest coding conference.
+            </p>
+        </header>
+
+        <form class="space-y-6">
+
+            <div class="flex flex-col gap-3">
+                <label class="text-[15px] md:text-base text-slate-300">Upload Avatar</label>
+
+                <div tabindex="0"
+                    class="group h-[125px] md:h-[140px] border border-dashed border-slate-600 rounded-xl 
+                            flex flex-col justify-center items-center gap-3 bg-white/[0.02] cursor-pointer
+                            hover:border-slate-400 hover:bg-white/[0.05] transition-all relative
+                            outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b031a]">
+
+                    <div
+                        class="p-2.5 bg-white/[0.06] rounded-xl border border-white/10 shadow-inner group-hover:bg-white/10 transition-colors">
+                        <img src="./images/icon-upload.svg" class="w-6 h-6 object-contain" alt="Upload Icon">
+                    </div>
+
+                    <span class="text-sm md:text-base text-slate-400 font-sans tracking-wide">
+                        Drag and drop or click to upload
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-2 mt-1 text-[11px] md:text-xs text-slate-400">
+                    <svg class="w-3.5 h-3.5 mt-0.5 flex-shrink-0 opacity-70" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <span>Upload your photo (JPG or PNG, max size: 500KB).</span>
+                </div>
+            </div>
+
+            <div class="space-y-5">
+                <div class="flex flex-col gap-2">
+                    <label class="text-[15px] md:text-base text-slate-300">Full Name</label>
+                    <input type="text"
+                        class="w-full px-4 py-3.5 md:py-4 rounded-xl border border-slate-600 bg-white/[0.03] text-white outline-none focus:border-slate-400 focus:bg-white/[0.06] focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#0b031a] transition-all text-sm md:text-base font-sans"
+                        placeholder="">
+                </div>
+
+                <div class="flex flex-col gap-2">
+                    <label class="text-[15px] md:text-base text-slate-300">Email Address</label>
+                    <input type="email"
+                        class="w-full px-4 py-3.5 md:py-4 rounded-xl border border-slate-600 bg-white/[0.03] text-slate-400 outline-none focus:border-slate-400 focus:bg-white/[0.06] focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#0b031a] transition-all text-sm md:text-base font-sans"
+                        placeholder="example@email.com">
+                </div>
+
+                <div class="flex flex-col gap-2">
+                    <label class="text-[15px] md:text-base text-slate-300">GitHub Username</label>
+                    <input type="text"
+                        class="w-full px-4 py-3.5 md:py-4 rounded-xl border border-slate-600 bg-white/[0.03] text-slate-400 outline-none focus:border-slate-400 focus:bg-white/[0.06] focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#0b031a] transition-all text-sm md:text-base font-sans"
+                        placeholder="@yourusername">
+                </div>
+            </div>
+
+            <button
+                class="w-full p-3.5 md:p-4 rounded-xl bg-[#ff7f73] text-[#0b031a] text-base md:text-lg font-extrabold 
+                         hover:bg-[#ff9287] active:scale-[0.99] transition-all shadow-md font-sans mt-2 tracking-wide
+                         border-b-4 border-[#e16559] outline-none focus-visible:ring-2 focus-visible:ring-[#ff7f73] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b031a]">
+                Generate My Ticket
+            </button>
+        </form>
+    </div>
+
+</body>
+
+</html>

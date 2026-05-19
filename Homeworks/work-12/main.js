@@ -18,14 +18,22 @@ const resultText = document.getElementById("result");
 // თამაშის მონაცემები და მდგომარეობა
 let playerCards = [];
 let computerCards = [];
+let usedCards = new Set(); // გამოყენებული კარტებზე თვალყურის დევნა
 let gameOver = false;
 
-// რენდომ კარტის ამოღება
+// რენდომ კარტის ამოღება + არ განმეორდეს
 function getRandomCard() {
-    const randomSuit = suits[Math.floor(Math.random() * suits.length)];
-    const randomValue = values[Math.floor(Math.random() * values.length)];
+    let card;
+    let key;
+    do {
+        const randomSuit = suits[Math.floor(Math.random() * suits.length)];
+        const randomValue = values[Math.floor(Math.random() * values.length)];
+        card = { suit: randomSuit, value: randomValue };
+        key = `${card.suit}-${card.value}`;
+    } while (usedCards.has(key));
 
-    return { suit: randomSuit, value: randomValue };
+    usedCards.add(key);
+    return card;
 }
 
 // ქულების გამოთვლა
@@ -50,12 +58,9 @@ function calculateScore(cards) {
     return score;
 }
 
-// კარტების აჩეხვა
-function renderCards() {
-    playerCardsDiv.innerHTML = "";
-    computerCardsDiv.innerHTML = "";
-
-    //მოთამაშის კარტები
+// ========================= რენდერ ფუნქციები =========================
+// მოთამაშის კარტების რენდერი
+function renderPlayerCards() {
     playerCards.forEach(card => {
         const img = document.createElement("img");
         img.src = `cards/${card.suit}/${card.value}.png`;
@@ -63,8 +68,10 @@ function renderCards() {
         img.className = "card w-24 h-36 object-contain shadow-2xl rounded-xl border border-yellow-400/30 hover:scale-105 transition-transform";
         playerCardsDiv.appendChild(img);
     });
+}
 
-    //კომპიუტერის კარტები
+// კომპიუტერის კარტების რენდერი
+function renderComputerCards() {
     computerCards.forEach((card, index) => {
         const img = document.createElement("img");
 
@@ -78,15 +85,22 @@ function renderCards() {
         img.className = "card w-24 h-36 object-contain shadow-2xl rounded-xl border border-yellow-400/30 hover:scale-105 transition-transform";
         computerCardsDiv.appendChild(img);
     });
+}
 
-    // ქულების განახლება იმის მიხედვით თუ რა კარტები აქვს მოთამაშეს
+// ძირითადი renderCards ფუნქცია
+function renderCards() {
+    playerCardsDiv.innerHTML = "";
+    computerCardsDiv.innerHTML = "";
+
+    renderPlayerCards();
+    renderComputerCards();
+
+    // ქულების განახლება
     playerScoreSpan.textContent = calculateScore(playerCards);
 
     if (gameOver) {
-        // თამაშის დასრულების შემდეგ სრული ქულა
         computerScoreSpan.textContent = calculateScore(computerCards);
     } else {
-        // თამაშის დროს კომპიუტერის მხოლოდ ხილული კარტების ქულა
         const visibleComputerCards = computerCards.slice(1);
         const visibleScore = calculateScore(visibleComputerCards);
         computerScoreSpan.textContent = visibleScore;
@@ -101,6 +115,8 @@ function startGame() {
     gameOver = false;
     playerCards = [];
     computerCards = [];
+    // ყველა კარტი თავიდან ხელმისაწვდომია
+    usedCards.clear();
 
     playerCards.push(getRandomCard(), getRandomCard());
     computerCards.push(getRandomCard(), getRandomCard());
