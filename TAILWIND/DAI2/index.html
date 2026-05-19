@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Coding Conf 2025</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"DM Sans"', 'sans-serif'],
+            mono: ['Inconsolata', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="font-sans min-h-full flex items-center justify-center relative overflow-x-hidden bg-[#0b0920] py-12">
+
+  <div class="absolute inset-0 z-0 bg-[radial-gradient(ellipse_120%_80%_at_50%_25%,#2b1263_0%,#0c0633_50%,#0b0920_100%)] pointer-events-none">
+    
+    <div class="absolute rounded-full border-[32px] border-[#d27850]/20 -left-[150px] bottom-[-100px] w-[500px] h-[500px]"></div>
+    <div class="absolute rounded-full border-[12px] border-[#d27850]/10 -left-[220px] bottom-[-170px] w-[640px] h-[640px]"></div>
+
+    <div class="absolute -right-[40px] top-[40px] w-[200px] h-[450px] border-2 border-purple-500/30 rounded-[55%_45%_45%_55%_/_15%_15%_85%_85%] rotate-[25deg]"></div>
+  </div>
+
+  <div class="relative z-10 w-full max-w-[460px] px-6 flex flex-col items-center">
+
+    <div class="flex items-center gap-2 mb-8">
+      <svg class="w-6 h-6 text-[#f57456]" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+      <span class="text-white font-bold text-lg tracking-wide font-sans">Coding Conf</span>
+    </div>
+
+    <h1 class="font-mono font-extrabold text-[28px] sm:text-[36px] text-white text-center leading-[1.15] mb-4 tracking-tight">
+      Your Journey to Coding Conf<br/>2025 Starts Here!
+    </h1>
+
+    <p class="text-center text-slate-400 text-sm  max[40px] w-full p-6">
+      Secure your spot at next year's biggest coding conference.
+    </p>
+
+    <form class="w-full space-y-5" onsubmit="event.preventDefault();">
+      
+      <div>
+        <label class="block text-slate-300 text-xs font-medium mb-2 font-sans">Upload Avatar</label>
+
+        <label for="av-input" class="group block bg-[#120e3d]/40 border-2 border-dashed border-slate-600/50 hover:border-purple-500/80 rounded-xl p-6 cursor-pointer text-center transition-all duration-200 backdrop-blur-sm">
+          
+          <img id="av-preview" src="" alt="Avatar Preview" class="hidden w-14 h-14 rounded-xl object-cover mx-auto mb-2 border border-purple-500/50"/>
+          
+          <div id="av-placeholder" class="flex flex-col items-center">
+            <div class="w-10 h-10 rounded-lg bg-slate-800/80 border border-slate-700 flex items-center justify-center mb-3 group-hover:bg-slate-700/50 transition-colors">
+              <svg class="w-5 h-5 text-[#f57456]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
+              </svg>
+            </div>
+            <p class="text-slate-400 text-xs font-sans">Drag and drop or click to upload</p>
+          </div>
+        </label>
+        
+        <input id="av-input" type="file" accept="image/jpeg,image/png" class="hidden"/>
+        <p class="text-[11px] text-slate-500 mt-2 flex items-center gap-1 font-sans">
+          <span>ⓘ</span> Upload your photo (JPG or PNG, max size: 500KB).
+        </p>
+      </div>
+
+      <div>
+        <label class="block text-slate-300 text-xs font-medium mb-2 font-sans" for="fname">Full Name</label>
+        <input id="fname" type="text" class="w-full bg-[#0c0831]/60 border border-slate-700/80 focus:border-purple-500/80 rounded-lg py-2.5 px-4 text-slate-200 text-sm outline-none transition-all focus:ring-2 focus:ring-purple-500/20 font-mono" placeholder=""/>
+      </div>
+
+      <div>
+        <label class="block text-slate-300 text-xs font-medium mb-2 font-sans" for="email">Email Address</label>
+        <input id="email" type="email" class="w-full bg-[#0c0831]/60 border border-slate-700/80 focus:border-purple-500/80 rounded-lg py-2.5 px-4 text-slate-200 text-sm outline-none transition-all focus:ring-2 focus:ring-purple-500/20 font-mono" placeholder="example@email.com"/>
+      </div>
+
+      <div>
+        <label class="block text-slate-300 text-xs font-medium mb-2 font-sans" for="github">GitHub Username</label>
+        <input id="github" type="text" class="w-full bg-[#0c0831]/60 border border-slate-700/80 focus:border-purple-500/80 rounded-lg py-2.5 px-4 text-slate-200 text-sm outline-none transition-all focus:ring-2 focus:ring-purple-500/20 font-mono" placeholder="@yourusername"/>
+      </div>
+
+      <button class="w-full bg-[#f57456] hover:bg-[#e66345] text-[#0b0920] font-bold py-3 px-4 rounded-lg transition-colors duration-150 shadow-lg shadow-[#f57456]/10 font-sans tracking-wide text-sm mt-2">
+        Generate My Ticket
+      </button>
+
+    </form>
+    </div>
+</body>
+</html>
