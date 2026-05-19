@@ -59,10 +59,10 @@ function createDeck() {
 // random card
 function RandomCard() {
     const index = Math.floor(Math.random() * deck.length);
-    return deck.splice(index, 1)[0];
-}
+    return deck.splice(index, 1)[0]; //ამოაქ შემთხვევით კარტი და შლის დექიდან რომ აღარ გამეორდეს.
+} 
 
-// scores operation 
+//========scores operation =========
 function calculateScore(cards) {
     let total = 0; 
     let aces = 0;  

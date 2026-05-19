@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TICKET TAILWIND </title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @font-face {
+            font-family: 'Inconsolata';
+            src: url('./fonts/Inconsolata-VariableFont_wdth,wght.ttf') format('truetype');
+            font-weight: 100 900;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'Inconsolata';
+        }
+    </style>
+</head>
+
+<!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
+
+<body
+    <body class="bg-[#0b051e] text-white min-h-screen bg-cover bg-center bg-no-repeat flex flex-col items-center px-4 py-8 md:py-12 bg-[url('./background/background-mobile.png')] md:bg-none md:bg-[url('./background/background-desktop.png')]">
+
+    <main class="w-full max-w-[460px] md:max-w-[560px] flex flex-col items-center text-center">
+
+        <header class="flex items-center gap-3 mb-8 md:mb-10">
+            <img src="./logo/logo-mark.svg" class="w-6 h-6 md:w-7 md:h-7">
+            <span class="text-lg md:text-xl font-bold tracking-wide">Coding Conf</span>
+        </header>
+
+<!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <h1 class="w-full px-4 text-2xl md:text-4xl font-extrabold leading-tight tracking-tight mb-4 md:mb-6 mx-auto">
+            Your Journey to Coding Conf 2025 Starts Here!
+        </h1>
+
+        <p class="text-gray-400 text-sm md:text-base max-w-sm md:max-w-[420px] px-4 mb-8 md:mb-12 mx-auto">
+            Secure your spot at next year's biggest coding conference.
+        </p>
+
+
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+        <form class="w-full text-left space-y-5 md:space-y-6">
+
+            <div class="flex flex-col gap-2">
+                <label class="text-sm md:text-base font-medium tracking-wide text-gray-300">Upload Avatar</label>
+
+                <div
+                    class="w-full bg-[#1b1437]/50 border-2 border-dashed border-gray-600 rounded-xl p-5 md:p-6 flex flex-col items-center justify-center gap-3 cursor-pointer hover:border-gray-100 transition-colors">
+                    <div class="bg-[#2a2249] p-2.5 rounded-lg border border-gray-700">
+                        <img src="./icons/icon-upload.svg" class="w-6 h-7">
+                    </div>
+                    <span class="text-xs md:text-sm text-gray-400"> Drag and drop or click to upload </span>
+                </div>
+
+                <div class="flex items-start gap-2 mt-1">
+                    <img src="./icons/icon-info.svg" class="w-3.5 h-3.5 mt-0.5 opacity-60">
+                    <p class="text-[11px] md:text-xs text-gray-400 leading-normal">
+                        Upload your photo (JPG or PNG, max size: 500KB).
+                    </p>
+                </div>
+            </div>
+
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+            <div class="flex flex-col gap-1">
+                <label for="name" class="text-sm md:text-base font-medium text-gray-300">Full Name</label>
+                <input type="text"
+                    class="w-full bg-[#1b1437]/50 border border-gray-600 rounded-xl px-4 py-3 text-sm md:text-base text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-300 transition-all">
+            </div>
+
+            <div class="flex flex-col gap-1">
+                <label for="email" class="text-sm md:text-base font-medium text-gray-300">Email Address</label>
+                <input type="email"
+                    class="w-full bg-[#1b1437]/50 border border-gray-600 rounded-xl px-4 py-3 text-sm md:text-base text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-300 transition-all"
+                    placeholder="example@email.com">
+            </div>
+
+            <div class="flex flex-col gap-1">
+                <label for="github" class="text-sm md:text-base font-medium text-gray-300">GitHub Username</label>
+                <input type="text"
+                    class="w-full bg-[#1b1437]/50 border border-gray-600 rounded-xl px-4 py-3 text-sm md:text-base text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-300 transition-all"
+                    placeholder="@yourusername">
+            </div>
+ <!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+            <button type="submit"
+                class="w-full bg-[#ff7a66] hover:bg-[#b33e2a] text-[#0b051e] cursor-pointer font-extrabold text-base md:text-lg py-3.5 md:py-4 rounded-xl mt-2 tracking-wide shadow-lg active:scale-[0.99] transition-all">
+                Generate My Ticket
+            </button>
+        </form>
+    </main>
+</body>
+</html>
