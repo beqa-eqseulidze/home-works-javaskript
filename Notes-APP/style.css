@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+form{
+    width: 60%;
+    margin: 0 auto;
+    background-color: aliceblue;
+    padding: 10px;
+    margin-top: 10px;
+}
+ input,textarea{
+    width:100%;
+ }
+
+div.cards{
+    display: flex;
+    flex-wrap: wrap;
+    background: rgb(241, 239, 239);
+    gap: 10px;
+    padding: 10px;
+    margin: 15px;
+}
+
+div.card{
+    width:calc(33.333% - 10px );
+    border: 1px solid;
+}
+
+
