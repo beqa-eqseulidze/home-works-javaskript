@@ -4,6 +4,27 @@
     box-sizing: border-box;
 }
 
+body{
+    display: flex;
+}
+
+aside{
+    width:200px;
+    border-right:1px solid;
+}
+
+aside div{
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer;
+    margin-top: 10px;
+    border: 1px solid blue;
+}
+
+main{
+    width:calc(100% - 200px)
+}
+
 form{
     width: 60%;
     margin: 0 auto;
@@ -27,6 +48,15 @@ div.cards{
 div.card{
     width:calc(33.333% - 10px );
     border: 1px solid;
+}
+
+.error{
+    color:red;
+    font-size: 10px;
+}
+
+.error.hidden{
+    display: none;
 }
 
 

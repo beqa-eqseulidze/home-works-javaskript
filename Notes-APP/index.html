@@ -1,37 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./style.css">
-</head>
-<body>
-    <form id="form">
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <aside>
+        <div onclick="filterNotes()" >All</div>
+        <div onclick="filterNotes('work')">Work</div>
+        <div onclick="filterNotes('privet')">Private</div>
+        <div onclick="filterNotes('idea')"> Ides</div>
+        <div onclick="filterNotes('learn')">Learn</div>
+    </aside>
+    <main>
+      <form id="form">
         <label>
-            სათაური
-            <br>
-            <input class="title" type="text" name="title">
+          სათაური
+          <br />
+          <input class="title" type="text" name="title" />
+          <div id="title" class="error hidden">* სავალდებულო ველი</div>
         </label>
-        <br>
+
         <label>
-            აღწერა
-            <br>
-            <textarea class="text" name="text"></textarea>
-        </label>       
-        <br>
+          აღწერა
+          <br />
+          <textarea class="text" name="text"></textarea>
+          <div id="text" class="error hidden">* სავალდებულო ველი</div>
+        </label>
+        <br />
         <select class="category" name="category">
-            <option value="work">სამუშაო</option>
-            <option value="privet">პირადი</option>
-            <option value="idea">იდეები</option>
-            <option value="learn">სწავლა</option>
+          <option value="work">სამუშაო</option>
+          <option value="privet">პირადი</option>
+          <option value="idea">იდეები</option>
+          <option value="learn">სწავლა</option>
         </select>
-        
-    <button type="submit">+ დამატება</button>   
-    </form>
 
-    <div class="cards"></div>
+        <button type="submit">+ დამატება</button>
+      </form>
 
+      <div class="cards"></div>
+    </main>
     <script src="./main.js"></script>
-</body>
+  </body>
 </html>
