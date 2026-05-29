@@ -1,13 +1,16 @@
+
 let notes = JSON.parse(localStorage.getItem('notes')) || [];
 let currentFilter = 'all';
 let currentEditId = null;
 
+// DOMS :
 const notesContainer = document.getElementById('notes-container');
 const noteTitleInput = document.getElementById('note-title');
 const noteTextInput = document.getElementById('note-text');
 const noteCategorySelect = document.getElementById('note-category');
 const addNoteBtn = document.getElementById('add-note-btn');
 const sidebarButtons = document.querySelectorAll('.category-btn');
+
 
 function renderNotes() {
     notesContainer.innerHTML = '';
@@ -61,6 +64,33 @@ function renderNotes() {
     });
 }
 
+
+// === ჩანაწერის რედაქტირება ===
+function editNote(id) {
+    const noteToEdit = notes.find(note => note.id === id);
+    
+    if (noteToEdit) {
+        noteTitleInput.classList.remove('border-red-500');
+        noteTextInput.classList.remove('border-red-500');
+
+        noteTitleInput.value = noteToEdit.title;
+        noteTextInput.value = noteToEdit.text;
+        noteCategorySelect.value = noteToEdit.category;
+        
+        currentEditId = id;
+        addNoteBtn.innerText = 'შეცვლა';
+    }
+}
+
+
+// === ჩანაწერის წაშლა ===
+function deleteNote(id) {
+    notes = notes.filter(note => note.id !== id);
+    localStorage.setItem('notes', JSON.stringify(notes));
+    renderNotes();
+}
+
+// === ჩანაწერის დამატება / შენახვა ===
 addNoteBtn.addEventListener('click', () => {
     const title = noteTitleInput.value.trim();
     const text = noteTextInput.value.trim();
@@ -75,6 +105,7 @@ addNoteBtn.addEventListener('click', () => {
         return; 
     }
 
+    // == Date-ის დამატება == 
     const d = new Date();
     const simpleDate = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 
@@ -104,29 +135,7 @@ addNoteBtn.addEventListener('click', () => {
     renderNotes();
 });
 
-
-function deleteNote(id) {
-    notes = notes.filter(note => note.id !== id);
-    localStorage.setItem('notes', JSON.stringify(notes));
-    renderNotes();
-}
-
-function editNote(id) {
-    const noteToEdit = notes.find(note => note.id === id);
-    
-    if (noteToEdit) {
-        noteTitleInput.classList.remove('border-red-500');
-        noteTextInput.classList.remove('border-red-500');
-
-        noteTitleInput.value = noteToEdit.title;
-        noteTextInput.value = noteToEdit.text;
-        noteCategorySelect.value = noteToEdit.category;
-        
-        currentEditId = id;
-        addNoteBtn.innerText = 'შეცვლა';
-    }
-}
-
+// === ფილტრაცია (Sidebar) ===
 sidebarButtons.forEach(btn => {
     btn.addEventListener('click', () => {
         sidebarButtons.forEach(b => {
