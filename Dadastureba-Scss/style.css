@@ -1,0 +1,184 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f8f9fc;
+  color: #2c3e50;
+}
+
+body {
+  padding: 32px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 500px;
+}
+
+.balance-header {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background: linear-gradient(135deg, #ff8c42 0%, #ff9f6e 100%);
+  color: #ffffff;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.balance-header .balance-content {
+  flex: 1;
+}
+
+.balance-header .balance-label {
+  font-size: 13px;
+  color: #7f8c8d;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 8px;
+}
+
+.balance-header .balance-amount {
+  font-size: 32px;
+  font-weight: 700;
+  color: #2c3e50;
+  color: #ffffff;
+}
+
+.balance-header .toggle-icon {
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.chart-section {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.chart-section .chart-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 24px;
+}
+
+.chart-bars {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  height: 140px;
+  margin-bottom: 24px;
+}
+
+.chart-bars .bar-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  height: 100%;
+}
+
+.chart-bars .bar-item .bar {
+  width: 100%;
+  max-width: 40px;
+  background: #ff9f6e;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.chart-bars .bar-item .bar:hover {
+  background: #ff8c42;
+  transform: scaleY(1.05);
+}
+
+.chart-bars .bar-item .bar.accent {
+  background: #5dade2;
+}
+
+.chart-bars .bar-item .bar.accent:hover {
+  background: #2980b9;
+}
+
+.chart-bars .bar-item .day-label {
+  font-size: 12px;
+  color: #7f8c8d;
+  font-weight: 500;
+  text-transform: lowercase;
+}
+
+.total-section {
+  border-top: 1px solid #eceff1;
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total-section .total-left .total-label {
+  font-size: 13px;
+  color: #7f8c8d;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  margin-bottom: 8px;
+}
+
+.total-section .total-left .total-amount {
+  font-size: 32px;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.total-section .total-right {
+  text-align: right;
+}
+
+.total-section .total-right .percentage {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2ecc71;
+  margin-bottom: 8px;
+}
+
+.total-section .total-right .percentage::before {
+  content: "▲ ";
+  font-size: 14px;
+}
+
+.total-section .total-right .meta {
+  font-size: 12px;
+  color: #7f8c8d;
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 24px;
+  }
+  .chart-bars {
+    height: 120px;
+  }
+}/*# sourceMappingURL=style.css.map */
