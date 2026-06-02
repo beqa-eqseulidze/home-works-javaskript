@@ -213,6 +213,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 500);
     };
 });
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 2d57b2f2a04f428b9705b88ccc5654105de1db74
