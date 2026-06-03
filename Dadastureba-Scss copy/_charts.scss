@@ -33,37 +33,10 @@
       border-radius: $radius-sm;
       transition: all 0.3s ease;
       cursor: pointer;
-      position: relative;
       
       &:hover {
         background: $primary-dark;
         transform: scaleY(1.05);
-      }
-
-      &::before {
-        content: attr(data-amount);
-        position: absolute;
-        left: 50%;
-        bottom: calc(100% + 8px);
-        transform: translateX(-50%);
-        background: #382314;
-        color: $white;
-        font-size: 12px;
-        font-weight: 700;
-        line-height: 1;
-        padding: 10px 8px;
-        border-radius: 6px;
-        white-space: nowrap;
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        z-index: 2;
-        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
-      }
-
-      &:hover::before {
-        opacity: 1;
-        visibility: visible;
       }
       
       &.accent {
