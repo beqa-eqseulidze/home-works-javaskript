@@ -15,14 +15,14 @@ let countdownInterval;
 
 //ვამოწმებთ არის თუ არა მომხმარებელი დაბლოკილი გვერდზე შემოსვლისსას ;
 function checkBanStatus() {
-    const lockUntil = localStorage.getItem("lockUntil"); //ვიღებთ დაბლოკვის ვადის დასრულების დროს
+    const lockUntil = localStorage.getItem("lockUntil");     //ვიღებთ დაბლოკვის ვადის დასრულების დროს
 
     if (lockUntil) {
         const currentTime = Date.now();
-        const timeLeft = parseInt(lockUntil) - currentTime; //გამოვთვლით ban-ის ახსნის დროს.
+        const timeLeft = parseInt(lockUntil) - currentTime;        //გამოვთვლით ban-ის ახსნის დროს.
 
         if (timeLeft > 0) {
-            startCountdown(timeLeft); //თუ დრო დარჩენილია ვიწყებთ დარჩენილი დროისათვლას
+            startCountdown(timeLeft);         //თუ დრო დარჩენილია ვიწყებთ დარჩენილი დროისათვლას
         } else {
             unlockForm();
         }
@@ -32,10 +32,10 @@ function checkBanStatus() {
 // TIMER  : 
 function startCountdown(duration) {
     loginBtn.disabled = true; // button off
-    usernameInput.disabled = true; // login off
-    passwordInput.disabled = true; // password off
+    usernameInput.disabled = true;  // login off
+    passwordInput.disabled = true;  // password off
 
-    const endTIme = Date.now() + duration; // ban-ახსნის დროს ვადგენტ
+    const endTIme = Date.now() + duration;// ban-ახსნის დროს ვადგენტ
 
     function updateTimer() {
         const remaining = endTIme - Date.now();
@@ -89,9 +89,9 @@ loginForm.addEventListener("submit", (e) => {
 
         // 3 მცდელობის მიღწევისას დავბლოკავთ;
         if (attempts >= Max_Tries) {                             
-            const lockUntilTime = Date.now() + Ban_Time;    //ვთვლით როდის დასრულდება BAN
+            const lockUntilTime = Date.now() + Ban_Time;         //ვთვლით როდის დასრულდება BAN
             localStorage.setItem("lockUntil", lockUntilTime);  
-            startCountdown(Ban_Time);  // ვიწყებთ ტაიმერის ათვლას დაბლოკვის დროით                                 
+            startCountdown(Ban_Time);        // ვიწყებთ ტაიმერის ათვლას დაბლოკვის დროით                                 
         } else {                                                       
             // შეცდომების შეტყობინება დარჩენილი მცდელობების რაოდენობით;;
             message.className = "mt-4 text-center text-sm font-medium text-red-600"; 
