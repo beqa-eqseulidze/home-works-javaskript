@@ -1,16 +1,16 @@
-// let products;
-// fetch("https://fakestoreapi.com/products")
+let products;
+fetch("https://fakestoreapi.com/products")
     
-// .then((response) => {
-//     console.log(response);
-//     return response.json();
-// })
+.then((response) => {
+    console.log(response);
+    return response.json();
+})
 
-// .then((products) => {
-//     products=products;
-//     console.log("product1", products);
-//     renderProducts(products);
-// });
+.then((products) => {
+    products=products;
+    console.log("product1", products);
+    renderProducts(products);
+});
 
 
 function renderProducts(products){
