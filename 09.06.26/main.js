@@ -1,3 +1,10 @@
+//  1) https://fakestoreapi.com/docs ამ api ის დახმარებით გააკეთეთ აპლიკაცია რომელსაც ექნება 3 ფეიჯი
+// მაგ: პროდუქტები, მომხმარებლები და კალათა 
+// თვითოეულ პეიჯზე გადასვლისას უნდა გაკეთდეს http რექვესთი შესაბამის მისამართზე  და 
+// გამოჩნდეს ეკრანზე დაბრუნებული data 
+
+
+
 // ბრაუზერის DOM ელემენტების ქეშირება, რომლებსაც განვაახლებთ აპლიკაციის მუშაობისას.
 const content = document.querySelector("#content");
 const statusEl = document.querySelector("#status");
@@ -95,7 +102,7 @@ async function loadRoute(route) {
     }
 
     const data = await response.json();
-    
+
     // რბოლის პირობის (race condition) თავიდან აცილება: მონაცემებს ვარენდერებთ მხოლოდ იმ შემთხვევაში, თუ ეს როუტი კვლავ აქტიურია.
     if (getRouteFromHash() !== route) return;
 
