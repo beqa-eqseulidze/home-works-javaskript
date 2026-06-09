@@ -212,4 +212,8 @@ window.addEventListener("DOMContentLoaded", () => {
   } else {
     loadRoute(null);
   }
+<<<<<<< HEAD
 });          
+=======
+});
+>>>>>>> c7f298622c65475b5cf1205b86c42e76e91a08ce

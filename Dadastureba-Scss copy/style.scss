@@ -57,19 +57,15 @@ body {
 }
 
 .balance-header .toggle-icon {
-  width: 72px;
-  height: 48px;
-  flex: 0 0 auto;
-  background: transparent;
-  border-radius: 0;
-  cursor: default;
-}
-
-.balance-header .toggle-icon img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
 }
 
 .chart-section {
@@ -112,38 +108,11 @@ body {
   border-radius: 8px;
   transition: all 0.3s ease;
   cursor: pointer;
-  position: relative;
 }
 
 .chart-bars .bar-item .bar:hover {
   background: #ff8c42;
   transform: scaleY(1.05);
-}
-
-.chart-bars .bar-item .bar::before {
-  content: attr(data-amount);
-  position: absolute;
-  left: 50%;
-  bottom: calc(100% + 8px);
-  transform: translateX(-50%);
-  background: #382314;
-  color: #ffffff;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 1;
-  padding: 10px 8px;
-  border-radius: 6px;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  z-index: 2;
-  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
-}
-
-.chart-bars .bar-item .bar:hover::before {
-  opacity: 1;
-  visibility: visible;
 }
 
 .chart-bars .bar-item .bar.accent {
@@ -212,8 +181,5 @@ body {
   .chart-bars {
     height: 120px;
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> c7f298622c65475b5cf1205b86c42e76e91a08ce
+
