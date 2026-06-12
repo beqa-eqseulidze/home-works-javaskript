@@ -2,7 +2,7 @@ import {mainTag} from './domElements.js'
 
 export async function renderProducts(){
     const res= await fetch('https://fakestoreapi.com/products');
-    const data=await res.json();
+    const data=await res.json(); 
     mainTag.innerHTML='';
     data.forEach((product)=>{
         mainTag.innerHTML+=`
@@ -11,7 +11,7 @@ export async function renderProducts(){
     })  
 }
 
-export function addClickLesener(htmlElements,fn){
+export function addClickListener(htmlElements,fn){
     htmlElements.forEach((el)=>{
         el.addEventListener('click',fn)
     })
