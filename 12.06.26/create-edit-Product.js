@@ -1,4 +1,6 @@
-import { form, mainTag } from "./domElements.js"
+import { form } from "./domElements.js"
+import { mode , productId} from "./globalStates.js"
+
 
 export async function onSave(event) {
   // ფორმის submit რომ გვერდი არ გადატვირთოს
@@ -12,7 +14,7 @@ export async function onSave(event) {
 
   // ვალიდაცია: ცარიელი ველი თუ არის, შენახვას არ ვაგრძელებთ
   if (!showError(product)) return;
-
+  
   // Fake Store API-სთვის id ვანიჭებთ
   product.id = 0;
 
