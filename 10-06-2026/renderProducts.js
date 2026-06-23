@@ -1,7 +1,7 @@
 import {mainTag} from './domElements.js'
 
 export async function renderProducts(){
-    const res= await fetch('https://fakestoreapi.com/products');
+    const res = await fetch('https://fakestoreapi.com/products');
     const data=await res.json(); 
     mainTag.innerHTML='';
     data.forEach((product)=>{
