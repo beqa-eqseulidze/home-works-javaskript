@@ -1,0 +1,37 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "title": "a title",
+      "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
+      "price": 10,
+      "image": "fusdhjkhfkahsd",
+      "category": 1,
+      "views": 1
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "title": "TV"
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "productId": 1,
+      "userId": 1,
+      "reviews": "good product"
+    }
+  ],
+  "users": [
+    {
+      "email": "bitrvelishvili.modus@gmail.com",
+      "password": "$2a$10$enwU4ZzZvvb/6/XJ33eIiORCEDqLMRRI211adutge2HHofYBkzT/e",
+      "id": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
