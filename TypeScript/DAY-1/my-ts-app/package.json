@@ -9,9 +9,12 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@typescript-eslint/eslint-plugin": "^8.62.0",
     "@typescript-eslint/parser": "^8.62.0",
     "eslint": "^10.5.0",
+=======
+>>>>>>> 9a26fb875130b978c78b8629fc3fcf22d8028a66
     "typescript": "~6.0.2",
     "vite": "^8.1.0"
   }

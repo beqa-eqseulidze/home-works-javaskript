@@ -1,0 +1,295 @@
+ /* დავალება 10 */
+ /* body {
+      background-color: #ffffff;
+      color: #333333;
+      font-family: sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    body.dark-mode {
+      background-color: #121212;
+      color: #ffffff;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: 2px solid #333;
+      background-color: transparent;
+      color: inherit; 
+      border-radius: 5px;
+    } */
+
+ /* =============================== */
+
+ /* დავალება 5 */
+ /* body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    input, button {
+      padding: 8px 12px;
+      font-size: 16px;
+    }
+    ul {
+      margin-top: 20px;
+      padding-left: 20px;
+    }
+    li {
+      padding: 8px;
+      margin: 5px 0;
+      cursor: pointer;
+      background-color: #f0f0f0;
+      border-radius: 4px;
+      list-style-type: none;
+      transition: all 0.2s ease;
+      width: 250px;
+    }
+    .completed {
+      text-decoration: line-through;
+      background-color: #d4edda;
+      color: #155724;
+    } */
+
+ /* დავალება 11 */
+ /* * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .loading {
+            text-align: center;
+            color: #fff;
+            font-size: 1.2rem;
+            margin-top: 50px;
+        }
+
+        .error {
+            text-align: center;
+            color: #ff6b6b;
+            background: rgba(255,255,255,0.9);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 500px;
+            margin: 50px auto;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .card-name {
+            font-size: 1.3rem;
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        .card-body {
+            margin-top: 15px;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            color: #4a5568;
+        }
+
+        .info-icon {
+            width: 20px;
+            margin-right: 10px;
+            color: #667eea;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #718096;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
+        }
+
+        .info-value {
+            color: #2d3748;
+            font-size: 1rem;
+        }
+
+        .company-badge {
+            display: inline-block;
+            background: #edf2f7;
+            color: #4a5568;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            border: 1px solid #e2e8f0;
+        } */
+
+ /* ============================= */
+ /* დავალება 12 */
+ /* * {
+     box-sizing: border-box;
+     margin: 0px;
+     padding: 0px;
+ }
+
+ body {
+     background-color: aqua;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     padding: 20px;
+     min-height: 100vh;
+ }
+
+ #postForm {
+     background-color: #ffffff;
+     border-radius: 12px;
+     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+     padding: 40px;
+     width: 100%;
+     max-width: 500px;
+ }
+ #postForm div {
+     display: flex;
+     flex-direction: column;
+     gap: 6px;
+ }
+ #postForm label {
+     font-size: 14px;
+     font-weight: 600;
+     color: #333333;
+ }
+ #postForm input[type="text"] {
+     padding: 10px 14px;
+     border: 1.5px solid #d0d5dd;
+     border-radius: 8px;
+     font-size: 15px;
+     color: #111;
+     outline: none;
+     transition: border-color 0.2s ease;
+ }
+
+ #postForm input[type="text"]:focus {
+     border-color: #4f46e5;
+ }
+ #postForm textarea {
+     padding: 10px 14px;
+     border: 1.5px solid #d0d5dd;
+     border-radius: 8px;
+     font-size: 15px;
+     color: #111;
+     outline: none;
+     resize: vertical;
+     min-height: 120px;
+     transition: border-color 0.2s ease;
+ }
+
+ #postForm textarea:focus {
+     border-color: #4f46e5;
+ }
+ #submitBtn {
+     margin-top: 20px;
+     width: 100%;
+     padding: 12px;
+     background-color: #4f46e5;
+     color: #ffffff;
+     border: none;
+     border-radius: 8px;
+     font-size: 15px;
+     font-weight: 600;
+     cursor: pointer;
+     transition: background-color 0.2s ease;
+ }
+
+ #submitBtn:hover {
+     background-color: #4338ca;
+ }
+
+ #submitBtn:disabled {
+     background-color: #a5a0f5;
+     cursor: not-allowed;
+ }
+
+ #result {
+     margin-top: 20px;
+     font-size: 14px;
+     font-weight: bold;
+     color: green;
+     text-align: center;
+ } */

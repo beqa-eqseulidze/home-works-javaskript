@@ -3,6 +3,7 @@ import type { ITodo, ITodoWithoutId } from "./models/todo";
 const form = document.querySelector("form");
 const table = document.querySelector("tbody");
 
+<<<<<<< HEAD
 form?.addEventListener("submit", onCreate);
 
 let todos: ITodo[] = JSON.parse(localStorage.getItem("todos") ?? "[]");
@@ -30,6 +31,25 @@ function onCreate(e: Event) {
     renderToDo(todos);
   }
   form?.reset();
+=======
+form?.addEventListener("submit", onSave);
+
+const todos: ITodo[] = JSON.parse(localStorage.getItem('todos')??'[]');
+renderToDo(todos);
+
+function onSave(e: Event) {
+  e.preventDefault();
+  const formdata = new FormData(form!);
+  const todoWithoutId: ITodoWithoutId = Object.fromEntries(
+    formdata.entries(),
+  )as unknown as ITodoWithoutId;
+  const id = new Date().getTime();
+  const todo: ITodo = { ...todoWithoutId, id };
+  todos.push(todo);
+  localStorage.setItem("todos", JSON.stringify(todos));
+  form?.reset();
+  renderToDo(todos);
+>>>>>>> 9a26fb875130b978c78b8629fc3fcf22d8028a66
 }
 
 function renderToDo(data: ITodo[]): void {
@@ -39,6 +59,7 @@ function renderToDo(data: ITodo[]): void {
           <td>${item.id}</td>
           <td>${item.title}</td>
           <td>${item.category}</td>
+<<<<<<< HEAD
           <th>
            <button class="edit" id="${item.id}" >შეცვლა</button>
            <button class="delete" id="${item.id}" >წაშლა</button>
@@ -80,4 +101,9 @@ function onDelete(e: Event): void {
     localStorage.setItem("todos", JSON.stringify(todos));
     renderToDo(todos);
   }
+=======
+         </tr>
+        `;
+  });
+>>>>>>> 9a26fb875130b978c78b8629fc3fcf22d8028a66
 }
