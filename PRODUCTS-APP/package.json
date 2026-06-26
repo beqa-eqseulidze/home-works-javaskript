@@ -1,0 +1,17 @@
+{
+  "name": "products-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"   
+  },
+  "devDependencies": {
+    "json-server": "^0.17.4",
+    "json-server-auth": "^2.1.0",
+    "typescript": "~6.0.2",
+    "vite": "^8.1.0"
+  }
+}

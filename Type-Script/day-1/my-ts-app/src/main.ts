@@ -1,13 +1,14 @@
 import type { ITodo, ITodoWithoutId } from "./models/todo";
 
 const form = document.querySelector("form");
-const table = document.querySelector("tbody");
-
 form?.addEventListener("submit", onCreate);
 
+const table = document.querySelector("tbody");
+
 let todos: ITodo[] = JSON.parse(localStorage.getItem("todos") ?? "[]");
-renderToDo(todos);
 let todoForEdit: ITodo | null = null;
+
+renderToDo(todos);
 
 function onCreate(e: Event) {
   e.preventDefault();
@@ -46,6 +47,7 @@ function renderToDo(data: ITodo[]): void {
          </tr>
         `;
   });
+  
   const btnEdits = document.querySelectorAll(".edit");
   const btnDeletes = document.querySelectorAll(".delete");
 
