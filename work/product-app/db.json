@@ -4,6 +4,26 @@
       "email": "olivier@mail.com",
       "password": "$2a$10$Xenjc2K/JwtQUuDNTgZZz.fcZdkQmKV5aUnVatQmWtK42ckSY6N.6",
       "id": 1
+    },
+    {
+      "email": "saba@mail.com",
+      "password": "$2a$10$2dXmLdlyC9Si7Rp6Ycl5O.IU92T6CRLizTWs.TbxCM5EvTXTt6m4K",
+      "id": 2
+    },
+    {
+      "email": "dala@mail.com",
+      "password": "$2a$10$9ywZKy7sS6lGDpAsyeYFfeOGnwyIh4sb4umZDdUYCG7hYvnCYW2Cq",
+      "id": 3
+    },
+    {
+      "email": "test@mail.com",
+      "password": "$2a$10$TUqQu/5BbNwFdLu8qpk/6uwnFbp3A4.ySd6sYhjBzGrmzTXDGo/Y.",
+      "id": 4
+    },
+    {
+      "email": "test2@gmail.com",
+      "password": "$2a$10$4LU/iRU.LjvGxyNXRK8vcOuyvlwhsUwRHnzJZBTbmfNEhVgNdcLrq",
+      "id": 5
     }
   ]
 }

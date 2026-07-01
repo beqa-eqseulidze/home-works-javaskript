@@ -1,0 +1,14 @@
+email: "olivier@mail.com",
+password: "bestPassw0rd"
+========================
+email: "saba@mail.com",
+password: "goodPassw0rd"
+========================
+email: "dala@mail.com",
+password: "12345"
+========================
+email: "test@mail.com"
+password:"12345"
+========================
+email: "test@mail.com"
+password:"12345"

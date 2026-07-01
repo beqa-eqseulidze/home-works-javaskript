@@ -6,7 +6,8 @@
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "mock-api": "json-server-auth db.json --port 3000"
   },
   "devDependencies": {
     "json-server": "^0.17.4",
@@ -14,5 +15,8 @@
     "typescript": "~6.0.2",
     "vite": "^8.1.0"
   },
-  "dependencies": {}
+  "main": "server.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
