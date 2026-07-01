@@ -1,9 +1,14 @@
 {
   "users": [
     {
-      "email": "kaxaber@mail.com",
-      "password": "$2a$10$oBHlTTT0D2TFLLLbhJD0beUxunJfMHfl9aP7b74lehBwzV.EIX93K",
+      "email": "kaxa@gmail.com",
+      "password": "$2a$10$3CJbpf5eeoGn9dD00x86yumacKB4628bXwNxWVwtdSNlB7EI/QU.S",
       "id": 1
+    },
+    {
+      "email": "ninilanchava29@gmail.com",
+      "password": "$2a$10$wu5tOwtjt1JR1EnacOP6q.cHRD9ne3cVdisTBo7SkPtW0tY3Ob4XS",
+      "id": 2
     }
   ]
 }

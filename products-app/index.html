@@ -1,15 +1,41 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>products-app</title>
-  </head>
-  <body>
-    <button id="login">Login</button>
-    <button id="signup">Sign up</button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products-App</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
 
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+<body class="bg-green-300 min-h-screen font-sans">
+  <main class="max-w-4xl mx-auto px-4 py-20">
+    <div class="text-center">
+      <h1 class="text-4xl font-bold text-gray-800 mb-4">My Products App</h1>
+      <div id="message" class="hidden max-w-md mx-auto"></div>
+    </div>
+  </main>
+
+  <div class="fixed top-7 right-10 flex gap-3 z-40">
+    <button id="loginBtn"
+      class="px-6 py-2.5 bg-red-800 text-white font-semibold rounded-lg hover:bg-red-600 hover:shadow-lg transition-all cursor-pointer">
+      Login
+    </button>
+    <button id="signupBtn"
+      class="px-6 py-2.5 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 hover:shadow-lg transition-all cursor-pointer">
+      Sign Up
+    </button>
+  </div>
+
+  <div id="authModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-2xl p-10 w-11/12 max-w-lg shadow-2xl relative">
+      <button id="closeModalBtn"
+        class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-3xl transition-colors cursor-pointer">
+        ×
+      </button>
+      <div id="authFormContainer"></div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
 </html>
