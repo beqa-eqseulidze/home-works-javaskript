@@ -12,3 +12,5 @@ password:"12345"
 ========================
 email: "test@mail.com"
 password:"12345"
+
+ჩამატება method ების და type bis
