@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products Manager</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+
+<body class="bg-slate-50 text-slate-900 min-h-screen font-sans flex flex-col">
+
+  <!-- Status Toast Notifications -->
+  <div id="statusToast"
+    class="fixed top-6 right-6 z-50 p-4 rounded-xl shadow-xl font-semibold flex items-center gap-3 transition-all duration-300 transform -translate-y-6 opacity-0 hidden">
+  </div>
+
+  <!-- Header -->
+  <header class="flex justify-between items-center py-4 px-6 bg-white border-b border-slate-200/80 shadow-sm">
+    <div class="text-xl font-bold text-indigo-600 flex items-center gap-2">
+      <span class="w-3 h-3 bg-indigo-600 rounded-full animate-pulse"></span>
+      Products Manager
+    </div>
+    <div class="flex items-center gap-4">
+      <span id="userEmailDisplay" class="text-sm font-medium text-slate-600 hidden"></span>
+      <button id="logoutBtn"
+        class="hidden px-4 py-2 text-sm font-semibold text-rose-600 bg-rose-50 hover:bg-rose-100 rounded-lg transition duration-200 cursor-pointer">
+        გამოსვლა
+      </button>
+    </div>
+  </header>
+
+  <main class="flex-1 flex flex-col justify-center p-6">
+    <!-- Auth Container -->
+    <div id="authContainer" class="max-w-md w-full mx-auto my-auto">
+      <div class="bg-white rounded-2xl p-8 shadow-xl border border-slate-100">
+
+        <!-- Welcome Screen -->
+        <div id="welcomeBox" class="flex flex-col gap-4 text-center">
+          <h2 class="text-2xl font-bold text-slate-800">მოგესალმებით</h2>
+          <!-- <p class="text-sm text-slate-500 mb-4">მართეთ თქვენი პროდუქტები მარტივად და კომფორტულად</p> -->
+          <button id="welcomeSignUp"
+            class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl shadow-md transition duration-200 cursor-pointer">
+            Sign Up
+          </button>
+          <button id="welcomeSignIn"
+            class="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl transition duration-200 cursor-pointer">
+            Sign In
+          </button>
+        </div>
+
+        <!-- Form Wrapper -->
+        <div id="formWrapper" class="hidden">
+          <button id="backBtn"
+            class="mb-4 text-sm font-semibold text-slate-500 hover:text-slate-800 transition cursor-pointer">
+            ← უკან დაბრუნება
+          </button>
+
+          <!-- Auth Tabs -->
+          <div class="flex border-b border-slate-200 mb-6">
+            <button id="tabSignUp"
+              class="flex-1 pb-3 text-center font-semibold text-slate-400 border-b-2 border-transparent transition cursor-pointer">
+              Sign Up
+            </button>
+            <button id="tabSignIn"
+              class="flex-1 pb-3 text-center font-semibold text-slate-400 border-b-2 border-transparent transition cursor-pointer">
+              Sign In
+            </button>
+          </div>
+
+          <!-- Sign Up Form -->
+          <div id="signUpFormContainer" class="hidden">
+            <h3 class="text-lg font-bold text-slate-800 mb-4 text-center">ანგარიშის შექმნა</h3>
+            <form id="signUpForm" class="space-y-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1" for="upEmail">ელ.
+                  ფოსტა</label>
+                <input type="email" id="upEmail"
+                  class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none bg-slate-50 focus:bg-white transition duration-150"
+                  placeholder="example@gmail.com" required>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1"
+                  for="upPassword">პაროლი</label>
+                <input type="password" id="upPassword"
+                  class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none bg-slate-50 focus:bg-white transition duration-150"
+                  placeholder="••••••••" required>
+              </div>
+              <button type="submit"
+                class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl shadow-md transition duration-200 cursor-pointer">
+                რეგისტრაცია
+              </button>
+            </form>
+          </div>
+
+          <!-- Sign In Form -->
+          <div id="signInFormContainer" class="hidden">
+            <h3 class="text-lg font-bold text-slate-800 mb-4 text-center">სისტემაში შესვლა</h3>
+            <form id="signInForm" class="space-y-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1" for="inEmail">ელ.
+                  ფოსტა</label>
+                <input type="email" id="inEmail"
+                  class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none bg-slate-50 focus:bg-white transition duration-150"
+                  placeholder="example@gmail.com" required>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1"
+                  for="inPassword">პაროლი</label>
+                <input type="password" id="inPassword"
+                  class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none bg-slate-50 focus:bg-white transition duration-150"
+                  placeholder="••••••••" required>
+              </div>
+              <button type="submit"
+                class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl shadow-md transition duration-200 cursor-pointer">
+                შესვლა
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Dashboard View -->
+    <div id="dashboardView" class="max-w-6xl w-full mx-auto hidden mt-4">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold text-slate-800">ჩემი პროდუქტები</h2>
+        <button id="addProductBtn"
+          class="py-2.5 px-5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl shadow-md transition duration-200 cursor-pointer">
+          + პროდუქტის დამატება
+        </button>
+      </div>
+
+      <!-- Products Grid -->
+      <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <!-- JS Driven -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Product Modal -->
+  <div id="productModal"
+    class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center z-50 opacity-0 pointer-events-none transition duration-200">
+    <div
+      class="bg-white rounded-2xl max-w-lg w-full mx-4 shadow-2xl border border-slate-100 overflow-hidden transform scale-95 transition duration-200"
+      id="modalCard">
+      <div class="flex justify-between items-center px-6 py-4 border-b border-slate-100">
+        <h3 id="modalTitle" class="text-lg font-bold text-slate-800">ახალი პროდუქტი</h3>
+        <button id="modalCloseBtn"
+          class="text-2xl text-slate-400 hover:text-slate-700 transition cursor-pointer">&times;</button>
+      </div>
+      <form id="productForm">
+        <input type="hidden" id="productId">
+        <div class="p-6 space-y-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1"
+              for="productTitle">დასახელება</label>
+            <input type="text" id="productTitle"
+              class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none bg-slate-50 focus:bg-white transition duration-150"
+              placeholder="მაგ. სმარტფონი" required>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1"
+              for="productDescription">აღწერა</label>
+            <textarea id="productDescription"
+              class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none bg-slate-50 focus:bg-white transition duration-150"
+              rows="3" placeholder="პროდუქტის მოკლე აღწერა..." required></textarea>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1" for="productPrice">ფასი
+              ($)</label>
+            <input type="number" id="productPrice"
+              class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none bg-slate-50 focus:bg-white transition duration-150"
+              min="0.01" step="0.01" placeholder="0.00" required>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1"
+              for="productImage">სურათის URL</label>
+            <input type="url" id="productImage"
+              class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none bg-slate-50 focus:bg-white transition duration-150"
+              placeholder="https://example.com/image.jpg">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1"
+              for="productCategory">კატეგორია</label>
+            <select id="productCategory"
+              class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none bg-slate-50 focus:bg-white transition duration-150"
+              required>
+              <!-- JS driven -->
+            </select>
+          </div>
+        </div>
+        <div class="px-6 py-4 border-t border-slate-100 bg-slate-50 flex justify-end gap-3">
+          <button type="button" id="modalCancelBtn"
+            class="py-2.5 px-5 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-semibold rounded-xl transition duration-150 cursor-pointer">
+            გაუქმება
+          </button>
+          <button type="submit"
+            class="py-2.5 px-5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl shadow-md transition duration-200 cursor-pointer">
+            შენახვა
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>

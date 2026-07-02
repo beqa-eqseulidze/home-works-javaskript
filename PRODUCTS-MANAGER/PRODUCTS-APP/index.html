@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Auth Manager</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen font-sans flex flex-col items-center justify-center p-6">
+
+  <!-- Status Toast Notifications -->
+  <div id="statusToast" class="fixed top-6 right-6 z-50 p-4 rounded-xl shadow-xl font-semibold flex items-center gap-3 transition-all duration-300 transform -translate-y-6 opacity-0 hidden"></div>
+
+  <!-- Auth Card Container -->
+  <div id="authContainer" class="max-w-md w-full">
+    <div class="bg-white rounded-2xl p-8 shadow-xl border border-slate-100">
+      
+      <!-- Welcome Screen -->
+      <div id="welcomeBox" class="flex flex-col gap-4 text-center">
+        <h2 class="text-2xl font-bold text-slate-800">მოგესალმებით</h2>
+        <button id="welcomeSignUp" class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl shadow-md transition duration-200 cursor-pointer">
+          Sign Up
+        </button>
+        <button id="welcomeSignIn" class="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl transition duration-200 cursor-pointer">
+          Sign In
+        </button>
+      </div>
+
+      <!-- Form Wrapper -->
+      <div id="formWrapper" class="hidden">
+        <button id="backBtn" class="mb-4 text-sm font-semibold text-slate-500 hover:text-slate-800 transition cursor-pointer">
+          ← უკან დაბრუნება
+        </button>
+
+        <!-- Auth Tabs -->
+        <div class="flex border-b border-slate-200 mb-6">
+          <button id="tabSignUp" class="flex-1 pb-3 text-center font-semibold text-slate-400 border-b-2 border-transparent transition cursor-pointer">
+            Sign Up
+          </button>
+          <button id="tabSignIn" class="flex-1 pb-3 text-center font-semibold text-slate-400 border-b-2 border-transparent transition cursor-pointer">
+            Sign In
+          </button>
+        </div>
+
+        <!-- Sign Up Form -->
+        <div id="signUpFormContainer" class="hidden">
+          <h3 class="text-lg font-bold text-slate-800 mb-4 text-center">ანგარიშის შექმნა</h3>
+          <form id="signUpForm" class="space-y-4">
+            <div>
+              <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1" for="upEmail">ელ. ფოსტა</label>
+              <input type="email" id="upEmail" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none bg-slate-50 focus:bg-white transition duration-150" placeholder="example@gmail.com" required>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1" for="upPassword">პაროლი</label>
+              <input type="password" id="upPassword" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none bg-slate-50 focus:bg-white transition duration-150" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl shadow-md transition duration-200 cursor-pointer">
+              რეგისტრაცია
+            </button>
+          </form>
+        </div>
+
+        <!-- Sign In Form -->
+        <div id="signInFormContainer" class="hidden">
+          <h3 class="text-lg font-bold text-slate-800 mb-4 text-center">სისტემაში შესვლა</h3>
+          <form id="signInForm" class="space-y-4">
+            <div>
+              <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1" for="inEmail">ელ. ფოსტა</label>
+              <input type="email" id="inEmail" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none bg-slate-50 focus:bg-white transition duration-150" placeholder="example@gmail.com" required>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1" for="inPassword">პაროლი</label>
+              <input type="password" id="inPassword" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none bg-slate-50 focus:bg-white transition duration-150" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl shadow-md transition duration-200 cursor-pointer">
+              შესვლა
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
