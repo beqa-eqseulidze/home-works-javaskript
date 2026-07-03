@@ -1,154 +1,139 @@
-// ბექენდის საბაზისო URL
-const API_URL = 'http://localhost:3000';
+import type { Isignup } from './types';
 
-// დამხმარე ფუნქცია DOM ელემენტების ID-ით მარტივად ასარჩევად
-const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T | null;
+const baseUrl = 'http://localhost:3000';
 
-// DOM ელემენტების ობიექტი კოდის სისუფთავისთვის
-const els = {
-  welcome: $('welcomeBox'),                         // საწყისი მისალმების კონტეინერი
-  signup: $('welcomeSignUp'),                       // რეგისტრაციაზე გადასვლის ღილაკი
-  signin: $('welcomeSignIn'),                       // ავტორიზაციაზე გადასვლის ღილაკი
-  wrapper: $('formWrapper'),                        // ფორმების კონტეინერი
-  back: $('backBtn'),                               // უკან დაბრუნების ღილაკი
-  tabUp: $('tabSignUp'),                            // რეგისტრაციის ტაბის ღილაკი
-  tabIn: $('tabSignIn'),                            // ავტორიზაციის ტაბის ღილაკი
-  upCont: $('signUpFormContainer'),                 // რეგისტრაციის ფორმის კონტეინერი
-  inCont: $('signInFormContainer'),                 // ავტორიზაციის ფორმის კონტეინერი
-  upForm: $<HTMLFormElement>('signUpForm'),          // რეგისტრაციის ფორმა
-  inForm: $<HTMLFormElement>('signInForm'),          // ავტორიზაციის ფორმა
-  toast: $('statusToast'),                          // Toast შეტყობინების ველი
-};
+const signinBtn = document.getElementById('signin');
+const signupBtn = document.getElementById('signup');
+const logoutBtn = document.getElementById('logout');
+const modalRoot = document.getElementById('modal-root');
+const toast = document.getElementById('statusToast');
 
-// დინამიკური Toast შეტყობინების ჩვენების ფუნქცია (მხოლოდ Tailwind CSS-ით)
-function showToast(msg: string, type: 'success' | 'danger') {
-  if (!els.toast) return;
-  els.toast.textContent = msg;
+function showMessage(message: string, type: Isignup) {
+  if (!toast) return;
 
-  // Toast-ის საბაზისო კლასები
-  els.toast.className = 'fixed top-6 right-6 z-50 p-4 rounded-xl shadow-xl font-semibold flex items-center gap-3 transition-all duration-300 transform translate-y-0 opacity-100';
+  toast.textContent = message;
+  toast.className = 'fixed top-6 right-6 z-50 p-4 rounded-xl shadow-xl font-semibold transition-all duration-300';
 
-  // წარმატების ან შეცდომის სტილების მინიჭება
   if (type === 'success') {
-    els.toast.classList.add('bg-emerald-50', 'text-emerald-800', 'border-l-4', 'border-emerald-500', 'border-y', 'border-r', 'border-emerald-200');
+    toast.classList.add('bg-emerald-50', 'text-emerald-800');
   } else {
-    els.toast.classList.add('bg-rose-50', 'text-rose-800', 'border-l-4', 'border-rose-500', 'border-y', 'border-r', 'border-rose-200');
+    toast.classList.add('bg-rose-50', 'text-rose-800');
   }
 
-  els.toast.classList.remove('hidden', '-translate-y-6', 'opacity-0');
+  toast.classList.remove('hidden');
 
-  // 3 წამში გაქრობის ტაიმერი
   setTimeout(() => {
-    els.toast?.classList.add('-translate-y-6', 'opacity-0');
-    els.toast?.classList.remove('translate-y-0', 'opacity-100');
-    setTimeout(() => els.toast?.classList.add('hidden'), 300);
+    toast.classList.add('hidden');
   }, 3000);
 }
 
-// ზოგადი დამხმარე ფუნქცია HTTP მოთხოვნებისთვის (POST)
-async function api(path: string, method = 'GET', body?: any) {
-  const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-
-  // შეცდომების ქართული თარგმანების რუკა
-  const errorMap: Record<string, string> = {
-    'Email already exists': 'ეს ელ.ფოსტა უკვე რეგისტრირებულია!',
-    'Password is too short': 'პაროლი ძალიან მოკლეა (მინ. 4 სიმბოლო)!',
-    'Email format is invalid': 'ელ.ფოსტის ფორმატი არასწორია!',
-    'Incorrect password': 'პაროლი არასწორია!',
-    'Cannot find user': 'მომხმარებელი ვერ მოიძებნა!'
-  };
-
+async function api(path: string, body: object) {
   try {
-    const res = await fetch(`${API_URL}${path}`, { method, headers, body: body ? JSON.stringify(body) : undefined });
+    const res = await fetch(`${baseUrl}${path}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+
+    const data = await res.json();
+
     if (!res.ok) {
-      let rawErr = '';
-      const contentType = res.headers.get('content-type') || '';
-
-      // JSON ან ტექსტური შეცდომის წაკითხვა სერვერიდან
-      if (contentType.includes('application/json')) {
-        const errData = await res.json();
-        rawErr = errData.error || errData.message || '';
-      } else {
-        rawErr = await res.text();
-      }
-
-      // შეცდომის დამუშავება და ქართულად გამოტანა
-      if (rawErr) {
-        const cleanErr = rawErr.replace(/^["']|["']$/g, '').trim();
-        const mappedMsg = errorMap[cleanErr] || cleanErr;
-        showToast(`❌ ${mappedMsg}`, 'danger');
-        return null;
-      }
-      throw new Error();
+      showMessage(data.error || 'Error occurred', 'danger');
+      return null;
     }
-    return res.headers.get('content-type')?.includes('application/json') ? await res.json() : true;
+
+    return data;
   } catch {
-    showToast('❌ სერვერთან კავშირი ან მოთხოვნა ვერ განხორციელდა.', 'danger');
+    showMessage('Server connection failed', 'danger');
     return null;
   }
 }
 
-// ტაბების გადართვის ფუნქცია (Sign Up / Sign In)
-function switchTab(showUp: boolean) {
-  els.upCont?.classList.toggle('hidden', !showUp);
-  els.inCont?.classList.toggle('hidden', showUp);
-
-  // ტაბების ვიზუალური აქტიურობის მართვა Tailwind კლასებით
-  els.tabUp?.classList.toggle('text-indigo-600', showUp);
-  els.tabUp?.classList.toggle('border-indigo-600', showUp);
-  els.tabUp?.classList.toggle('text-slate-400', !showUp);
-  els.tabUp?.classList.toggle('border-transparent', !showUp);
-
-  els.tabIn?.classList.toggle('text-indigo-600', !showUp);
-  els.tabIn?.classList.toggle('border-indigo-600', !showUp);
-  els.tabIn?.classList.toggle('text-slate-400', showUp);
-  els.tabIn?.classList.toggle('border-transparent', showUp);
+function clearModal() {
+  if (modalRoot) {
+    modalRoot.innerHTML = '';
+  }
 }
 
-// ნავიგაციისა და ღილაკების მოვლენების მსმენელები
-els.signup?.addEventListener('click', () => {
-  // მისალმების ეკრანის დამალვა, ფორმის ჩვენება და Sign Up ტაბის გააქტიურება
-  els.welcome?.classList.add('hidden');
-  els.wrapper?.classList.remove('hidden');
-  switchTab(true);
-});
+function createSignupForm() {
+  clearModal();
 
-els.signin?.addEventListener('click', () => {
-  // მისალმების ეკრანის დამალვა, ფორმის ჩვენება და Sign In ტაბის გააქტიურება
-  els.welcome?.classList.add('hidden');
-  els.wrapper?.classList.remove('hidden');
-  switchTab(false);
-});
+  const form = document.createElement('div');
+  form.className = 'bg-white p-8 rounded-2xl shadow-xl w-full max-w-md';
+  form.innerHTML = `
+    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">ანგარიშის შექმნა</h3>
+    <form id="signupForm" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-600 mb-1">ელ. ფოსტა</label>
+        <input type="email" id="upEmail" placeholder="example@gmail.com" required
+          class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none">
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-600 mb-1">პაროლი</label>
+        <input type="password" id="upPassword" placeholder="••••••••" required
+          class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none">
+      </div>
+      <button type="submit" class="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition">
+        რეგისტრაცია
+      </button>
+    </form>
+  `;
 
-els.back?.addEventListener('click', () => {
-  // ფორმის დამალვა და მისალმების ეკრანზე დაბრუნება
-  els.wrapper?.classList.add('hidden');
-  els.welcome?.classList.remove('hidden');
-});
+  modalRoot?.appendChild(form);
 
-els.tabUp?.addEventListener('click', () => switchTab(true));
-els.tabIn?.addEventListener('click', () => switchTab(false));
+  document.getElementById('signupForm')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = (document.getElementById('upEmail') as HTMLInputElement).value;
+    const password = (document.getElementById('upPassword') as HTMLInputElement).value;
+    const res = await api('/signup', { email, password });
+    if (res) {
+      showMessage('User registered successfully!', 'success');
+      clearModal();
+    }
+  });
+}
 
-// რეგისტრაციის ფორმის გაგზავნა
-els.upForm?.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const email = ($('upEmail') as HTMLInputElement).value;
-  const password = ($('upPassword') as HTMLInputElement).value;
-  const res = await api('/signup', 'POST', { email, password });
-  if (res) {
-    showToast('✅ მომხმარებელი წარმატებით დარეგისტრირდა!', 'success');
-    els.upForm?.reset();
-  }
-});
+function createSigninForm() {
+  clearModal();
 
-// ავტორიზაციის ფორმის გაგზავნა
-els.inForm?.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const email = ($('inEmail') as HTMLInputElement).value;
-  const password = ($('inPassword') as HTMLInputElement).value;
-  const res = await api('/login', 'POST', { email, password });
-  if (res) {
-    showToast('✅ მომხმარებელი წარმატებით დალოგინდა!', 'success');
-    els.inForm?.reset();
-  }
+  const form = document.createElement('div');
+  form.className = 'bg-white p-8 rounded-2xl shadow-xl w-full max-w-md';
+  form.innerHTML = `
+    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">სისტემაში შესვლა</h3>
+    <form id="signinForm" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-600 mb-1">ელ. ფოსტა</label>
+        <input type="email" id="inEmail" placeholder="example@gmail.com" required
+          class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-600 mb-1">პაროლი</label>
+        <input type="password" id="inPassword" placeholder="••••••••" required
+          class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
+      </div>
+      <button type="submit" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition">
+        შესვლა
+      </button>
+    </form>
+  `;
+
+  modalRoot?.appendChild(form);
+
+  document.getElementById('signinForm')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = (document.getElementById('inEmail') as HTMLInputElement).value;
+    const password = (document.getElementById('inPassword') as HTMLInputElement).value;
+    const res = await api('/login', { email, password });
+    if (res) {
+      showMessage('Login successful!', 'success');
+      clearModal();
+    }
+  });
+}
+
+signupBtn?.addEventListener('click', createSignupForm);
+signinBtn?.addEventListener('click', createSigninForm);
+logoutBtn?.addEventListener('click', () => {
+  clearModal();
+  showMessage('Logged out successfully', 'success');
 });
