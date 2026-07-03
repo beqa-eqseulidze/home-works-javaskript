@@ -1,14 +1,16 @@
+import type { AuthMode, ColorTheme } from './types';
+
 // --- უნივერსალური ფუნქცია მოდალის დინამიურად ჩასაშენებლად ---
-export function injectAuthModal(type: 'login' | 'register'): void {
-    const modalRoot = document.getElementById('modal-root');
-    if (!modalRoot) return;
+export function injectAuthModal(type: AuthMode): void {
+  const modalRoot = document.getElementById('modal-root');
+  if (!modalRoot) return;
 
-    // რეჟიმის მიხედვით ცვლადების განსაზღვრა (კოდის გამეორების თავიდან ასაცილებლად)
-    const isLogin = type === 'login';
-    const title = isLogin ? 'Sign In' : 'Sign Up';
-    const colorClass = isLogin ? 'blue' : 'green';
+  // რეჟიმის მიხედვით ცვლადების განსაზღვრა (კოდის გამეორების თავიდან ასაცილებლად)
+  const isLogin = type === 'login';
+  const title = isLogin ? 'Sign In' : 'Sign Up';
+  const colorClass: ColorTheme = isLogin ? 'blue' : 'green';
 
-    modalRoot.innerHTML = `
+  modalRoot.innerHTML = `
     <div id="auth-container" class="fixed inset-0 bg-gray-950/50 flex items-center justify-center backdrop-blur-sm z-50">
       <div id="modal-content" class="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md transform transition-all scale-95 opacity-0 duration-300">
         <h2 class="text-2xl font-bold text-gray-800 text-center mb-6">${title}</h2>
@@ -34,39 +36,39 @@ export function injectAuthModal(type: 'login' | 'register'): void {
     </div>
   `;
 
-    // გამოჩენის ანიმაცია ჩაშენებისთანავე
-    const content = document.getElementById('modal-content') as HTMLDivElement;
-    setTimeout(() => {
-        content.classList.remove('scale-95', 'opacity-0');
-        content.classList.add('scale-100', 'opacity-100');
-    }, 10);
+  // გამოჩენის ანიმაცია ჩაშენებისთანავე
+  const content = document.getElementById('modal-content') as HTMLDivElement;
+  setTimeout(() => {
+    content.classList.remove('scale-95', 'opacity-0');
+    content.classList.add('scale-100', 'opacity-100');
+  }, 10);
 }
 
 // --- მოდალის სრულიად წაშლა DOM-იდან (დახურვა) ---
 export function removeAuthModal(): void {
-    const modalRoot = document.getElementById('modal-root');
-    const content = document.getElementById('modal-content');
+  const modalRoot = document.getElementById('modal-root');
+  const content = document.getElementById('modal-content');
 
-    if (modalRoot && content) {
-        content.classList.remove('scale-100', 'opacity-100');
-        content.classList.add('scale-95', 'opacity-0');
-        // ველოდებით ანიმაციის დასრულებას და მერე ვშლით HTML-ს
-        setTimeout(() => {
-            modalRoot.innerHTML = '';
-        }, 300);
-    }
+  if (modalRoot && content) {
+    content.classList.remove('scale-100', 'opacity-100');
+    content.classList.add('scale-95', 'opacity-0');
+    // ველოდებით ანიმაციის დასრულებას და მერე ვშლით HTML-ს
+    setTimeout(() => {
+      modalRoot.innerHTML = '';
+    }, 300);
+  }
 }
 
 // --- შეცდომის ჩვენების ფუნქცია ---
 export function showFieldError(message: string): void {
-    const errorDiv = document.getElementById('auth-error') as HTMLDivElement;
-    const emailInput = document.getElementById('auth-email') as HTMLInputElement;
-    const passwordInput = document.getElementById('auth-password') as HTMLInputElement;
+  const errorDiv = document.getElementById('auth-error') as HTMLDivElement;
+  const emailInput = document.getElementById('auth-email') as HTMLInputElement;
+  const passwordInput = document.getElementById('auth-password') as HTMLInputElement;
 
-    if (errorDiv && emailInput && passwordInput) {
-        errorDiv.textContent = message;
-        errorDiv.classList.remove('hidden');
-        emailInput.classList.add('border-red-500', 'bg-red-50');
-        passwordInput.classList.add('border-red-500', 'bg-red-50');
-    }
+  if (errorDiv && emailInput && passwordInput) {
+    errorDiv.textContent = message;
+    errorDiv.classList.remove('hidden');
+    emailInput.classList.add('border-red-500', 'bg-red-50');
+    passwordInput.classList.add('border-red-500', 'bg-red-50');
+  }
 }

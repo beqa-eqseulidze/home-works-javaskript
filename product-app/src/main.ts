@@ -1,10 +1,12 @@
 import { injectAuthModal, removeAuthModal, showFieldError } from './auth-helpers';
+import type { AuthMode } from './types';
+import type { AuthCredentials, AuthResponse } from './interface';
 
 const API_URL = 'http://localhost:3000';
 
 const signinBtn = document.getElementById('signin') as HTMLButtonElement;
 const signupBtn = document.getElementById('signup') as HTMLButtonElement;
-const logoutBtn = document.getElementById('logout') as HTMLButtonElement; // ახალი სელექტორი
+const logoutBtn = document.getElementById('logout') as HTMLButtonElement;
 
 // --- გამოსვლის ფუნქციონალი ტოკენის მეხსიერებიდან ამოშლა და გასუფთავება ---
 logoutBtn.addEventListener('click', () => {
@@ -14,7 +16,7 @@ logoutBtn.addEventListener('click', () => {
 });
 
 // --- მოდალის ინიციალიზაცია და შიდა მოვლენების მიბმა ---
-function handleModalOpen(mode: 'login' | 'register') {
+function handleModalOpen(mode: AuthMode): void {
   injectAuthModal(mode);
 
   const container = document.getElementById('auth-container') as HTMLDivElement;
@@ -28,8 +30,12 @@ function handleModalOpen(mode: 'login' | 'register') {
 
   form.addEventListener('submit', async (e: Event) => {
     e.preventDefault();
-    const email = emailInput.value.trim();
-    const password = passwordInput.value;
+
+    // მონაცემების სტრუქტურირება ინტერფეისის მიხედვით
+    const credentials: AuthCredentials = {
+      email: emailInput.value.trim(),
+      password: passwordInput.value
+    };
 
     const endpoint = mode === 'login' ? '/login' : '/register';
     const successMsg = mode === 'login'
@@ -40,7 +46,7 @@ function handleModalOpen(mode: 'login' | 'register') {
       const response = await fetch(`${API_URL}${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify(credentials)
       });
 
       if (!response.ok) {
@@ -48,7 +54,8 @@ function handleModalOpen(mode: 'login' | 'register') {
         throw new Error(errorText || 'Request failed');
       }
 
-      const data = await response.json();
+      // ბექენდიდან მოსული პასუხის ტიპიზაცია
+      const data: AuthResponse = await response.json();
       if (data.accessToken) localStorage.setItem('token', data.accessToken);
 
       removeAuthModal();
