@@ -1,164 +1,217 @@
-import type { IsignUp } from "./models/interfaces";
-import type { HTTPMethods, successType } from "./models/types";
+// ============================================
+// types.ts-დან ვშემოიტანთ Isignup ტიპს
+// ეს ტიპი გვეუბნება რომ type პარამეტრი მხოლოდ 'success' ან 'danger' იქნება
+// ============================================
+import type { Isignup } from './types';
 
-// ბექენდის საბაზისო URL
-const API_URL = 'http://localhost:3000';
+// ============================================
+// სერვერის მისამართი
+// ყველა API მოთხოვნა ამ მისამართზე გაიგზავნება
+// ============================================
+const baseUrl = 'http://localhost:3000';
 
-// დამხმარე ფუნქცია DOM ელემენტების ID-ით მარტივად ასარჩევად
-// const getDomElement = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T | null;
-const getDomElement = (id: string) => document.getElementById(id);
+// ============================================
+// DOM ელემენტების არჩევა
+// HTML-იდან ვარჩევთ ღილაკებსა და კონტეინერებს ID-ით
+// ============================================
+const signinBtn = document.getElementById('signin');     // Sign in ღილაკი (ლურჯი)
+const signupBtn = document.getElementById('signup');     // Sign up ღილაკი (მწვანე)
+const logoutBtn = document.getElementById('logout');     // Log out ღილაკი (წითელი)
+const modalRoot = document.getElementById('modal-root'); // მოდალის კონტეინერი, სადაც ფორმები ჩაიტვირთება
+const toast = document.getElementById('statusToast');    // შეტყობინებების ველი (success/error)
 
-// DOM ელემენტების ობიექტი კოდის სისუფთავისთვის
-const els = {
-  welcome: getDomElement('welcomeBox'),                         // საწყისი მისალმების კონტეინერი
-  signup: getDomElement('welcomeSignUp'),                       // რეგისტრაციაზე გადასვლის ღილაკი
-  signin: getDomElement('welcomeSignIn'),                       // ავტორიზაციაზე გადასვლის ღილაკი
-  wrapper: getDomElement('formWrapper'),                        // ფორმების კონტეინერი
-  back: getDomElement('backBtn'),                               // უკან დაბრუნების ღილაკი
-  tabUp: getDomElement('tabSignUp'),                            // რეგისტრაციის ტაბის ღილაკი
-  tabIn: getDomElement('tabSignIn'),                            // ავტორიზაციის ტაბის ღილაკი
-  upCont: getDomElement('signUpFormContainer'),                 // რეგისტრაციის ფორმის კონტეინერი
-  inCont: getDomElement('signInFormContainer'),                 // ავტორიზაციის ფორმის კონტეინერი
-  upForm: getDomElement('signUpForm'),                          // რეგისტრაციის ფორმა
-  inForm: getDomElement('signInForm'),                          // ავტორიზაციის ფორმა
-  toast: getDomElement('statusToast'),                          // Toast შეტყობინების ველი
-};
+// ============================================
+// showMessage ფუნქცია - შეტყობინების ჩვენება
+// მიიღებს მესიჯს და ტიპს (success ან danger)
+// 3 წამის შემდეგ ავტომატურად ქრება
+// ============================================
+function showMessage(message: string, type: Isignup) {
+  // თუ toast ელემენტი არ არსებობს, ფუნქცია მუშაობას წყვეტს
+  if (!toast) return;
 
-// დინამიკური Toast შეტყობინების ჩვენების ფუნქცია (მხოლოდ Tailwind CSS-ით)
-function showToast(msg: string, type: successType ) {
-  if (!els.toast) return;
-  els.toast.textContent = msg;
+  // ტექსტის დაყენება toast-ში
+  toast.textContent = message;
 
-  // Toast-ის საბაზისო კლასები
-  els.toast.className = 'fixed top-6 right-6 z-50 p-4 rounded-xl shadow-xl font-semibold flex items-center gap-3 transition-all duration-300 transform translate-y-0 opacity-100';
+  // სტილების განულება და საბაზისო სტილების დაყენება
+  toast.className = 'fixed top-6 right-6 z-50 p-4 rounded-xl shadow-xl font-semibold transition-all duration-300';
 
-  // წარმატების ან შეცდომის სტილების მინიჭება
+  // ტიპის მიხედვით ფონის ფერის არჩევა
   if (type === 'success') {
-    els.toast.classList.add('bg-emerald-50', 'text-emerald-800', 'border-l-4', 'border-emerald-500', 'border-y', 'border-r', 'border-emerald-200');
+    toast.classList.add('bg-emerald-50', 'text-emerald-800'); // მწვანე ფონი, მწვანე ტექსტი
   } else {
-    els.toast.classList.add('bg-rose-50', 'text-rose-800', 'border-l-4', 'border-rose-500', 'border-y', 'border-r', 'border-rose-200');
+    toast.classList.add('bg-rose-50', 'text-rose-800'); // წითელი ფონი, წითელი ტექსტი
   }
 
-  els.toast.classList.remove('hidden', '-translate-y-6', 'opacity-0');
+  // toast-ის გამოჩენა (hidden კლასის წაშლა)
+  toast.classList.remove('hidden');
 
-  // 3 წამში გაქრობის ტაიმერი
+  // 3 წამის შემდეგ toast-ის დამალვა
   setTimeout(() => {
-    els.toast?.classList.add('-translate-y-6', 'opacity-0');
-    els.toast?.classList.remove('translate-y-0', 'opacity-100');
-    setTimeout(() => els.toast?.classList.add('hidden'), 300);
+    toast.classList.add('hidden');
   }, 3000);
 }
 
-// ზოგადი დამხმარე ფუნქცია HTTP მოთხოვნებისთვის (POST)
-async function api(path: string, method: HTTPMethods = 'POST', body?: IsignUp) {
-  const headers = { 'Content-Type': 'application/json' };
-
-  // შეცდომების ქართული თარგმანების რუკა
-  const errorMap = {
-    'Email_already_exists': 'ეს ელ.ფოსტა უკვე რეგისტრირებულია!',
-    'Password is too short': 'პაროლი ძალიან მოკლეა (მინ. 4 სიმბოლო)!',
-    'Email format is invalid': 'ელ.ფოსტის ფორმატი არასწორია!',
-    'Incorrect password': 'პაროლი არასწორია!',
-    'Cannot find user': 'მომხმარებელი ვერ მოიძებნა!'
-  };
+// ============================================
+// api ფუნქცია - სერვერთან კავშირი
+// მიიღებს path-ს (მაგ. '/signup') და body-ს (მონაცემები)
+// აგზავნის POST მოთხოვნას სერვერზე და აბრუნებს პასუხს
+// ============================================
+async function api(path: string, body: object) {
 
   try {
-    const res = await fetch(`${API_URL}${path}`, { method, headers, body: body ? JSON.stringify(body) : undefined });
-    if (!res.ok) {
-      let rawErr : string ;
-      const contentType = res.headers.get('content-type') || '';
+    // fetch-ით მოთხოვნის გაგზავნა
+    const res = await fetch(`${baseUrl}${path}`, {
+      method: 'POST', // POST მეთოდი (მონაცემების გაგზავნა)
+      headers: { 'Content-Type': 'application/json' }, // ვეუბნებით სერვერს რომ JSON-ს ვაგზავნით
+      body: JSON.stringify(body), // ობიექტს ვაქცევთ JSON სტრიქონად
+    });
 
-      // JSON ან ტექსტური შეცდომის წაკითხვა სერვერიდან
-      if (contentType.includes('application/json')) {
-        const errData = await res.json();
-        rawErr = errData.error || errData.message || 1;
-      } else {
-        rawErr = await res.text();
-      }
-new RegExp('').test()
-      // შეცდომის დამუშავება და ქართულად გამოტანა
-      if (rawErr) {    
-        const cleanErr  = rawErr.trim().replace(/^["']|["']$/g, '').trim() as keyof typeof errorMap;
-        const mappedMsg = errorMap[cleanErr] || cleanErr;
-        showToast(`❌ ${mappedMsg}`, 'danger');
-        return null;
-      }
-      throw new Error();
-    } 
-      const per={
-        age:25
-      }
-      let key: keyof typeof per = "age";
-      console.log(per[key])
-  
-    return res.headers.get('content-type')?.includes('application/json') ? await res.json() : true;
+    // სერვერის პასუხის წაკითხვა JSON-ის სახით
+    const data = await res.json();
+
+    // თუ პასუხი წარმატებული არ არის (status 400-500-ის დიაპაზონში)
+    if (!res.ok) {
+      // შეცდომის ჩვენება (თუ სერვერმა შეცდომა გამოგზავნა, მისი, თორემ საერთო)
+      showMessage(data.error || 'Error occurred', 'danger');
+      return null; // null-ის დაბრუნება ნიშნავს რომ მოთხოვნა წარუმატებელი იყო
+    }
+
+    // წარმატებული პასუხის დაბრუნება
+    return data;
   } catch {
-    showToast('❌ სერვერთან კავშირი ან მოთხოვნა ვერ განხორციელდა.', 'danger');
+    // თუ სერვერთან კავშირი ვერ დამყარდა (ინტერნეტი არ არის, სერვერი გამორთულია)
+    showMessage('Server connection failed', 'danger');
     return null;
   }
 }
 
-// ტაბების გადართვის ფუნქცია (Sign Up / Sign In)
-function switchTab(showUp: boolean) {
-  els.upCont?.classList.toggle('hidden', !showUp);
-  els.inCont?.classList.toggle('hidden', showUp);
-
-  // ტაბების ვიზუალური აქტიურობის მართვა Tailwind კლასებით
-  els.tabUp?.classList.toggle('text-indigo-600', showUp);
-  els.tabUp?.classList.toggle('border-indigo-600', showUp);
-  els.tabUp?.classList.toggle('text-slate-400', !showUp);
-  els.tabUp?.classList.toggle('border-transparent', !showUp);
-
-  els.tabIn?.classList.toggle('text-indigo-600', !showUp);
-  els.tabIn?.classList.toggle('border-indigo-600', !showUp);
-  els.tabIn?.classList.toggle('text-slate-400', showUp);
-  els.tabIn?.classList.toggle('border-transparent', showUp);
+// ============================================
+// clearModal ფუნქცია - მოდალის გასუფთავება
+// შლის ყველაფერს modalRoot-დან (ფორმებს, ტექსტს და ა.შ.)
+// ============================================
+function clearModal() {
+  if (modalRoot) {
+    modalRoot.innerHTML = ''; // ცარიელ სტრიქონად ვაქცევთ
+  }
 }
 
-// ნავიგაციისა და ღილაკების მოვლენების მსმენელები
-els.signup?.addEventListener('click', () => {
-  // მისალმების ეკრანის დამალვა, ფორმის ჩვენება და Sign Up ტაბის გააქტიურება
-  els.welcome?.classList.add('hidden');
-  els.wrapper?.classList.remove('hidden');
-  switchTab(true);
-});
+// ============================================
+// createSignupForm ფუნქცია - Sign up ფორმის შექმნა
+// დინამიურად ქმნის რეგისტრაციის ფორმას და ამატებს მოდალში
+// ============================================
+function createSignupForm() {
+  clearModal(); // ჯერ მოდალი გავასუფთაოთ
 
-els.signin?.addEventListener('click', () => {
-  // მისალმების ეკრანის დამალვა, ფორმის ჩვენება და Sign In ტაბის გააქტიურება
-  els.welcome?.classList.add('hidden');
-  els.wrapper?.classList.remove('hidden');
-  switchTab(false);
-});
+  // ახალი div ელემენტის შექმნა
+  const form = document.createElement('div');
 
-els.back?.addEventListener('click', () => {
-  // ფორმის დამალვა და მისალმების ეკრანზე დაბრუნება
-  els.wrapper?.classList.add('hidden');
-  els.welcome?.classList.remove('hidden');
-});
+  // Tailwind CSS კლასების დაყენება (თეთრი ფონი, მრგვალი კუთხეები, ჩრდილი)
+  form.className = 'bg-white p-8 rounded-2xl shadow-xl w-full max-w-md';
 
-els.tabUp?.addEventListener('click', () => switchTab(true));
-els.tabIn?.addEventListener('click', () => switchTab(false));
+  // ფორმის HTML-ის ჩასმა (template literal)
+  form.innerHTML = `
+    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">ანგარიშის შექმნა</h3>
+    <form id="signupForm" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-600 mb-1">ელ. ფოსტა</label>
+        <input type="email" id="upEmail" placeholder="example@gmail.com" required
+          class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none">
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-600 mb-1">პაროლი</label>
+        <input type="password" id="upPassword" placeholder="••••••••" required
+          class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none">
+      </div>
+      <button type="submit" class="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition">
+        რეგისტრაცია
+      </button>
+    </form>
+  `;
 
-// რეგისტრაციის ფორმის გაგზავნა
-els.upForm?.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const email = ($('upEmail') as HTMLInputElement).value;
-  const password = ($('upPassword') as HTMLInputElement).value;
-  const res = await api('/signup', 'POST', { email, password });
-  if (res) {
-    showToast('✅ მომხმარებელი წარმატებით დარეგისტრირდა!', 'success');
-    els.upForm?.reset();
-  }
-});
+  // მზა ფორმის მოდალში ჩასმა
+  modalRoot?.appendChild(form);
 
-// ავტორიზაციის ფორმის გაგზავნა
-els.inForm?.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const email = ($('inEmail') as HTMLInputElement).value;
-  const password = ($('inPassword') as HTMLInputElement).value;
-  const res = await api('/login', 'POST', { email, password });
-  if (res) {
-    showToast('✅ მომხმარებელი წარმატებით დალოგინდა!', 'success');
-    els.inForm?.reset();
-  }
+  // ფორმის გაგზავნის მოსმენა (submit event)
+  document.getElementById('signupForm')?.addEventListener('submit', async (e) => {
+    e.preventDefault(); // გვერდის განახლების გაუქმება (სტანდარტული ფორმის ქცევა)
+
+    // input-ებიდან მნიშვნელობების წაკითხვა
+    const email = (document.getElementById('upEmail') as HTMLInputElement).value;
+    const password = (document.getElementById('upPassword') as HTMLInputElement).value;
+
+    // API-ზე signup მოთხოვნის გაგზავნა
+    const res = await api('/signup', { email, password });
+
+    // თუ პასუხი წარმატებულია
+    if (res) {
+      showMessage('User registered successfully!', 'success'); // წარმატების მესიჯი
+      clearModal(); // ფორმის დახურვა
+    }
+  });
+}
+
+// ============================================
+// createSigninForm ფუნქცია - Sign in ფორმის შექმნა
+// დინამიურად ქმნის შესვლის ფორმას და ამატებს მოდალში
+// ============================================
+function createSigninForm() {
+  clearModal(); // ჯერ მოდალი გავასუფთაოთ
+
+  // ახალი div ელემენტის შექმნა
+  const form = document.createElement('div');
+
+  // Tailwind CSS კლასების დაყენება
+  form.className = 'bg-white p-8 rounded-2xl shadow-xl w-full max-w-md';
+
+  // ფორმის HTML-ის ჩასმა
+  form.innerHTML = `
+    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">სისტემაში შესვლა</h3>
+    <form id="signinForm" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-600 mb-1">ელ. ფოსტა</label>
+        <input type="email" id="inEmail" placeholder="example@gmail.com" required
+          class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-600 mb-1">პაროლი</label>
+        <input type="password" id="inPassword" placeholder="••••••••" required
+          class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
+      </div>
+      <button type="submit" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition">
+        შესვლა
+      </button>
+    </form>
+  `;
+
+  // მზა ფორმის მოდალში ჩასმა
+  modalRoot?.appendChild(form);
+
+  // ფორმის გაგზავნის მოსმენა
+  document.getElementById('signinForm')?.addEventListener('submit', async (e) => {
+    e.preventDefault(); // გვერდის განახლების გაუქმება
+
+    // input-ებიდან მნიშვნელობების წაკითხვა
+    const email = (document.getElementById('inEmail') as HTMLInputElement).value;
+    const password = (document.getElementById('inPassword') as HTMLInputElement).value;
+
+    // API-ზე login მოთხოვნის გაგზავნა
+    const res = await api('/login', { email, password });
+
+    // თუ პასუხი წარმატებულია
+    if (res) {
+      showMessage('Login successful!', 'success'); // წარმატების მესიჯი
+      clearModal(); // ფორმის დახურვა
+    }
+  });
+}
+
+// ============================================
+// ღილაკების მოსმენა (Event Listeners)
+// თითოეულ ღილაკზე დაჭერისას შესაბამისი ფუნქცია გაეშვება
+// ============================================
+signupBtn?.addEventListener('click', createSignupForm);  // Sign up ღილაკი → რეგისტრაციის ფორმა
+signinBtn?.addEventListener('click', createSigninForm);  // Sign in ღილაკი → შესვლის ფორმა
+logoutBtn?.addEventListener('click', () => {
+  clearModal(); // მოდალის გასუფთავება
+  showMessage('Logged out successfully', 'success'); // წარმატების მესიჯი
 });
