@@ -1,27 +1,31 @@
+import type { IsignUp } from "./models/interfaces";
+import type { HTTPMethods, successType } from "./models/types";
+
 // ბექენდის საბაზისო URL
 const API_URL = 'http://localhost:3000';
 
 // დამხმარე ფუნქცია DOM ელემენტების ID-ით მარტივად ასარჩევად
-const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T | null;
+// const getDomElement = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T | null;
+const getDomElement = (id: string) => document.getElementById(id);
 
 // DOM ელემენტების ობიექტი კოდის სისუფთავისთვის
 const els = {
-  welcome: $('welcomeBox'),                         // საწყისი მისალმების კონტეინერი
-  signup: $('welcomeSignUp'),                       // რეგისტრაციაზე გადასვლის ღილაკი
-  signin: $('welcomeSignIn'),                       // ავტორიზაციაზე გადასვლის ღილაკი
-  wrapper: $('formWrapper'),                        // ფორმების კონტეინერი
-  back: $('backBtn'),                               // უკან დაბრუნების ღილაკი
-  tabUp: $('tabSignUp'),                            // რეგისტრაციის ტაბის ღილაკი
-  tabIn: $('tabSignIn'),                            // ავტორიზაციის ტაბის ღილაკი
-  upCont: $('signUpFormContainer'),                 // რეგისტრაციის ფორმის კონტეინერი
-  inCont: $('signInFormContainer'),                 // ავტორიზაციის ფორმის კონტეინერი
-  upForm: $<HTMLFormElement>('signUpForm'),          // რეგისტრაციის ფორმა
-  inForm: $<HTMLFormElement>('signInForm'),          // ავტორიზაციის ფორმა
-  toast: $('statusToast'),                          // Toast შეტყობინების ველი
+  welcome: getDomElement('welcomeBox'),                         // საწყისი მისალმების კონტეინერი
+  signup: getDomElement('welcomeSignUp'),                       // რეგისტრაციაზე გადასვლის ღილაკი
+  signin: getDomElement('welcomeSignIn'),                       // ავტორიზაციაზე გადასვლის ღილაკი
+  wrapper: getDomElement('formWrapper'),                        // ფორმების კონტეინერი
+  back: getDomElement('backBtn'),                               // უკან დაბრუნების ღილაკი
+  tabUp: getDomElement('tabSignUp'),                            // რეგისტრაციის ტაბის ღილაკი
+  tabIn: getDomElement('tabSignIn'),                            // ავტორიზაციის ტაბის ღილაკი
+  upCont: getDomElement('signUpFormContainer'),                 // რეგისტრაციის ფორმის კონტეინერი
+  inCont: getDomElement('signInFormContainer'),                 // ავტორიზაციის ფორმის კონტეინერი
+  upForm: getDomElement('signUpForm'),                          // რეგისტრაციის ფორმა
+  inForm: getDomElement('signInForm'),                          // ავტორიზაციის ფორმა
+  toast: getDomElement('statusToast'),                          // Toast შეტყობინების ველი
 };
 
 // დინამიკური Toast შეტყობინების ჩვენების ფუნქცია (მხოლოდ Tailwind CSS-ით)
-function showToast(msg: string, type: 'success' | 'danger') {
+function showToast(msg: string, type: successType ) {
   if (!els.toast) return;
   els.toast.textContent = msg;
 
@@ -46,12 +50,12 @@ function showToast(msg: string, type: 'success' | 'danger') {
 }
 
 // ზოგადი დამხმარე ფუნქცია HTTP მოთხოვნებისთვის (POST)
-async function api(path: string, method = 'GET', body?: any) {
-  const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+async function api(path: string, method: HTTPMethods = 'POST', body?: IsignUp) {
+  const headers = { 'Content-Type': 'application/json' };
 
   // შეცდომების ქართული თარგმანების რუკა
-  const errorMap: Record<string, string> = {
-    'Email already exists': 'ეს ელ.ფოსტა უკვე რეგისტრირებულია!',
+  const errorMap = {
+    'Email_already_exists': 'ეს ელ.ფოსტა უკვე რეგისტრირებულია!',
     'Password is too short': 'პაროლი ძალიან მოკლეა (მინ. 4 სიმბოლო)!',
     'Email format is invalid': 'ელ.ფოსტის ფორმატი არასწორია!',
     'Incorrect password': 'პაროლი არასწორია!',
@@ -61,26 +65,32 @@ async function api(path: string, method = 'GET', body?: any) {
   try {
     const res = await fetch(`${API_URL}${path}`, { method, headers, body: body ? JSON.stringify(body) : undefined });
     if (!res.ok) {
-      let rawErr = '';
+      let rawErr : string ;
       const contentType = res.headers.get('content-type') || '';
 
       // JSON ან ტექსტური შეცდომის წაკითხვა სერვერიდან
       if (contentType.includes('application/json')) {
         const errData = await res.json();
-        rawErr = errData.error || errData.message || '';
+        rawErr = errData.error || errData.message || 1;
       } else {
         rawErr = await res.text();
       }
-
+new RegExp('').test()
       // შეცდომის დამუშავება და ქართულად გამოტანა
-      if (rawErr) {
-        const cleanErr = rawErr.replace(/^["']|["']$/g, '').trim();
+      if (rawErr) {    
+        const cleanErr  = rawErr.trim().replace(/^["']|["']$/g, '').trim() as keyof typeof errorMap;
         const mappedMsg = errorMap[cleanErr] || cleanErr;
         showToast(`❌ ${mappedMsg}`, 'danger');
         return null;
       }
       throw new Error();
-    }
+    } 
+      const per={
+        age:25
+      }
+      let key: keyof typeof per = "age";
+      console.log(per[key])
+  
     return res.headers.get('content-type')?.includes('application/json') ? await res.json() : true;
   } catch {
     showToast('❌ სერვერთან კავშირი ან მოთხოვნა ვერ განხორციელდა.', 'danger');
