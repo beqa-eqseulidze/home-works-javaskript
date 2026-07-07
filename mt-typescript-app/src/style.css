@@ -1,0 +1,10 @@
+h1,
+h2,
+h3 {
+  font-size: 45px;
+  color: darkred;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
