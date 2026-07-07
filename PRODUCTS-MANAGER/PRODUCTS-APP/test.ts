@@ -1,3 +1,5 @@
+// დავალება 1
+
 const streamingPlatformConfig = {
   id: "platform-prod-01",
   name: "StreamVerse",
@@ -40,50 +42,131 @@ const streamingPlatformConfig = {
   }
 };
 
-export type SupportedDevices = "tv"| "mobile"| "desktop"
-export type Genres = "Sci-Fi"| "Drama"
-export type Status =  "active" | "maintenance" | "offline"
-export type ContentType = "movie" | "series" | "documentary"
-export type Tier = "basic" | "premium" | "family"
-export type BillingCycle = "monthly" | "yearly"
+// დავალება 2
+const eCommercePlatformConfig = {
+  id: "shop-prod-01",
+  name: "GlobalCart",
+  status: "maintenance", // options: active, maintenance, offline
+  launchYear: 2022,
+  features: {
+    supportsCrypto: true,
+    maxInternationalZones: 5,
+    supportedCurrencies: ["USD", "EUR", "GEL"],
+  },
+  subscriptionPlans: [
+    {
+      planId: "merchant-basic",
+      ttier: "basic", // options: basic, premium, enterprise
+      price: 29.99,
+      billingCycle: "monthly",
+    },
+    {
+      planId: "merchant-enterprise",
+      tier: "enterprise",
+      price: 299.99,
+      billingCycle: "yearly",
+    }
+  ],
+  currentFeaturedContent: {
+    title: "Wireless Ergonomic Mouse",
+    contentType: "product", // options: product, collection, promotion
+    metadata: {
+      rating: "PG-13", // აქ უბრალოდ სტრუქტურის იდენტურობისთვის (მაგ: SKU ან კატეგორია)
+      genres1: ["Electronics", "Tech"], // იგივე როლი აქვს რაც ჟანრებს
+      duration: {
+        seasons: 1, // ვთქვათ, საგარანტიო წლები
+        totalEpisodes: 12 // ხელმისაწვდომი ფერები/ვარიაციები
+      }
+    },
+    analytics: {
+      views: 89400,
+      trendingScore: 88.2
+    }
+  }
+};
 
-export interface IFeatures{
-    supports4k: boolean,
-    maxConcurrentScreens: number,
-    supportedDevices: SupportedDevices[]
-}
-export interface IsubscriptionPlans {
-    planId: string,
-    tier: Tier,
-    price: number,
-    billingCycle:BillingCycle
-}
-export interface IcurrentFeaturedContent {
-    title: string,
-    contentType:ContentType,
-    metadata: IMetadata,
-    analytics:IAnalytics
-}
-export interface IMetadata {
-    rating: string,
-    genres: Genres[],
-    duration:IDuration
-}
-export interface IDuration{
-    seasons:number,
-    totalEpisodes:number
-}
-export interface  IAnalytics {
-    views:number,
-    trendingScore:number
-}
-export interface IstreamingPlatformConfig{
-   id:string,
-   name:string,
-   status:Status,
-   launchYear:number,
-   features:IFeatures, 
-   subscriptionPlans:IsubscriptionPlans[],
-   currentFeaturedContent:IcurrentFeaturedContent
-}
+// დავალება 3
+const smartHomeHubConfig = {
+  id: "hub-prod-88",
+  name: "HomePulse AI",
+  status: "active", // options: active, maintenance, offline
+  launchYear: 2025,
+  features: {
+    supports4K: false, // მაგალითად, კამერის ნაკადისთვის
+    maxConcurrentScreens: 8, // მაქსიმალური მიერთებული მოწყობილობები
+    supportedDevices1: ["hub", "mobile", "tablet"],
+  },
+  subscriptionPlans: [
+    {
+      planId: "cloud-free",
+      tier: "basic", // options: basic, premium, family
+      price: 0.00,
+      billingCycle2: "monthly",
+    },
+    {
+      planId: "cloud-premium",
+      tier: "premium",
+      price: 49.99,
+      billingCycle: "yearly",
+    }
+  ],
+  currentFeaturedContent: {
+    title: "Living Room Motion Sensor",
+    contentType: "movie", // სტრუქტურის თავსებადობისთვის (მაგ: მოწყობილობის ტიპი)
+    metadata: {
+      rating: "G",
+      genres: ["Security", "Hardware"],
+      duration: {
+        seasons: 2, // ვერსია
+        totalEpisodes: 1 // აქტიური სენსორების რაოდენობა შიგნით
+      }
+    },
+    analytics: {
+      views: 12500,
+      trendingScore: 91.0
+    }
+  }
+};
 
+// დავალება 4
+const learningPlatformConfig = {
+  id: "edu-prod-10",
+  name: "EduSphere",
+  status: "active", // options: active, maintenance, offline
+  launchYear: 2023,
+  features: {
+    supports4K: true, // ვიდეო ლექციების ხარისხი
+    maxConcurrentScreens: 2, // ერთ იუზერზე ეკრანების რაოდენობა
+    supportedDevices: ["desktop", "mobile", "tablet"],
+  },
+  subscriptionPlans: [
+    {
+      planId: "edu-monthly",
+      tier: "basic", // options: basic, premium, family
+      price: 19.99,
+      billingCycle: "monthly",
+    },
+    {
+      planId: "edu-yearly",
+      tier: "premium",
+      price: 149.99,
+      billingCycle: "yearly",
+    }
+  ],
+  currentFeaturedContent: {
+    title: "Mastering TypeScript & Architecture",
+    contentType: "series", // options: movie, series, documentary (აქ კურსის ტიპი)
+    metadata: {
+      rating: "PG",
+      genres: ["Programming", "Software Architecture"],
+      duration: {
+        seasons: 5, // მოდულების რაოდენობა
+        totalEpisodes: 45 // სულ ლექციები
+      }
+    },
+    analytics: {
+      views: 340200,
+      trendingScore: 98.7
+    }
+  }
+};
