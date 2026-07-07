@@ -2,16 +2,10 @@
   "compilerOptions": {
     "target": "es2023",
     "module": "esnext",
-<<<<<<< HEAD
-    "lib": ["ES2023", "DOM"],
-    "types": ["vite/client"],
-    "skipLibCheck": true,
-=======
     "lib": ["ES2023", "DOM", "DOM.Iterable"],
     "types": ["vite/client"],
     "skipLibCheck": true,
     "strict": true,
->>>>>>> 9a26fb875130b978c78b8629fc3fcf22d8028a66
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -27,8 +21,4 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": ["src"]
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 9a26fb875130b978c78b8629fc3fcf22d8028a66
