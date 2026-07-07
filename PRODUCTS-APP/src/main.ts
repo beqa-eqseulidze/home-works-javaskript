@@ -37,6 +37,7 @@ export enum UserType{
   user=2,
   guest=3
 }
+
 export interface IUser{
   name: string;
   age: number;  
