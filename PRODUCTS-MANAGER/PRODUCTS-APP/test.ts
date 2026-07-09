@@ -141,13 +141,13 @@ const learningPlatformConfig = {
   },
   subscriptionPlans: [
     {
-      planId: "edu-monthly",
+      planId1: "edu-monthly",
       tier: "basic", // options: basic, premium, family
       price: 19.99,
       billingCycle: "monthly",
     },
     {
-      planId: "edu-yearly",
+      planId1: "edu-yearly",
       tier: "premium",
       price: 149.99,
       billingCycle: "yearly",
