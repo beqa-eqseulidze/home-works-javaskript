@@ -1,25 +1,28 @@
 const MyNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-function processNumbers(nums: number[], filterFn: (n: number) => boolean, transformFn: (n: number) => number): number[] {
-    const result: number[] = [];
-    for (let i = 0; i < nums.length; i++) {
-        if (filterFn(nums[i])) {
-            result.push(transformFn(nums[i]));
-        }
+function processNumbers(nums: number[], filterFn: (n: number) => boolean,
+  transformFn: (n: number) => number): number[] {
+  const result: number[] = [];
+  for (let i = 0; i < nums.length; i++) {
+    if (filterFn(nums[i])) {
+      result.push(transformFn(nums[i]));
     }
-    return result;
+  }
+  return result;
 }
 
+
 const result1 = processNumbers(
-    MyNumbers,
-    (n) => n % 2 === 0,
-    (n) => n * 2
+  MyNumbers,
+  (n) => n % 2 === 0,  //ვამოწმებ ლუწობას
+  (n) => n * 2
 );
-console.log(result1);
+console.log(result1);  // res - [4, 8, 12, 16, 20]
+
 
 const result2 = processNumbers(
-    MyNumbers,
-    (n) => n > 5,
-    (n) => n - 5
+  MyNumbers,
+  (n) => n > 5,  //ვამოწმებ 5-ზე მეტობას
+  (n) => n - 5 
 );
-console.log(result2);
+console.log(result2); // res - [1, 2, 3, 4, 5]
