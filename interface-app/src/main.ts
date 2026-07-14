@@ -14,7 +14,7 @@ function calculateDiscount(user: IUser, totalCartPrice: number): number {
 
 // 2. შეკვეთის შექმნა
 function createOrder(user: IUser, cartItems: ICartItem[]): IOrder {
-    const rawTotalPrice = cartItems.reduce((sum, item) => {
+    const rawTotalPrice = cartItems.reduce((sum: number, item: ICartItem) => {
         return sum + (item.product.price * item.quantity);
     }, 0);
 
@@ -22,7 +22,7 @@ function createOrder(user: IUser, cartItems: ICartItem[]): IOrder {
     const finalPrice = rawTotalPrice - discount;
 
     return {
-        ID: Math.floor(Math.random() * 100),
+        id: Math.floor(Math.random() * 100),
         user: user,
         items: cartItems,
         totalCartPrice: Number(finalPrice.toFixed(2)),
@@ -34,19 +34,19 @@ function createOrder(user: IUser, cartItems: ICartItem[]): IOrder {
 // --- სატესტო გაშვება ---
 const products: IProduct[] = [
     {
-        ID: 1,
+        id: 1,
         name: 'Smartphone',
         price: 550,
         category: 'Electronics'
     },
     {
-        ID: 2,
+        id: 2,
         name: 'Winter Hoodie',
         price: 120,
         category: 'Clothing'
     },
     {
-        ID: 3,
+        id: 3,
         name: 'TypeScript Guide',
         price: 45,
         category: 'Books'
@@ -54,19 +54,19 @@ const products: IProduct[] = [
 ];
 const users: IUser[] = [
     {
-        ID: 7,
+        id: 7,
         name: 'Saba',
         email: 'saba@example.com',
         status: 'VIP'
     },
     {
-        ID: 8,
+        id: 8,
         name: 'Gela',
         email: 'gela@example.com',
         status: 'Regular'
     },
     {
-        ID: 9,
+        id: 9,
         name: 'Jemala',
         email: 'jemala@example.com',
         status: 'Guest'
