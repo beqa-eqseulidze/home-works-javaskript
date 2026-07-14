@@ -1,9 +1,16 @@
 {
   "users": [
     {
-      "email": "olivier@mail.com",
-      "password": "$2a$10$81E931x0ZDNAhbNHeJyoy.d/4p/U4yehYg5tqmUlLvJF6yumT21fe",
+      "email": "test@gmaii.com",
+      "password": "$2a$10$zTCG.zG4m8WEdu7YpVLG8exTB5hhsCWpgdEW5bVbLlhgOUn/OvmBa",
       "id": 1
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "title": "tv",
+      "price": 100
     }
   ]
 }
