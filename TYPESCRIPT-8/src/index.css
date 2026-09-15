@@ -3,7 +3,7 @@
   src: url('./fonts/alk-sanet.ttf') format('truetype');
 }
 
-* {
+*{
   margin: 0;
   padding: 0;
   box-sizing: border-box;

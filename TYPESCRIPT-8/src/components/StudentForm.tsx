@@ -1,35 +1,32 @@
 import { useState, useEffect } from 'react';
 
 interface StudentFormProps { onSubmit: (data: { name: string; course: string }) => void;  // ფორმის გაგზავნის ფუნქცია (void)
-  initialData?: { name: string; course: string };  //რედაქტირების საწყისი მონაცემები
-  isEditing?: boolean;   //რედაქტირების რეჟიმი
+  initialData?: { name: string; course: string };   //რედაქტირების საწყისი მონაცემები
+  isEditing?: boolean;
 }
-
 
 const StudentForm = ({ onSubmit, initialData, isEditing }: StudentFormProps) => {
   const [data, setData] = useState(
-    initialData || { name: '', course: '' }   //თუ არის initialData, მას ვიყენებთ, თუ არა - ცარიელ ველებს
+    initialData || { name: '', course: '' }  
   );
 
-
-  // როცა initialData იცვლება რედაქტირებისას, განახლდეს ფორმა..
-  useEffect(() => {
-    if (initialData) {
+  useEffect(() =>{
+    if(initialData) {
       setData(initialData);
     }
   }, [initialData]);
 
   // ფორმის გაგზავნის დამამუშავებელი
   const handleSubmit = (e: any) => {
-    e.preventDefault(); //გვერდის განახლება
+    e.preventDefault();
     onSubmit(data);     
-    if (!isEditing) {   //თუ არარის რედაქტირება, ვასუფთავებ ფორმას
+    if(!isEditing) {   //თუ არარის რედაქტირება, ვასუფთავებ ფორმას
       setData({ name: '', course: '' }); 
     }
   };
 
   return(
-    <div className="bg-white p-6 rounded-lg shadow-md">
+    <div className="bg-white p-6  shadow-lg">
       <h2 className="text-xl font-bold mb-4 text-gray-800 flex items-center gap-2">
         {isEditing ? (
           //ედითის აიკონი.
@@ -49,21 +46,23 @@ const StudentForm = ({ onSubmit, initialData, isEditing }: StudentFormProps) => 
           </>
         )}
       </h2>
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="სახელი" value={data.name} onChange={(e) => setData({ ...data, name: e.target.value })}
+
+      <form onSubmit={handleSubmit}> 
+        {/* სახელის input */}
+        <input type="text" placeholder="სახელი" value={data.name} onChange={(e)=>setData({ ...data, name: e.target.value })}
           className="w-full px-3 py-2 border border-gray-300 rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500" required/>
 
          {/*კურსები*/}
-        <select value={data.course} onChange={(e) => setData({ ...data, course: e.target.value })}
+        <select value={data.course} onChange={(e)=>setData({ ...data, course: e.target.value })}
           className="w-full px-3 py-2 border border-gray-300 rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
           <option value="">კურსი</option>
-          <option value="TypeScript">TypeScript</option>
-          <option value="JavaScript">JavaScript</option>
-          <option value="CSS">CSS</option>
-          <option value="React">React</option>
+          <option value="TypeScript" className="font-mono">TypeScript</option>
+          <option value="JavaScript" className="font-mono">JavaScript</option>
+          <option value="CSS" className="font-mono">CSS</option>
+          <option value="React" className="font-mono">React</option>
         </select>
 
-        {/* სტუდენტის განახლების ღილაკი form-მაზე */}
+        {/*სტუდენტის განახლების ღილაკი form-მაზე */}
         <button type="submit"className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition flex items-center justify-center gap-2">
           {/*როდესაც isEditing */}
           {isEditing ? ( 

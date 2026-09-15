@@ -1,4 +1,6 @@
-interface IStudent {
+import {SiJavascript, SiTypescript, SiReact, SiCss} from 'react-icons/si';
+
+interface IStudent{
   id: number;
   name: string;
   course: string;
@@ -6,30 +8,48 @@ interface IStudent {
 
 interface IStudentItem {
   student: IStudent;  
-  onEdit: (student: IStudent) => void;  //რედაქტირების ფუნქცია - იღებს - სტუდენტს
-  onDelete: (id: number) => void;    // წაშლის ფუნქცია - იღებს ID-ს (number)
+  onEdit: (student: IStudent) => void;  
+  onDelete: (id: number) => void;   
 }
 
+//კურსის სახელის მიხედვით ლოგო..
+const CourseIcon = (course:string)=>{
+  switch(course) {
+    case 'JavaScript':
+      return <SiJavascript className="text-yellow-600 text-lg" />;
+    case 'TypeScript':
+      return <SiTypescript className="text-blue-600 text-lg" />;
+    case 'React':
+      return <SiReact className="text-cyan-400 text-lg" />;
+    case 'CSS':
+      return <SiCss className="text-blue-500 text-lg" />;
+    default:
+      return null;
+  }
+};
+
 //სტუდენტების სია - items;
-const StudentItem = ({ student, onEdit, onDelete }:IStudentItem)=>{
+const StudentItem = ({student, onEdit, onDelete}:IStudentItem)=>{
   return(
     //student-ის დეტალები..
-    <div className="bg-white p-3 rounded-lg shadow-md flex justify-between items-center">
+    <div className="bg-white p-3 rounded-lg shadow-lg flex justify-between items-center">
       <div>
-        <h3 className="font-semibold text-lg text-gray-800">{student.name}</h3> 
-        <p className="text-sm">
-          <span className="text-blue-600 font-medium">კურსი - </span>
-          <span className="text-green-600 font-bold">{student.course}</span>
+        <h2 className="font-bold text-lg text-gray-800">{student.name}</h2> 
+        <p className="text-sm flex items-center gap-1">
+          <span className="text-blue-700 font-bold">კურსი - </span>
+          <span className="text-green-800 font-mono">{student.course}</span>
+          {/* კურსის ლოგო:*/}
+          {CourseIcon(student.course)}
         </p>
       </div>
       <div className="flex gap-2">
          {/*რედაქტირების ღილაკი*/}
-        <button onClick={() => onEdit(student)} className="px-3 py-1 bg-yellow-400 font-bold text-gray rounded hover:bg-orange-500">
+        <button onClick={()=>onEdit(student)} className="px-3 py-1 bg-yellow-400 font-bold text-gray rounded hover:bg-orange-400">
           რედაქტირება
         </button>
 
          {/*წაშლის ღილაკი*/}
-        <button onClick={() => onDelete(student.id)} className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition text-sm">
+        <button onClick={()=>onDelete(student.id)} className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-800 transition">
         <svg xmlns="http://w3.org" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
          <path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z" clip-rule="evenodd" />
        </svg>
