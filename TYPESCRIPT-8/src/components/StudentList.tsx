@@ -1,7 +1,7 @@
 import StudentItem from './StudentItem';
 
 interface IStudent{
-  id: number;
+  id: string;   
   name: string;
   course: string;
 }
@@ -9,13 +9,13 @@ interface IStudent{
 interface StudentListProps{
   students: IStudent[];  
   onEdit: (student: IStudent) => void;  
-  onDelete: (id: number) => void;  
+  onDelete: (id: string) => void; 
 }
 
 const StudentList = ({ students, onEdit, onDelete }: StudentListProps) => {
   //თუ სია ცარიელია:
   if(students.length===0) {
-    return <div className="text-center py-2 text-gray-600">0 სტუდენტი</div>;
+    return <div className="font-arial font-bold text-center py-2 text-gray-600">0 სტუდენტი...</div>;
   }
 
 

@@ -1,10 +1,24 @@
 import StudentForm from './components/StudentForm';
 import StudentList from './components/StudentList';
 import SearchBar from './components/SearchBar';
+import SuccessMessage from './components/successMessage';
+import DeleteMessage from './components/deleteMessage';
 import {Manager} from './components/manage';
 
 const App = ()=>{
-  const {students,editing,setEditing,handleAdd,handleDelete,handleUpdate,handleSearch} = Manager();
+  const {
+    students,
+    editing,
+    setEditing,
+    handleAdd,
+    handleDelete,
+    handleUpdate,
+    handleSearch,
+    message,
+    isVisible,
+    deleteMessage,
+    isDeleteVisible,
+  } = Manager();
 
   return(
     <div className="min-h-screen bg-gray-300 p-8">
@@ -17,11 +31,17 @@ const App = ()=>{
           <div>
             <StudentForm onSubmit={editing ? handleUpdate : handleAdd}
               initialData={editing ? { name: editing.name, course: editing.course} : undefined}
-              isEditing={!!editing}/>
+              isEditing={!!editing} />
+
+            {/*დამატებისას მესიჯი*/}
+            <SuccessMessage message={message} isVisible={isVisible}/>
+
+            {/*წაშლის მესიჯი*/}
+            <DeleteMessage message={deleteMessage} isVisible={isDeleteVisible}/>
           </div>
 
           <div className="md:col-span-2">
-            <SearchBar onSearch={handleSearch} />
+            <SearchBar onSearch={handleSearch}/>
             <StudentList students={students} onEdit={setEditing} onDelete={handleDelete}/>
           </div>
         </div>

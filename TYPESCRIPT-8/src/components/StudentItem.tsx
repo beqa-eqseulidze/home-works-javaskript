@@ -1,7 +1,7 @@
 import {SiJavascript, SiTypescript, SiReact, SiCss} from 'react-icons/si';
 
 interface IStudent{
-  id: number;
+  id: string;          // ← number → string
   name: string;
   course: string;
 }
@@ -9,7 +9,7 @@ interface IStudent{
 interface IStudentItem {
   student: IStudent;  
   onEdit: (student: IStudent) => void;  
-  onDelete: (id: number) => void;   
+  onDelete: (id: string) => void;      // ← number → string
 }
 
 //კურსის სახელის მიხედვით ლოგო..
@@ -36,7 +36,7 @@ const StudentItem = ({student, onEdit, onDelete}:IStudentItem)=>{
       <div>
         <h2 className="font-bold text-lg text-gray-800">{student.name}</h2> 
         <p className="text-sm flex items-center gap-1">
-          <span className="text-blue-700 font-bold">კურსი - </span>
+          <span className="text-blue-700 font-arial font-bold">კურსი - </span>
           <span className="text-green-800 font-mono">{student.course}</span>
           {/* კურსის ლოგო:*/}
           {CourseIcon(student.course)}
@@ -44,7 +44,7 @@ const StudentItem = ({student, onEdit, onDelete}:IStudentItem)=>{
       </div>
       <div className="flex gap-2">
          {/*რედაქტირების ღილაკი*/}
-        <button onClick={()=>onEdit(student)} className="px-3 py-1 bg-yellow-400 font-bold text-gray rounded hover:bg-orange-400">
+        <button onClick={()=>onEdit(student)} className="px-3 py-1 bg-yellow-400 font-arial text-gray rounded hover:bg-orange-400">
           რედაქტირება
         </button>
 

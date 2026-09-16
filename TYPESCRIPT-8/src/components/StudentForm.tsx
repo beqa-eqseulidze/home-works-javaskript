@@ -16,11 +16,10 @@ const StudentForm = ({ onSubmit, initialData, isEditing }: StudentFormProps) => 
     }
   }, [initialData]);
 
-  // ფორმის გაგზავნის დამამუშავებელი
   const handleSubmit = (e: any) => {
     e.preventDefault();
     onSubmit(data);     
-    if(!isEditing) {   //თუ არარის რედაქტირება, ვასუფთავებ ფორმას
+    if(!isEditing) {  
       setData({ name: '', course: '' }); 
     }
   };
@@ -50,12 +49,12 @@ const StudentForm = ({ onSubmit, initialData, isEditing }: StudentFormProps) => 
       <form onSubmit={handleSubmit}> 
         {/* სახელის input */}
         <input type="text" placeholder="სახელი" value={data.name} onChange={(e)=>setData({ ...data, name: e.target.value })}
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500" required/>
+          className="w-full px-3 py-2 border border-gray-300 font-arial rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500" required/>
 
          {/*კურსები*/}
         <select value={data.course} onChange={(e)=>setData({ ...data, course: e.target.value })}
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-          <option value="">კურსი</option>
+          className="w-full px-3 py-2 border border-gray-300 font-arial  rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer" required>
+          <option value="" className='font-arial'>აირჩიე კურსი</option>
           <option value="TypeScript" className="font-mono">TypeScript</option>
           <option value="JavaScript" className="font-mono">JavaScript</option>
           <option value="CSS" className="font-mono">CSS</option>
@@ -63,11 +62,11 @@ const StudentForm = ({ onSubmit, initialData, isEditing }: StudentFormProps) => 
         </select>
 
         {/*სტუდენტის განახლების ღილაკი form-მაზე */}
-        <button type="submit"className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition flex items-center justify-center gap-2">
+        <button type="submit"className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition flex items-center justify-center gap-2 font-arial ">
           {/*როდესაც isEditing */}
           {isEditing ? ( 
             <>
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
               </svg>
               სტუდენტის განახლება

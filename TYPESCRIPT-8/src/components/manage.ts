@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
-interface IStudent {
-  id: number;
+interface IStudent{
+  id: string;
   name: string;
   course: string;
 }
@@ -11,111 +11,139 @@ interface StudentCreate{
   course: string;
 }
 
-//==================== localestorage ==================================:
+//=== JSON SERVER ===//
+const API_URL='http://localhost:3001/students';
 
-let students: IStudent[] = [];
-let nextId: number = 1;
-
-// localStorage-დან ჩატვირთვა
-const loadFromStorage = (): void =>{
-  const saved = localStorage.getItem('students');
-  if(saved) {
-    students = JSON.parse(saved);
-    //ყველაზე დიდ id-ს და ვუმატებთ 1-ს,რომ ახალი id არ განმეორდეს
-    const maxId = students.reduce((max, s)=>Math.max(max, s.id), 0);
-    nextId = maxId + 1;
-  } else{
-    students=[];
-    nextId=1;
-  }
+// ყველა სტუდენტის მიღება სერვერიდან -- (GET)
+const getAllStudents = async (): Promise<IStudent[]>=>{
+  const response = await fetch(API_URL);
+  return response.json();
 };
 
-//localStorage-ში მონაცემების შენახვა
-const saveToStorage = (): void => {
-  localStorage.setItem('students', JSON.stringify(students));
+// ახალი სტუდენტის დამატება სერვერზე -- (POST) 
+const addStudent = async (data: StudentCreate): Promise<IStudent> => {
+  const response = await fetch(API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+  return response.json();
+};
+
+// სტუდენტის წაშლა სერვერიდან -- (DELETE)
+const deleteStudent = async (id: string): Promise<void> =>{
+  await fetch(`${API_URL}/${id}`,{
+    method: 'DELETE',
+  });
+};
+
+// სტუდენტის რედაქტირება სერვერზე -- (PUT)
+const updateStudent = async (id: string, data: StudentCreate): Promise<IStudent> =>{
+  const response = await fetch(`${API_URL}/${id}`,{
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+  return response.json();
+};
+
+// სტუდენტის ძებნა -- (GET)
+const searchStudents = async (query: string): Promise<IStudent[]> => {
+  const response = await fetch(`${API_URL}?name_like=${query}`);
+  return response.json();
 };
 
 
-//ყველა სტუდენტის მიღება
-const getAllStudents = (): IStudent[] => {
-  return students;
-};
 
+// =========================================== React Connect ====================================================
 
-//ახალი სტუდენტის დამატება..
-const addStudent = (data: StudentCreate): IStudent => {
-  const student = { ...data, id: nextId++ };
-  students.push(student);
-  saveToStorage();
-  return student;
-};
-
-//სტუდენტის წაშლა..
-const deleteStudent = (id: number): void => {
-  students = students.filter(s => s.id !== id);
-  saveToStorage();
-};
-
-//სტუდენტის რედაქტირება..
-const updateStudent = (id: number, data: StudentCreate): void => {
-  students = students.map(s=>
-    s.id === id ? { ...s, ...data } : s
-  );
-  saveToStorage();
-};
-
-//სტუდენტის ძებნა სახელით..
-const searchStudents = (query: string): IStudent[] => {
-  const k = query.toLowerCase();
-  return students.filter(s =>
-    s.name.toLowerCase().includes(k)
-  );
-};
-loadFromStorage();
-
-//---------------------------------------------------------------------------------------------------------------
-
-//Manager-ით ვაკავშირებთ localStorage-ის ლოგიკას Reactთან ....
-export const Manager = ()=>{
-  const [students, setStudents] = useState<IStudent[]>([]);     
+export const Manager =()=>{
+  const [students, setStudents] = useState<IStudent[]>([]);
   const [editing, setEditing] = useState<IStudent | null>(null); 
 
-  useEffect(() =>{
-    setStudents(getAllStudents());
+  const [message, setMessage] = useState('');
+  const [isVisible, setIsVisible] = useState(false);
+
+  const [deleteMessage, setDeleteMessage] = useState('');
+  const [isDeleteVisible, setIsDeleteVisible] = useState(false);
+
+  //მესიჯის გამოჩენა... (7 second)
+  const showMessage = (text: string)=>{
+    setMessage(text);
+    setIsVisible(true);
+    setTimeout(()=> setIsVisible(false),7000);
+  };
+
+  //მესიჯის გამოჩენა... (5 second)
+  const showDeleteMessage = (text: string)=>{
+    setDeleteMessage(text);
+    setIsDeleteVisible(true);
+    setTimeout(() => setIsDeleteVisible(false),5000);
+  };
+
+  useEffect(()=>{
+    const load = async ()=>{
+      const data = await getAllStudents();
+      setStudents(data);
+    };
+    load();
   }, []);
 
-  //ახალი სტუდენტის დამატება+განახლება
-  const handleAdd = (data:StudentCreate)=> {
-    addStudent(data);
-    setStudents([...getAllStudents()]);
-  };
 
-  //სტუდენტის წაშლა + განახლება
-  const handleDelete = (id:number)=>{
-    deleteStudent(id);
-    setStudents([...getAllStudents()]);
-  };
-
-  //სტუდენტის განახლება
-  const handleUpdate = (data: StudentCreate) => {
-    if(editing) {
-      updateStudent(editing.id, data);
-      setStudents([...getAllStudents()]);
-      setEditing(null);
+  //ახალი სტუდენტის დამატებისას მესიჯი...
+  const handleAdd = async (data:StudentCreate)=>{
+    try{
+      await addStudent(data);
+      const updated = await getAllStudents(); 
+      setStudents(updated);
+      showMessage('სტუდენტი დაემატა');
+    } 
+    catch{
+      showMessage('ERROR');
     }
   };
 
-  //ძებნა თუ ცარიელია ყველა სტუდენტებს ვაჩვენებ. თუარა გაფილტრულ შედეგს..
-  const handleSearch = (query: string) => {
-    if(query.trim() === '') {
-      setStudents([...getAllStudents()]);
-    }
-    else{
-      setStudents(searchStudents(query));
+  //სტუდენტის წაშლის მესიჯი...
+  const handleDelete = async (id:string)=>{
+    try{
+      await deleteStudent(id);
+      const updated = await getAllStudents(); 
+      setStudents(updated);
+      showDeleteMessage('სტუდენტი წაიშალა');
+    } 
+    catch{
+      showDeleteMessage('ERROR');
     }
   };
 
-  return {
+  //სტუდენტის განახლების მესიჯი...
+  const handleUpdate = async (data:StudentCreate)=>{
+    if(editing){
+      try{
+        await updateStudent(editing.id, data);
+        const updated = await getAllStudents();
+        setStudents(updated);
+        setEditing(null); //რედაქტირების რეჟიმის გამორთვა
+        showMessage('სტუდენტი წარმატებით განახლდა');
+      }
+      catch{
+        showMessage('ERRROR');
+      }
+    }
+  };
+
+  //სტუდენტის ძებნა 
+  const handleSearch = async (query: string)=>{
+    if(query.trim() === ''){  //თუ ცარიელია
+      const data = await getAllStudents(); //ყველას ვაჩვენებთ..
+      setStudents(data);
+    }else{ 
+      const data = await searchStudents(query);
+      setStudents(data); 
+    }
+  };
+
+  return{
     students,
     editing,
     setEditing,
@@ -123,5 +151,9 @@ export const Manager = ()=>{
     handleDelete,
     handleUpdate,
     handleSearch,
+    message,             // ← დამატების/განახლების მესიჯი
+    isVisible,           // ← დამატების/განახლების ხილვადობა
+    deleteMessage,       // ← წაშლის მესიჯი
+    isDeleteVisible,     // ← წაშლის ხილვადობა
   };
 };

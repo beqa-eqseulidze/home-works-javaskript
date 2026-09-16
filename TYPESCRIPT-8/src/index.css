@@ -1,11 +1,40 @@
+@import "tailwindcss";
+
 @font-face {
   font-family: 'ALK Sanet';
   src: url('./fonts/alk-sanet.ttf') format('truetype');
 }
 
-*{
+@font-face {
+  font-family: 'ARIAL';
+  src: url('./fonts/bpg_arial_2009.ttf') format('truetype');
+}
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'ALK Sanet', sans-serif;
+  font-family: 'ALK Sanet';
+}
+
+/* ✅ ARIAL კლასი */
+.font-arial {
+  font-family: 'ARIAL', sans-serif;
+}
+
+
+/* მესიჯების ანიმაციები... */
+@keyframes slideInLeft {
+  from{
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slideInLeft 0.7s ease-out;
 }

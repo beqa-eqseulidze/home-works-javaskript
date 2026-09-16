@@ -1,0 +1,49 @@
+{
+  "students": [
+    {
+      "name": "კახაბერ",
+      "course": "JavaScript",
+      "id": 1
+    },
+    {
+      "name": "ნიკა",
+      "course": "CSS",
+      "id": 2
+    },
+    {
+      "name": "გიორგი",
+      "course": "React",
+      "id": 3
+    },
+    {
+      "name": "საბა",
+      "course": "JavaScript",
+      "id": 4
+    },
+    {
+      "name": "ლევანი",
+      "course": "TypeScript",
+      "id": 5
+    },
+    {
+      "name": "ირაკლი",
+      "course": "React",
+      "id": 6
+    },
+    {
+      "name": "ალექსანდრე",
+      "course": "JavaScript",
+      "id": 7
+    },
+    {
+      "name": "დავითი",
+      "course": "TypeScript",
+      "id": 8
+    },
+    {
+      "name": "ლუკა",
+      "course": "CSS",
+      "id": 9
+    }
+  ]
+}
