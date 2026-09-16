@@ -24,7 +24,7 @@ export function StudentForm({ onAddStudent }: StudentFormProps) {
         const nameRegex = /^[a-zA-Z\s]+$/;
 
         if (!nameRegex.test(cleanedName)) {
-            alert('სახელი უნდა შეიცავდეს მხოლოდ ლათინურ ასოებს! (ციფრები და სიმბოლოები დაუშვებელია)');
+            alert('სახელი უნდა შეიცავდეს მხოლოდ ინგლისურ ასოებს!');
             return;
         }
 

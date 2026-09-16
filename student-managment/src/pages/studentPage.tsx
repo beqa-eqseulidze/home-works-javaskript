@@ -3,6 +3,8 @@ import type { Student, NewStudentInput } from '../types/Student';
 import { StudentForm } from '../components/studentForm';
 import { StudentList } from '../components/studentList';
 
+const API_URL = 'http://localhost:5000/students';
+
 export function StudentsPage() {
     const [students, setStudents] = useState<Student[]>([]);
     const [searchTerm, setSearchTerm] = useState<string>('');
@@ -10,52 +12,52 @@ export function StudentsPage() {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        const saved = localStorage.getItem('students_data');
-
-        if (saved) {
-            setStudents(JSON.parse(saved));
-            setLoading(false);
-        } else {
-            fetch('/data.json')
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error('მონაცემების წამოღება ვერ მოხერხდა');
-                    }
-                    return response.json();
-                })
-                .then((data: Student[]) => {
-                    setStudents(data);
-                    localStorage.setItem('students_data', JSON.stringify(data));
-                    setLoading(false);
-                })
-                .catch((err) => {
-                    console.error(err);
-                    setError('შეცდომა მონაცემების ჩატვირთვისას');
-                    setLoading(false);
-                });
-        }
+        fetch(API_URL)
+            .then((res) => {
+                if (!res.ok) throw new Error('სერვერიდან მონაცემების წამოღება ვერ მოხერხდა');
+                return res.json();
+            })
+            .then((data: Student[]) => {
+                setStudents(data);
+                setLoading(false);
+            })
+            .catch((err) => {
+                console.error(err);
+                setError('შეცდომა სერვერთან კავშირისას');
+                setLoading(false);
+            });
     }, []);
 
-    const updateStudents = (newStudents: Student[]) => {
-        setStudents(newStudents);
-        localStorage.setItem('students_data', JSON.stringify(newStudents));
-    };
-
     const handleAddStudent = (newStudentData: NewStudentInput): void => {
-        const newStudent: Student = {
-            id: Date.now(),
-            ...newStudentData
-        };
-        updateStudents([...students, newStudent]);
+        fetch('http://localhost:5000/students', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newStudentData)
+        })
+            .then((res) => res.json())
+            .then((createdStudent: Student) => {
+                setStudents((prev) => [...prev, createdStudent]);
+            })
+            .catch((err) => console.error('დამატების შეცდომა:', err));
     };
 
-    const handleDeleteStudent = (id: number): void => {
+    const handleDeleteStudent = (id: number | string): void => {
         const targetStudent = students.find((s) => s.id === id);
         const studentName = targetStudent ? targetStudent.name : 'ეს სტუდენტი';
         const isConfirmed = window.confirm(`დარწმუნებული ხართ, რომ გინდათ წაშალოთ "${studentName}"?`);
 
         if (isConfirmed) {
-            updateStudents(students.filter((student) => student.id !== id));
+            fetch(`${API_URL}/${id}`, {
+                method: 'DELETE'
+            })
+                .then((res) => {
+                    if (res.ok) {
+                        setStudents((prev) => prev.filter((student) => student.id !== id));
+                    }
+                })
+                .catch((err) => console.error('წაშლის შეცდომა:', err));
         }
     };
 
@@ -69,7 +71,7 @@ export function StudentsPage() {
 
     return (
         <div className="max-w-2xl mx-auto">
-            <h2 className="text-2xl font-bold text-slate-800 mb-6">სტუდენტების მენეჯმენტი</h2>
+            <h2 className="text-2xl font-bold text-slate-800 mb-6">Student Manager</h2>
 
             <StudentForm onAddStudent={handleAddStudent} />
 
@@ -90,7 +92,7 @@ export function StudentsPage() {
 
                 <h3 className="text-base font-bold text-slate-800 mb-4">სტუდენტების სია</h3>
 
-                {loading && <p className="text-slate-500 text-sm">მონაცემები იტვირთება...</p>}
+                {loading && <p className="text-slate-500 text-sm">მონაცემები იტვირთება სერვერიდან...</p>}
                 {error && <p className="text-red-500 text-sm">{error}</p>}
                 {!loading && !error && (
                     <StudentList students={filteredStudents} onDeleteStudent={handleDeleteStudent} />
