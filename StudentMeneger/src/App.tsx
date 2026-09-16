@@ -4,6 +4,7 @@ import type { Student } from './types';
 import StudentsPage from './pages/StudentsPage';
 import RegisterPage from './pages/RegisterPage';
 
+<<<<<<< HEAD
 // json-server-ის endpoint (db.json-ის "students" resource)
 const API_URL = 'http://localhost:3001/students';
 
@@ -47,6 +48,44 @@ function App() {
       // წარმატებული წაშლის შემდეგ, ლოკალურ state-შიც ამოვაგდებთ
       setStudents(students.filter((student) => student.id !== id));
     });
+=======
+// json-server-ის API მისამართი
+const API_URL = 'http://localhost:3001/students';
+
+function App() {
+  // students state — ცხოვრობს App-ში (top level), რადგან ორივე page-ს სჭირდება
+  const [students, setStudents] = useState<Student[]>([]);
+
+  // კომპონენტის ჩატვირთვისას db.json-დან წამოვიღოთ სტუდენტები
+  useEffect(() => {
+    fetch(API_URL)
+      .then((res) => res.json())
+      .then((data: Student[]) => setStudents(data))
+      .catch((err) => console.error('მონაცემების წამოღება ვერ მოხერხდა:', err));
+  }, []);
+
+  // ახალი student-ის დამატება db.json-ში
+  function handleAddStudent(student: Student): void {
+    fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(student),
+    })
+      .then((res) => res.json())
+      .then((newStudent: Student) => {
+        setStudents([...students, newStudent]);
+      })
+      .catch((err) => console.error('დამატება ვერ მოხერხდა:', err));
+  }
+
+  // student-ის წაშლა db.json-დან
+  function handleDeleteStudent(id: number): void {
+    fetch(`${API_URL}/${id}`, { method: 'DELETE' })
+      .then(() => {
+        setStudents(students.filter((student) => student.id !== id));
+      })
+      .catch((err) => console.error('წაშლა ვერ მოხერხდა:', err));
+>>>>>>> 4c1b586 (integrate json-server with db.json for student persistence)
   }
 
   return (

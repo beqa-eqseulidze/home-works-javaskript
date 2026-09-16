@@ -1,13 +1,13 @@
 {
   "students": [
     {
-      "id": "1",
+      "id": 1,
       "name": "Nika",
       "age": 20,
       "course": "TypeScript"
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "Bela",
       "age": 33,
       "course": "JavaScript"
