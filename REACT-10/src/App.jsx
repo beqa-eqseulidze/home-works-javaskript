@@ -1,46 +1,30 @@
-import { useState } from 'react';
-import countriesData from './data/data.json';
-import Header from './components/Header';
-import SearchFilter from './components/SearchFilter';
-import CountryCard from './components/CountryCard';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Sidebar from './components/Sidebar';
+import Step1 from './pages/Step1';
+import Step2 from './pages/Step2';
+import Step3 from './pages/Step3';
 
-export default function App(){
-  const [search, setSearch] = useState('');
-  const [submittedSearch, setSubmittedSearch] = useState(''); 
-  const [region, setRegion] = useState('');
-  const [selectedCountry, setSelectedCountry] = useState(null);
+function App(){
+  return(
+    <Router>
+      <div className="min-h-screen bg-slate-100 flex items-center justify-center p-4">
+        <div className="bg-white rounded-2xl shadow-xl p-4 flex flex-col md:flex-row w-full max-w-4xl">
 
-  // ფუნქცია, რომელიც იძახება მხოლოდ Search ღილაკზე დაჭერისას
-  const handleSearchSubmit = () => {
-    setSubmittedSearch(search);
-  };
+          <Sidebar />
 
-  // ვფილტრავ სახელით (submittedSearch-ის მიხედვით) და რეგიონით
-  const filteredCountries = countriesData.filter((country) => {
-    const matchesSearch = country.name.toLowerCase().includes(submittedSearch.toLowerCase());
-    const matchesRegion = region ? country.region === region : true;
-    return matchesSearch && matchesRegion;
-  });
+          <div className="flex-1 p-6 md:p-10 flex flex-col justify-between">
+            <Routes>
+              <Route path="/" element={<Navigate to="/step-1" replace />} />
+              <Route path="/step-1" element={<Step1 />} />
+              <Route path="/step-2" element={<Step2 />} />
+              <Route path="/step-3" element={<Step3 />} />
+            </Routes>
+          </div>
 
-  return (
-    <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
-      {/* Header */}
-      <Header/>
-
-      {/* Search ფილტრი (გადავცეთ onSearchSubmit) */}
-      <SearchFilter search={search}  setSearch={setSearch} region={region} setRegion={setRegion} onSearchSubmit={handleSearchSubmit} />
-
-      <main className="px-6 md:px-17">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
-          {filteredCountries.map((country) =>(
-            <CountryCard key={country.name} country={country} onClick={() => setSelectedCountry(country)}/>
-          ))}
         </div>
-
-        {filteredCountries.length === 0 && (
-          <p className="text-center text-gray-500 mt-12">not found</p>
-        )}
-      </main>
-    </div>
+      </div>
+    </Router>
   );
 }
+
+export default App;
