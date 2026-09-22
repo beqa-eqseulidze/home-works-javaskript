@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import type { Student } from '../types';
 import Form from '../components/Form';
 
@@ -19,9 +19,22 @@ function RegisterPage({ onAdd }: RegisterPageProps) {
   }
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 border rounded-lg">
-      <h1 className="text-xl font-bold mb-4">Register Student</h1>
-      <Form onAdd={handleAdd} />
+    <div className="min-h-screen bg-gray-50 flex items-start justify-center py-16 px-4">
+      <div className="w-full max-w-md bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+        {/* Link უკან, "/"-ზე დასაბრუნებლად */}
+        <Link
+          to="/"
+          className="text-sm text-gray-400 hover:text-gray-600 transition"
+        >
+          ← Back
+        </Link>
+
+        <h1 className="text-2xl font-bold text-gray-800 mt-2 mb-6">
+          Register Student
+        </h1>
+
+        <Form onAdd={handleAdd} />
+      </div>
     </div>
   );
 }

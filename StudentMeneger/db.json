@@ -10,13 +10,37 @@
       "id": "2",
       "name": "Bela",
       "age": 33,
-      "course": "HTML/CSS/JS/TS/REACT"
+      "course": "JavaScript"
     },
     {
-      "id": 1789564605752,
-      "name": "Nini",
-      "age": 18,
-      "course": "C++"
+      "id": "3",
+      "name": "Ani",
+      "age": 22,
+      "course": "JavaScript"
+    },
+    {
+      "id": "4",
+      "name": "Badri",
+      "age": 32,
+      "course": "JavaScript"
+    },
+    {
+      "id": "5",
+      "name": "Dato",
+      "age": 25,
+      "course": "JavaScript"
+    },
+    {
+      "id": "6",
+      "name": "Aleqsandre",
+      "age": 20,
+      "course": "JavaScript"
+    },
+    {
+      "id": "1790077689030",
+      "name": "Nukri",
+      "age": 35,
+      "course": "Full Stack"
     }
   ]
 }
