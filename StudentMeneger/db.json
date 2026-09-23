@@ -13,10 +13,46 @@
       "course": "HTML/CSS/JS/TS/REACT"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Nini",
       "age": 18,
       "course": "C++"
+    },
+    {
+      "id": "4",
+      "name": "Ani",
+      "age": 22,
+      "course": "JavaScript"
+    },
+    {
+      "id": "5",
+      "name": "Badri",
+      "age": 32,
+      "course": "JavaScript"
+    },
+    {
+      "id": "6",
+      "name": "Dato",
+      "age": 25,
+      "course": "JavaScript"
+    },
+    {
+      "id": "7",
+      "name": "Aleqsandre",
+      "age": 20,
+      "course": "JavaScript"
+    },
+    {
+      "id": "8",
+      "name": "Mari",
+      "age": 20,
+      "course": "JavaScript"
+    },
+    {
+      "id": "1790077689030",
+      "name": "Nukri",
+      "age": 35,
+      "course": "Full Stack"
     }
   ]
 }
