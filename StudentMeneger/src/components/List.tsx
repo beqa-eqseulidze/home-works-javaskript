@@ -12,10 +12,14 @@ function List({ students, onDelete, isLoading }: ListProps) {
   // search state — ცხოვრობს List-ში, რადგან მხოლოდ ჩვენებაზე მოქმედებს
   const [search, setSearch] = useState<string>('');
 
-  // გაფილტრული სია — search-ის ტექსტის მიხედვით, ორიგინალი students არ იცვლება
+  // ეს ფილტრავს სტუდენტებს, მაგ: როცა დავწერთ a ან an აგდებს ყველა იმ სტუდენტს რომელიც შეიცავს ამ ასოებს 
   const filteredStudents = students.filter((student) =>
     student.name.toLowerCase().includes(search.toLowerCase())
   );
+  // ეს ფილტრავს სტუდენტებს, მაგ: როცა დავწერთ a ამოაგდებს ყველა იმ სტუდენტს რომელიც იწყება ამ ასოზე 
+  //   const filteredStudents = students.filter((student) =>
+  //   student.name.toLowerCase().startsWith(search.toLowerCase())
+  // );
 
   return (
     <div>

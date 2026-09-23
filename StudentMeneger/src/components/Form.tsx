@@ -8,12 +8,12 @@ interface FormProps {
 
 function Form({ onAdd }: FormProps) {
   // form-ის input-ების საკუთარი (local) state-ები
-  const [name, setName] = useState<string>('');
-  const [age, setAge] = useState<string>('');
-  const [course, setCourse] = useState<string>('');
+  const [name, setName] = useState<string>('');         //useState hook-ის გამოძახება, TypeScript-ის <string> generic type-ით.
+  const [age, setAge] = useState<string>('');          //useState hook-ის გამოძახება, TypeScript-ის <string> generic type-ით.
+  const [course, setCourse] = useState<string>('');   //useState hook-ის გამოძახება, TypeScript-ის <string> generic type-ით.
 
   // ღილაკზე დაჭერისას გამოძახებული ფუნქცია
-  function handleAddStudent(): void {
+  function        handleAddStudent(): void {
     // validation — თუ რომელიმე ველი ცარიელია, არაფერი ხდება
     if (!name || !age || !course) return;
 
