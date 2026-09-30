@@ -1,4 +1,4 @@
-const categories = [
+const categories=[
   { label: 'All', category: '' },
   { label: 'Smartphones', category: 'smartphones' },
   { label: 'Mens-Shirts', category: 'mens-shirts' },
@@ -9,17 +9,16 @@ const categories = [
 
 interface Props{
   active: string;
-  onChange: (category: string) => void;
+  onChange:(category:string)=>void;
 }
 
-export const Navbar = ({ active, onChange }: Props) => {
+export const Navbar = ({ active, onChange } : Props)=>{
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-40">
-      {/* ზემო რიგი */}
       <div className="max-w-6xl mx-auto px-5 h-14 flex items-center gap-4">
         <div className="flex items-center gap-2 shrink-0">
           <svg
-            className="w-5 h-5 text-emerald-600"
+            className="w-6 h-6 text-emerald-600"
             fill="none"
             stroke="currentColor"
             strokeWidth="2"
@@ -31,7 +30,9 @@ export const Navbar = ({ active, onChange }: Props) => {
               strokeLinejoin="round"
             />
           </svg>
-          <span className="text-base font-bold text-gray-900">Store</span>
+          <span className="text-base font-bold text-gray-900">
+            Store
+          </span>
         </div>
 
         {/* SearchBar */}
@@ -53,12 +54,9 @@ export const Navbar = ({ active, onChange }: Props) => {
           />
         </div>
 
-        {/* Login and Cart */}
+        {/* login / cart */}
         <div className="flex items-center gap-8 text-sm text-gray-800 shrink-0">
-          <button
-            type="button"
-            className="flex items-center gap-2 hover:text-emerald-600"
-          >
+          <button type="button" className="flex items-center gap-2 hover:text-emerald-600 cursor-pointer">
             <svg
               className="w-4 h-4"
               fill="none"
@@ -72,10 +70,7 @@ export const Navbar = ({ active, onChange }: Props) => {
             <span className="hidden sm:inline">Login</span>
           </button>
 
-          <button
-            type="button"
-            className="flex items-center gap-2 hover:text-emerald-800"
-          >
+          <button type="button"className="flex items-center gap-2 hover:text-emerald-600 cursor-pointer">
             <svg
               className="w-4 h-4"
               fill="none"
@@ -96,14 +91,13 @@ export const Navbar = ({ active, onChange }: Props) => {
         </div>
       </div>
 
-      {/* კატეგორიები */}
+      {/* categories section */}
       <nav className="border-t border-gray-100">
         <div className="max-w-6xl mx-auto px-5 h-10 flex items-center justify-between text-xs text-gray-700 cursor-pointer">
-          {categories.map((item) => (
+          {categories.map((item)=>(
             <button key={item.category} type="button" onClick={()=> onChange(item.category)}
               className={`py-2 transition cursor-pointer ${
-                active === item.category ? 'text-blue-500 font-semibold'
-                  : 'hover:text-blue-600'
+                active === item.category ? 'text-blue-500 font-bold' : 'hover:text-blue-500'
               }`}>
               {item.label}
             </button>

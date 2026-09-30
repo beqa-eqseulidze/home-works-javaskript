@@ -3,14 +3,14 @@ import { Navbar } from './components/Navbar';
 import { Banner } from './components/Banner';
 import { Products } from './components/Products';
 
-function App() {
+function App(){
   const [category, setCategory] = useState<string>('');
 
-  return (
+  return(
     <div className="min-h-screen bg-gray-50">
-      <Navbar active={category} onChange={setCategory} />
-      <Banner />
-      <Products category={category} />
+      <Navbar active={category} onChange={setCategory}/>
+      <Banner/>
+      <Products category={category}/>
     </div>
   );
 }
