@@ -2,15 +2,15 @@
   "students": [
     {
       "id": "1",
-      "name": "Nika",
-      "age": 20,
+      "name": "Giorgi",
+      "age": 25,
       "course": "TypeScript"
     },
     {
       "id": "2",
       "name": "Bela",
       "age": 33,
-      "course": "HTML/CSS/JS/TS/REACT"
+      "course": "JavaScript"
     },
     {
       "id": "3",
@@ -60,5 +60,6 @@
       "age": 25,
       "course": "JS"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

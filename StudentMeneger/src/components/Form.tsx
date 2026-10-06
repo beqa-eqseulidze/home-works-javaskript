@@ -19,12 +19,13 @@ function Form({ onAdd }: FormProps) {
 
     // ახალი Student object-ის აწყობა
     const newStudent: Student = {
-      id: Date.now().toString(),
+      id: Date.now().toString(), // unique id, string ტიპად (json-server v1 კონვენციაა)
       name,
       age: Number(age),
       course,
     };
 
+    // მზა student-ი გადაეცემა მშობელს callback-ით
     onAdd(newStudent);
 
     // form-ის გასუფთავება
@@ -33,52 +34,36 @@ function Form({ onAdd }: FormProps) {
     setCourse('');
   }
 
-  // საერთო input class — ერთხელ განსაზღვრული, ყველა input-ში გამოსაყენებლად
-  const inputClass =
-    'border border-gray-300 rounded-lg px-4 py-2 text-sm outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100';
-
   return (
-    <div className="flex flex-col gap-3 mb-6">
-      {/* Name input */}
-      <div className="flex flex-col gap-1">
-        <label className="text-xs font-medium text-gray-500">Name</label>
-        <input
-          type="text"
-          placeholder="e.g. Nika"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className={inputClass}
-        />
-      </div>
-
+    <div className="flex flex-col gap-2 mb-4">
+      {/* Name input — controlled input, value მოდის state-იდან */}
+      <input
+        type="text"
+        placeholder="Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        className="border p-2 rounded"
+      />
       {/* Age input */}
-      <div className="flex flex-col gap-1">
-        <label className="text-xs font-medium text-gray-500">Age</label>
-        <input
-          type="number"
-          placeholder="e.g. 20"
-          value={age}
-          onChange={(e) => setAge(e.target.value)}
-          className={inputClass}
-        />
-      </div>
-
+      <input
+        type="number"
+        placeholder="Age"
+        value={age}
+        onChange={(e) => setAge(e.target.value)}
+        className="border p-2 rounded"
+      />
       {/* Course input */}
-      <div className="flex flex-col gap-1">
-        <label className="text-xs font-medium text-gray-500">Course</label>
-        <input
-          type="text"
-          placeholder="e.g. TypeScript"
-          value={course}
-          onChange={(e) => setCourse(e.target.value)}
-          className={inputClass}
-        />
-      </div>
-
+      <input
+        type="text"
+        placeholder="Course"
+        value={course}
+        onChange={(e) => setCourse(e.target.value)}
+        className="border p-2 rounded"
+      />
       {/* დამატების ღილაკი */}
       <button
         onClick={handleAddStudent}
-        className="mt-2 bg-indigo-600 text-white font-medium py-2 rounded-lg transition hover:bg-indigo-700 active:bg-indigo-800"
+        className="bg-blue-500 text-white p-2 rounded"
       >
         Add Student
       </button>
