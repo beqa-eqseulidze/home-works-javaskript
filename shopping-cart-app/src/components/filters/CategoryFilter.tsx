@@ -9,7 +9,7 @@ const categoryTranslations: Record<string, string> = {
     beauty: 'თავის მოვლა',
     fragrances: 'პარფიუმერია',
     furniture: 'ავეჯი',
-    groceries: 'საკვები',
+    groceries: 'საკვები / პროდუქტები',
     'home-decoration': 'სახლის დეკორი',
     'kitchen-accessories': 'სამზარეულოს აქსესუარები',
     laptops: 'ლეპტოპები',
@@ -20,8 +20,9 @@ const categoryTranslations: Record<string, string> = {
     motorcycle: 'მოტოციკლები',
     'skin-care': 'კანის მოვლა',
     smartphones: 'სმარტფონები',
-    'sports-accessories': 'სპორტული ინვენტარი',
+    'sports-accessories': 'სპორტული აქსესუარები',
     sunglasses: 'მზის სათვალეები',
+    'tablets': 'ტაბლეტები',
     tops: 'ზედები',
     vehicle: 'ავტომობილები',
     'womens-bags': 'ქალის ჩანთები',
@@ -44,7 +45,7 @@ export function CategoryFilter({
                 const data: string[] = await response.json();
                 setCategories(data);
             } catch (error) {
-                console.error('კატეგორიების დაფეჩვისას მოხდა შეცდომა:', error);
+                console.error('Error fetching categories:', error);
             }
         };
 

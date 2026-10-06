@@ -29,7 +29,7 @@ export function Pagination({
             <div className="flex-1 flex justify-start">
                 {showLimitSelect && (
                     <div className="flex items-center gap-2 text-sm text-zinc-600 font-medium whitespace-nowrap">
-                        <span>გვერდზე რამდენის გამოტანა:</span>
+                        <span>გვერდზე გამოიტანოს:</span>
                         <select
                             value={limit}
                             onChange={(e) => onLimitChange(Number(e.target.value))}
