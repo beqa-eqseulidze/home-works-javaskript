@@ -35,7 +35,7 @@ export const usePageController = (
   };
 
   const goToPage = (pageNumber:number)=>{
-    if(pageNumber < 1 || pageNumber > totalPages) return;  //ზღვრების შემოწმება
+    if(pageNumber < 1 || pageNumber > totalPages) return;  
     setSkip((pageNumber - 1) * LIMIT); // გვერდი 5 → skip = 40
   };
 

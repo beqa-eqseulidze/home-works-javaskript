@@ -13,25 +13,11 @@ interface Props{
 }
 
 export const Navbar = ({ active, onChange } : Props)=>{
-  return (
+  return(
     <header className="bg-white border-b border-gray-200 sticky top-0 z-40">
       <div className="max-w-6xl mx-auto px-5 h-14 flex items-center gap-4">
         <div className="flex items-center gap-2 shrink-0">
-          <svg
-            className="w-6 h-6 text-emerald-600"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M3 9 5 3h14l2 6M3 9v11h18V9M3 9h18M9 20v-6h6v6"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
           <span className="text-base font-bold text-gray-900">
-            Store
           </span>
         </div>
 
@@ -95,9 +81,9 @@ export const Navbar = ({ active, onChange } : Props)=>{
       <nav className="border-t border-gray-100">
         <div className="max-w-6xl mx-auto px-5 h-10 flex items-center justify-between text-xs text-gray-700 cursor-pointer">
           {categories.map((item)=>(
-            <button key={item.category} type="button" onClick={()=> onChange(item.category)}
+            <button key={item.category} type="button" onClick={()=>onChange(item.category)}
               className={`py-2 transition cursor-pointer ${
-                active === item.category ? 'text-blue-500 font-bold' : 'hover:text-blue-500'
+                active === item.category ? 'text-blue-500 font-bold text-[15px]' : 'hover:text-blue-500 font-bold hover:text-[14px]'
               }`}>
               {item.label}
             </button>
