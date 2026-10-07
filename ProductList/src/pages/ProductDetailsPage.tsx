@@ -34,44 +34,77 @@ export default function ProductDetailsPage() {
   }, [id]);
 
   return (
-    <main className="mx-auto max-w-4xl p-6">
-      {/* Back ღილაკი: აბრუნებს წინა გვერდზე (იგივე კატეგორიასა და გვერდზე) */}
+    <main className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
+      {/* Back ღილაკი */}
       <Link
         to="/"
         onClick={(e) => {
           e.preventDefault();
           window.history.back();
         }}
-        className="mb-6 inline-block text-sm text-blue-600 hover:underline"
+        className="mb-6 inline-flex items-center gap-1.5 text-sm font-semibold text-stone-600 hover:text-amber-800 transition-colors"
       >
-        ← Back
+        ← პროდუქტების სიაში დაბრუნება
       </Link>
 
       {/* ჩატვირთვისა და შეცდომის შეტყობინებები */}
-      {loading && <p className="text-gray-500">Loading...</p>}
-      {error && <p className="text-red-600">Error: {error}</p>}
+      {loading && (
+        <div className="flex justify-center py-16">
+          <div className="flex items-center gap-3 rounded-2xl bg-white px-6 py-4 shadow-sm border border-stone-200/80">
+            <svg className="h-5 w-5 animate-spin text-amber-800" fill="none" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
+            </svg>
+            <span className="text-sm font-medium text-stone-600">იტვირთება...</span>
+          </div>
+        </div>
+      )}
+      {error && (
+        <div className="rounded-2xl border border-red-200 bg-red-50 p-4 text-center text-sm font-medium text-red-700">
+          შეცდომა: {error}
+        </div>
+      )}
 
-      {/* პროდუქტის დეტალები: მარცხნივ სურათი, მარჯვნივ ინფორმაცია */}
+      {/* პროდუქტის დეტალები */}
       {product && (
-        <div className="grid gap-8 md:grid-cols-2">
-          <img
-            src={product.thumbnail}
-            alt={product.title}
-            className="w-full rounded-lg border border-gray-200 object-contain"
-          />
-          <div>
-            <h1 className="mb-2 text-2xl font-bold">{product.title}</h1>
-            {/* კატეგორია და brand (თუ არსებობს) */}
-            <p className="mb-4 text-sm capitalize text-gray-500">
-              {product.category.replace(/-/g, " ")}
-              {product.brand ? ` · ${product.brand}` : ""}
-            </p>
-            {/* პროდუქტის აღწერა */}
-            <p className="mb-4 text-gray-700">{product.description}</p>
-            <p className="mb-1 text-xl font-semibold">${product.price}</p>
-            <p className="text-sm text-gray-600">
-              Rating: {product.rating} · In stock: {product.stock}
-            </p>
+        <div className="overflow-hidden rounded-3xl border border-stone-200/80 bg-white p-6 shadow-sm sm:p-8">
+          <div className="grid gap-8 md:grid-cols-2">
+            <div className="flex h-80 w-full items-center justify-center rounded-2xl bg-stone-100/80 p-6">
+              <img
+                src={product.thumbnail}
+                alt={product.title}
+                className="max-h-full max-w-full object-contain"
+              />
+            </div>
+            <div className="flex flex-col justify-between">
+              <div>
+                <span className="mb-2 inline-block rounded-full bg-amber-100/90 px-3 py-1 text-xs font-bold uppercase tracking-wider text-amber-900">
+                  {product.category.replace(/-/g, " ")}
+                  {product.brand ? ` · ${product.brand}` : ""}
+                </span>
+                <h1 className="mb-3 text-2xl font-extrabold text-stone-900 sm:text-3xl">
+                  {product.title}
+                </h1>
+                <p className="mb-6 leading-relaxed text-stone-600">
+                  {product.description}
+                </p>
+              </div>
+
+              <div className="space-y-4 border-t border-stone-100 pt-4">
+                <div className="flex items-baseline gap-3">
+                  <span className="text-3xl font-black text-amber-900">${product.price}</span>
+                </div>
+
+                <div className="flex flex-wrap items-center gap-4 text-xs font-semibold text-stone-600">
+                  <span className="inline-flex items-center gap-1 rounded-lg bg-amber-50 px-2.5 py-1 text-amber-800 border border-amber-200/60">
+                    ★ {product.rating} / 5
+                  </span>
+                  <span className="inline-flex items-center gap-1 rounded-lg bg-stone-100 px-2.5 py-1 text-stone-700">
+                    მარაგშია: {product.stock} ცალი
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}

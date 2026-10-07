@@ -168,57 +168,102 @@ export default function ProductsPage() {
   };
 
   return (
-    <main className="mx-auto max-w-5xl p-6">
-      {/* Hero banner: სურათი ბნელი overlay-თ და სათაურით; სურათის გარეშე ჩანს gradient */}
+    <main className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+      {/* Hero banner: თბილი ტონალობის სურათი overlay-თ და სტილიზებული ტექსტით */}
       <section
-        className="relative mb-8 flex h-56 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-700 bg-cover bg-center sm:h-72"
+        className="relative mb-8 flex h-60 items-center justify-center overflow-hidden rounded-3xl bg-amber-900 bg-cover bg-center shadow-lg sm:h-72"
         style={{ backgroundImage: `url(${HERO_IMAGE})` }}
       >
-        <div className="absolute inset-0 bg-black/45" />
-        <div className="relative px-4 text-center text-white">
-          <h1 className="text-3xl font-bold sm:text-5xl">Products</h1>
-          <p className="mt-2 text-sm sm:text-base">
-            Discover the best products in every category
-          </p>
+        <div className="absolute inset-0 bg-gradient-to-r from-stone-900/70 via-stone-900/50 to-amber-950/70 backdrop-blur-[1px]" />
+        <div className="relative px-6 text-center text-stone-100">
+          <span className="mb-2 inline-block rounded-full bg-amber-500/20 px-3.5 py-1 text-xs font-semibold tracking-wider text-amber-200 uppercase backdrop-blur-md">
+            Premium Collection
+          </span>
+          <h1 className="text-3xl font-extrabold tracking-tight sm:text-5xl text-amber-50 drop-shadow-sm">
+            Products Catalog
+          </h1>
+          {/* <p className="mt-2 text-sm text-stone-200 sm:text-base max-w-lg mx-auto font-medium">
+            აღმოაჩინეთ საუკეთესო პროდუქტები თქვენთვის სასურველ კატეგორიაში
+          </p> */}
         </div>
       </section>
 
-      {/* ჯგუფების ღილაკები: "All" + 8 ჯგუფი; flex-1 ღილაკებს თანაბრად გაჭიმავს მთლიან სიგანეზე */}
-      <div className="mb-6 flex flex-wrap gap-2">
+      {/* კატეგორიების ღილაკები */}
+      <div className="mb-6 flex flex-wrap gap-2.5">
         {FILTERS.map((item) => (
           <button
             key={item.id}
             onClick={() => handleCategoryChange(item.id)}
-            className={`flex-1 whitespace-nowrap rounded-full border px-3 py-1 text-sm transition-colors ${
-              item.id === category
-                ? "border-blue-500 bg-blue-500 text-white"
-                : "border-gray-300 bg-gray-100 text-gray-800 hover:bg-gray-200"
-            }`}
+            className={`flex-1 whitespace-nowrap rounded-full border px-4 py-2 text-xs font-semibold transition-all duration-200 ${item.id === category
+                ? "border-amber-800 bg-amber-800 text-white shadow-md shadow-amber-900/20"
+                : "border-stone-200 bg-stone-200/60 text-stone-700 hover:bg-stone-300/80 hover:text-stone-900"
+              }`}
           >
             {item.label}
           </button>
         ))}
       </div>
 
-      {/* შეცდომისა და ჩატვირთვის შეტყობინებები */}
-      {error && <p className="mb-4 text-red-600">Error: {error}</p>}
-      {loading && <p className="mb-4 text-gray-500">Loading...</p>}
+      {/* ახალი პროდუქტის დამატების ღილაკი (კატეგორიების ქვემოთ) */}
+      <div className="mb-8 flex justify-center sm:justify-end">
+        <Link
+          to="/add-product"
+          className="inline-flex items-center gap-2 rounded-2xl bg-amber-800 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-amber-900/20 transition-all duration-200 hover:bg-amber-900 hover:shadow-lg active:scale-95 focus:outline-none focus:ring-2 focus:ring-amber-600 focus:ring-offset-2"
+        >
+          <svg className="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+          </svg>
+          ახალი პროდუქტის დამატება
+        </Link>
+      </div>
 
-      {/* პროდუქტების grid: დაჭერისას გადადის დეტალების გვერდზე */}
-      <ul className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      {/* შეცდომისა და ჩატვირთვის შეტყობინებები */}
+      {error && (
+        <div className="mb-6 rounded-2xl border border-red-200 bg-red-50 p-4 text-center text-sm font-medium text-red-700">
+          შეცდომა: {error}
+        </div>
+      )}
+      {loading && (
+        <div className="mb-8 flex justify-center py-12">
+          <div className="flex items-center gap-3 rounded-2xl bg-white px-6 py-4 shadow-sm border border-stone-200/80">
+            <svg className="h-5 w-5 animate-spin text-amber-800" fill="none" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
+            </svg>
+            <span className="text-sm font-medium text-stone-600">იტვირთება...</span>
+          </div>
+        </div>
+      )}
+
+      {/* პროდუქტების grid: Warm Minimalist ქარდები */}
+      <ul className="mb-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5">
         {products.map((product) => (
           <li key={product.id}>
             <Link
               to={`/products/${product.id}`}
-              className="block rounded-lg border border-gray-200 p-3 transition-shadow hover:shadow-md"
+              className="group flex flex-col justify-between h-full rounded-2xl border border-stone-200/80 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-amber-400/70 hover:shadow-xl hover:shadow-stone-200/80"
             >
-              <img
-                src={product.thumbnail}
-                alt={product.title}
-                className="mb-2 h-32 w-full object-contain"
-              />
-              <h2 className="text-sm font-semibold">{product.title}</h2>
-              <p className="text-sm text-gray-600">${product.price}</p>
+              <div>
+                <div className="mb-3 flex h-40 w-full items-center justify-center overflow-hidden rounded-xl bg-stone-100/70 p-3 transition-colors group-hover:bg-amber-50/50">
+                  <img
+                    src={product.thumbnail}
+                    alt={product.title}
+                    className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <span className="mb-1.5 inline-block rounded-md bg-amber-100/80 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-amber-900">
+                  {product.category.replace(/-/g, " ")}
+                </span>
+                <h2 className="text-sm font-semibold text-stone-800 line-clamp-1 group-hover:text-amber-800 transition-colors">
+                  {product.title}
+                </h2>
+              </div>
+              <div className="mt-3 flex items-center justify-between border-t border-stone-100 pt-2.5">
+                <span className="text-base font-extrabold text-amber-900">${product.price}</span>
+                <span className="text-xs font-semibold text-amber-800 group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
+                  ნახვა →
+                </span>
+              </div>
             </Link>
           </li>
         ))}
