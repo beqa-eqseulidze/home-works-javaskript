@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@import "@fontsource/space-grotesk/index.css";
+
+body{
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+
+
